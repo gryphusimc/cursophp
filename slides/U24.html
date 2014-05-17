@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Funciones I</title>
+
+	<meta name="description" content="PHP - Funciones I">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+
+		#DIV_1 {
+			text-align: left;
+		    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 0px 1px inset;
+		    color: rgb(115, 115, 115);
+		    height: 24px;
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+		    border: 0px none rgb(217, 217, 217);
+		    border-radius: 0 0 2px 2px;
+		    font: normal normal normal 16px/24px 'Source Code Pro', monospace;
+		    font-size: 20px;
+		    outline: rgb(115, 115, 115) none 0px;
+		    padding: 12px;
+		    margin: 5px 0;
+		}/*#DIV_1*/
+
+		#SPAN_2, #SPAN_7 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border: 0px none rgb(102, 153, 51);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#SPAN_2*/
+
+		#A_3 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border-top: 0px none rgb(102, 153, 51);
+		    border-right: 0px none rgb(102, 153, 51);
+		    border-bottom: 1px solid rgb(102, 153, 51);
+		    border-left: 0px none rgb(102, 153, 51);
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#A_3*/
+
+		#SPAN_3, #SPAN_5 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_3, #SPAN_5*/
+
+		#SPAN_4, #SPAN_6 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_4, #SPAN_6*/
+
+		#STRONG_4 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_4*/
+
+		#STRONG_5 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_5*/
+
+		#CODE_8 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#CODE_8*/
+
+
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Funciones I</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>¿Qué es una función?</h2>
+				<ul>
+					<li>Una "herramienta" que hace algo por nosotros.</li>
+					<li>A veces reciben parámetros (valores).</li>
+					<li>A veces retornan valores.</li>
+				</ul>
+				<p><br />Por ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$resultado = nombre_funcion($parametro1, $parametro2);
+				</code></pre>
+				<p><br />Ya hemos usado muchas funciones, como por ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+					$today = date("d/m/Y");
+				</code></pre>
+				<p>Pero hasta ahora para nosotros son <em>cajas negras</em>, dentro de las cuales sucede «magia».</p>
+			</section>
+
+			<section>
+				<h2>Pero podemos crear nuevas funciones</h2>
+				<p>No estamos limitados a las funciones del sistema. Podemos programarnos las nuestras o incluir otras desarrolladas por terceros.<br /><br /></p>
+				<h3>¿Por qué crear una función?</h3>
+				<ul>
+					<li><strong>Ahorrar tiempo</strong> — gracias a que nos permiten reutilizar código.</li>
+					<li><strong>Facilitar el trabajo</strong> — un código bien dividido nos ayuda a enfocar mejor un problema.</li>
+					<li><strong>Mejorar el mantenimiento</strong> — bien usadas, las funciones pueden simplificar mucho el mantenimiento de un software.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Comprobando si la función existe</h2>
+				<p>No podemos definir dos funciones con el mismo nombre. Es recomendable comprobar previamente si existe.</p>
+				<div id="DIV_1">
+					<span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">function_exists</strong></span> ( <span id="SPAN_5"><span id="SPAN_6">string</span> 
+					<code id="CODE_7">$function_name
+					</code></span> )
+				</div>
+				<p>Si vamos a utilizar una función que es posible que no esté presente en el sistema, es recomendable comprobarlo antes.</p>
+				<p>Por ejemplo, al programar para WordPress, si se va a utilizar una función de un plugin, por convenio siempre se comprueba previamente si la función existe.</p>
+			</section>
+
+			<section>
+				<h2>Clasificación de funciones</h2>
+				<h3>Parámetros</h3>
+				<p>Podemos dividir las funciones en dos grupos:</p>
+				<ol style="width:65%;">
+					<li>Funciones que reciben parámetros.</li>
+					<li>Funciones que no reciben parámetros.</li>
+				</ol>
+				<br /><br />
+				<p>Nota: Usaremos indistintamente «<em>parámetros</em>» y «<em>argumentos</em>».</p>
+				<br />
+				<h3>Valor devuelto</h3>
+				<ol style="width:65%;">
+					<li>Funciones que devuelven un valor.</li>
+					<li>Funciones que no devuelven ningún valor.</li>
+				</ol>
+			</section>
+
+			<section>
+				<h2>Creación de funciones</h2>
+				<h3>Sin parámetros y sin retorno</h3>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+function nombre_funcion() {
+	/* Código de la función */
+}
+				</code></pre>
+
+				<p>Por ejemplo, una función que muestre un mensaje pantalla:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+
+// En los nombres de funciones solemos seprar palabras con _
+function mostrar_mensaje() {
+	echo "Mensaje\n";
+}
+
+// invocamos a la función así:
+mostrar_mensaje();
+				</code></pre>				
+			</section>
+
+			<section>
+				<h3>Sin parámetros y con retorno</h3>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+function nombre_funcion() {
+	/* Código de la función */
+	return expresion;
+}
+				</code></pre>
+
+				<p>Por ejemplo, una función que devuelva la fecha actual en formato «<code>dd/mm/YYYY</code>»:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+function obtener_fecha() {
+	return date("d/m/Y");
+}
+
+echo "Fecha actual: " . obtener_fecha();
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Con un parámetro</h3>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+function nombre_funcion($nombre_param) {
+	/* Código de la función */
+}
+				</code></pre>
+
+				<p>Por ejemplo, una función que salude al usuario que pasamos como parámetro:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+function saluda($nombre) {
+	echo "Hola, " . $nombre . ".";
+}
+
+saluda("Jaime"); // Muestra "Hola, Jaime."
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Con varios parámetros</h3>
+				<p>Los separamos por comas:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+function nombre_funcion($param1, $param2, $param3 ... ) {
+	/* Código de la función */
+}
+				</code></pre>
+
+				<p>Por ejemplo, para la media entre 2 números:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+function media($num1, $num2) {
+	return ($num1 + $num2) / 2;
+}
+
+$resultado = media(303, 404); // Devuelve 353.5;
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Con parámetros opcionales</h3>
+				<p>A los parámetros opcionales les asignamos un valor predeterminado:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+function nombre_funcion($param1, $param_opc2 = val2, $param_opc3 = val3 ... ) {
+	/* Código de la función */
+}
+				</code></pre>
+
+				<p>Por ejemplo, una función que devuelva la suma de 2 o de 3 números:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+function suma($num1, $num2, $num3 = 0) {
+	return $num1 + $num2 + $num3;
+}
+
+$resultado1 = suma(303, 404);      // Devuelve 707
+$resultado2 = suma(303, 404, 101); // Devuelve 808
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Argumentos variables</h3>
+				<p>Si quisiéramos aceptar un número indefinido de argumentos:</p>
+				<h4>Desde PHP 5.6</h4>
+
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+function nombre_funcion(...$mas_params) {
+	// $mas_params será un array con todos los demás parámetros introducidos
+}
+				</code></pre>				
+
+			<p>Ejemplo</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+function suma_variable(...$nums) {
+	$total = 0;
+	foreach($nums as $num) {
+		$total += $num;
+	}
+
+	return $total;
+}
+
+$resultado1 = suma_variable(303);              // Devuelve 303
+$resultado2 = suma_variable(303, 1, -4, 1000); // Devuelve 1300
+				</code></pre>
+			</section>
+
+			<section>
+				<h4>Hasta PHP 5.5</h4>
+				<code>func_get_args()</code> devuelve un array con todos los parámetros:
+				<div id="DIV_1">
+					 <span id="SPAN_2">array</span> <span id="SPAN_3"><strong id="STRONG_4">func_get_args</strong></span> ( <span id="SPAN_5">void</span> )
+				</div>
+				<br />
+				<code>func_num_args()</code> devuelve el número total de argumentos:
+				<div id="DIV_1">
+					 <span id="SPAN_2">int</span> <span id="SPAN_3"><strong id="STRONG_4">func_num_args</strong></span> ( <span id="SPAN_5">void</span> )
+				</div>
+
+				<code>func_get_arg()</code> devuelve el argumento de la posición solicitada, contando desde cero:
+				<div id="DIV_1">
+					 <span id="SPAN_2">mixed</span> <span id="SPAN_4"><strong id="STRONG_5">func_get_arg</strong></span> ( <span id="SPAN_6"><span id="SPAN_7">int</span> <code id="CODE_8">$arg_num</code></span> )
+				</div>
+			</section>
+
+			<section>
+				<p>Ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+function suma_variable($num1) {
+	$total = 0;
+	foreach(func_get_args() as $num) {
+		$total += $num;
+	}
+
+	return $total;
+}
+
+$resultado1 = suma_variable(303);              // Devuelve 303
+$resultado2 = suma_variable(303, 1, -4, 1000); // Devuelve 1303
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Parámetros por referencia</h3>
+				<p>Al pasar una variable como parámetro, se copia su valor:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+function repetir($palabra) {
+	$palabra .= $palabra;
+	echo $palabra;
+}
+
+$saludo = "Hola";
+echo repetir($saludo); // Muestra "HolaHola";
+echo $saludo; // ¿Qué muestra?
+</code></pre>
+				<p class="fragment">Muestra "Hola";</p>
+				<p class="fragment">¿Cómo podemos hacer que se actualize el valor de la variable? Usando parámetros por <strong>referencia</strong>.</p>
+			</section>
+
+			<section>
+				<h4>Continuación</h4>
+				Dos formas de pasar parámetros a una función:
+				<ol>
+					<li>Por valor — Es la forma predeterminada. Se copia el valor.</li>
+					<li>Por referencia - Se <em>copia</em> una referencia de la variable; si la modificamos, el cambio será visible fuera de la función.</li>
+				</ol>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+function repetir(&amp;$palabra) { // Fíjate en el símbolo &amp;
+	$palabra .= $palabra;
+	echo $palabra;
+}
+
+$saludo = "Hola";
+echo repetir($saludo); // Muestra "HolaHola"
+echo $saludo; // Ahora sí, muestra "HolaHola"
+</code></pre>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<ul>
+					<li>Definición de función.</li>
+					<li>Ventajas de crear nuestras propias funciones.</li>
+					<li><code>function_exists()</code>.</li>
+					<li>Creación de funciones:
+						<ul>
+							<li>Básica: sin parámetro ni retorno.</li>
+							<li>Con retorno.</li>
+							<li>Con un parámetro.</li>
+							<li>Con varios parámetros.</li>
+							<li>Con parámetros opcionales.</li>
+							<li>Tamaño de parámetros variable.</li>
+							<li>Con parámetros por referencia.</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

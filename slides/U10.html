@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Operadores</title>
+
+	<meta name="description" content="PHP - Operadores">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+		}
+		table td {
+			padding: 0.2em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Operadores</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Qué es un operador</h2>
+				<p>Un elemento que, a partir de uno o más <strong>valores</strong>, produce un nuevo valor.</p>
+				<p>Ya hemos visto varios:</p>
+				<ul>
+					<li class="fragment"><span style="color:orange">=</span> Asignación</li>
+					<li class="fragment"><span style="color:orange">+</span> Suma</li>
+					<li class="fragment"><span style="color:orange">-</span> Resta</li>
+					<li class="fragment"><span style="color:orange">*</span> Multiplicación</li>
+					<li class="fragment"><span style="color:orange">/</span> Divisón</li>
+					<li class="fragment"><span style="color:orange">.</span> Concatenación</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Clasificación de operadores</h2>
+
+				<h3>Por sus operandos</h3>
+				<p>La mayoría son <strong>binarios</strong>: dos operandos. Los hay también <strong>unarios</strong> –un operando– y <strong>ternarios</strong> –tres operandos.</p>
+				
+				<div class="fragment">
+					<h3>Por su función</h3>
+					<ul>
+						<li>Aritméticos</li>
+						<li>De strings</li>
+						<li>Lógicos</li>
+						<li>Comparación</li>
+						<li>De arrays</li>
+						<li>Asignación</li>
+						<li>Incremento/Decremento</li>
+					</ul>
+				</div>
+			</section>
+
+			<section>
+				<h2>Operadores aritméticos</h2>
+				<p>Supongamos dos variables numéricas, $a y $b:</p>
+				<ul>
+					<li><span style="color:orange">-</span>$a Negación</li>
+					<li>$a <span style="color:orange">+</span> $b Adición</li>
+					<li>$a <span style="color:orange">-</span> $b Sustracción</li>
+					<li>$a <span style="color:orange">*</span> $b Multiplicación</li>
+					<li>$a <span style="color:orange">/</span> $b División</li>
+					<li>$a <span style="color:orange">%</span> $b Módulo</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Ejemplos</h3>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+// Aritméticos
+$a = 5 + 2; // Adición: 7
+$a = 5 - 2; // Sustracción: 3
+$a = 5 * 2; // Multiplicación: 10
+$a = 5 / 2; // División: 2.5
+$a = 5 % 2; // Módulo: 1
+
+echo 4 % 2; // Muestra 0
+echo 5 % 2; // Muestra 1
+echo 20 % 7; // Muestra 6
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Operadores de strings</h2>
+				<p>Tan solo tenemos un operador: el operador '<span style="color:orange">.</span>' (punto) de concatenación.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$saludo = "Hola ";
+$persona = "Marta";
+echo $saludo . $persona;
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Operadores lógicos</h2>
+				<p>Realizan una comprobación lógica y producen un booleano.</p>
+				<ul>
+					<li><span style="color:orange">!</span>$a - TRUE si $a no es TRUE. <span style="color:orange;">NO</span></li>
+					<li>$a <span style="color:orange">&amp;&amp;</span> $b - TRUE si $a y $b son TRUE. <span style="color:orange;">Y</span></li>
+					<li>$a <span style="color:orange">||</span> $b - TRUE si $a o $b son TRUE. <span style="color:orange;">O</span></li>
+				</ul>
+				<div style="width: 100%; clear:both; margin-top:1em;">
+					<div style="display: inline-block;">
+						<h4>NO</h4>
+						<table>
+							<tr>
+								<td>$a</td>
+								<td style=" border-left-width:5px !important;">!$a</td>
+							</tr>
+							<tr>
+								<td style="color:#5ab054;">TRUE</td>
+								<td style="color:#e03f3f; border-left-width:5px !important;">FALSE</td>
+							</tr>
+							<tr>
+								<td style="color:#e03f3f;">FALSE</td>
+								<td style="color:#5ab054; border-left-width:5px !important;">TRUE</td>
+							</tr>
+						</table>
+					</div>
+					<div style="display: inline-block; margin-left:1em;">
+						<h4>Y</h4>
+						<table>
+							<tr>
+								<td>$a</td>
+								<td>$b</td>
+								<td style=" border-left-width:5px !important;">$a &amp;&amp; $b</td>
+							</tr>
+							<tr>
+								<td style="color:#5ab054;">TRUE</td>
+								<td style="color:#5ab054;">TRUE</td>
+								<td style="color:#5ab054; border-left-width:5px !important;">TRUE</td>
+							</tr>
+							<tr>
+								<td style="color:#5ab054;">TRUE</td>
+								<td style="color:#e03f3f;">FALSE</td>
+								<td style="color:#e03f3f; border-left-width:5px !important;">FALSE</td>
+							</tr>
+							<tr>
+								<td style="color:#e03f3f;">FALSE</td>
+								<td style="color:#5ab054;">TRUE</td>
+								<td style="color:#e03f3f; border-left-width:5px !important;">FALSE</td>
+							</tr>
+							<tr>
+								<td style="color:#e03f3f;">FALSE</td>
+								<td style="color:#e03f3f;">FALSE</td>
+								<td style="color:#e03f3f; border-left-width:5px !important;">FALSE</td>
+							</tr>
+						</table>
+					</div>
+					<div style="display: inline-block; margin-left:1em;">
+						<h4>O</h4>
+						<table>
+							<tr>
+								<td>$a</td>
+								<td>$b</td>
+								<td style=" border-left-width:5px !important;">$a || $b</td>
+							</tr>
+							<tr>
+								<td style="color:#5ab054;">TRUE</td>
+								<td style="color:#5ab054;">TRUE</td>
+								<td style="color:#5ab054; border-left-width:5px !important;">TRUE</td>
+							</tr>
+							<tr>
+								<td style="color:#5ab054;">TRUE</td>
+								<td style="color:#e03f3f;">FALSE</td>
+								<td style="color:#5ab054; border-left-width:5px !important;">TRUE</td>
+							</tr>
+							<tr>
+								<td style="color:#e03f3f;">FALSE</td>
+								<td style="color:#5ab054;">TRUE</td>
+								<td style="color:#5ab054; border-left-width:5px !important;">TRUE</td>
+							</tr>
+							<tr>
+								<td style="color:#e03f3f;">FALSE</td>
+								<td style="color:#e03f3f;">FALSE</td>
+								<td style="color:#e03f3f; border-left-width:5px !important;">FALSE</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h3>Ejemplos</h3>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+// Lógicos
+$a = FALSE;
+$b = 12;
+$c = !$a; // Negación: !FALSE => TRUE
+$c = !$b; // Negación: !12 => !TRUE => FALSE
+$c = $a &amp;&amp; $b; // Y: FALSE, pues $a no es TRUE
+$c = $a || $b; // O: $b en boolean es TRUE (distinto de 0), luego TRUE
+$c = !$a &amp;&amp; $b; // Y: TRUE
+$c = (!$a &amp;&amp; $b) || !$b;
+// 1. (!FALSE &amp;&amp; 12) || !12 ### Sustituimos
+// 2. (!FALSE &amp;&amp; TRUE) || !TRUE ### Convertimos a bool
+// 3. (TRUE &amp;&amp; TRUE) || FALSE ### Negamos
+// 4. TRUE || FALSE ### Descomponemos
+// 5. TRUE ### Descomponemos
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Operadores de comparación</h2>
+				<p>Comparan dos valores y producen un resultado booleano</p>
+				<ul>
+					<li>$a <span style="color:orange;">==</span> $b - Igual</li>
+					<li>$a <span style="color:orange;">===</span> $b - Idéntico: Igual y mismo tipo</li>
+					<li>$a <span style="color:orange;">!=</span> $b - Diferente</li>
+					<li>$a <span style="color:orange;">!==</span> $b - No idénticos: Diferentes o tipos distintos</li>
+					<li>$a <span style="color:orange;">&lt;</span> $b - Menor que</li>
+					<li>$a <span style="color:orange;">&lt;=</span> $b - Menor o igual que</li>
+					<li>$a <span style="color:orange;">&gt;</span> $b - Mayor que</li>
+					<li>$a <span style="color:orange;">&gt;=</span> $b - Mayor o igual que</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Ejemplos</h3>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+// Comparación
+$a = 12;
+$b = "12";
+$c = 10;
+
+$a == $b; // Comparación: TRUE
+$a == $c; // Comparación: FALSE
+$a === $b; // Idéntico: FALSE (distintos tipos)
+$a != $b; // Diferente: FALSE
+$a !== $b; // No idénticos: TRUE (distintos tipos)
+$a != $c; // Diferente: TRUE
+$a &lt; $b; // Menor que: FALSE
+$a &lt;= $b; // Menor o igual que: TRUE (son iguales)
+$a &gt; $c; // Mayor que: TRUE
+$a &gt;= $c; // Mayor o igual que: TRUE
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Operadores de arrays</h2>
+				<p>Realizan operaciones sobre dos arrays:</p>
+				<ul>
+					<li>$a <span style="color:orange">+</span> $b - Produce la unión de los dos arrays</li>
+				</ul>
+				<p><br />También se aplican los siguientes operadores de comparación entre arrays:</p>
+				<ul>
+					<li>$a <span style="color:orange;">==</span> $b - Mismas claves y valores</li>
+					<li>$a <span style="color:orange;">===</span> $b - Mismas claves, valores, mismo orden y tipos</li>
+					<li>$a <span style="color:orange;">!=</span> $b - Diferente</li>
+					<li>$a <span style="color:orange;">!==</span> $b - Diferentes o distintos tipos u orden</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Ejemplos</h3>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+// Operadores de arrays
+$edades1 = array('Luis' => 27, 'Ángel' => 21);
+$edades2 = array('Ángel' => 21, 'Luis' => 27);
+$edades3 = array('Luis' => 27, 'Ángel' => '21');
+$edades4 = array('María' => 22);
+
+$edades1 == $edades2; // Igualdad: TRUE
+$edades1 == $edades3; // Igualdad: TRUE
+$edades1 === $edades2; // Idénticos: FALSE (distinto orden)
+$edades1 === $edades3; // Idénticos: FALSE (distintos tipos)
+
+$edades1 + $edades4; // Unión: array('Luis'=>27, 'Ángel'=>21, 'María'=>22)
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Operadores de asignación</h2>
+				<p>El operador básico es '='</p>
+				<p>Tenemos también operadores combinados con todos los operadores de aritmética binarios y con el operador concatenación, y funcionan de esta forma:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$a = $a OPERADOR $b;
+$a OPERADOR= $b;
+				</code></pre>
+				<ul>
+					<li> <span style="color:orange">.=</span> Concatenar y asignar</li>
+					<li> <span style="color:orange">+=</span> Entre números: Sumar y asignar. Entre arrays: unir</li>
+					<li> <span style="color:orange">-=</span> Restar y asignar</li>
+					<li> <span style="color:orange">*=</span> Multiplicar y asignar</li>
+					<li> <span style="color:orange">/=</span> Dividir y asignar</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Ejemplos</h3>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+// Operadores de asignación
+$texto = "En un lugar "; // Asignación
+$texto .= "de la Mancha"; // Equivalente a $texto = $texto . "de la Mancha";
+$a = 5; // Asignación
+$a += 2; // Sumar a $a 2: 7
+$a -= 1; // Restar a $a 1: 6
+$a *= 2; // Multiplicar $a por 2: 12
+$a /= 3; // Dividir $a entre 3: 4
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Operadores de incremento / decremento</h2>
+				<p>Son operadores unarios que suman 1 o restan 1</p>
+				<ul>
+					<li>++$a Pre-incremento: Incrementa $a en 1 y luego retorna $a</li>
+					<li>$a++ Post-incremento: Retorna $a y luego incrementa $a en 1</li>
+					<li>--$a Pre-decremento: Decrementa $a en 1 y luego retorna $a</li>
+					<li>$a-- Post-decremento: Retorna $a y luego decrementa $a en 1</li>
+				</ul>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$a = 5;
+$b = 5;
+
+echo ++$a; // Muestra 6
+echo $a;   // Muestra 6
+
+echo $b++; // Muestra 5
+echo $b;   // Muestra 6
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<p>Ya sabemos:</p>
+				<ul>
+					<li>Qué es un operador</li>
+					<li>Qué tipos de operadores hay</li>
+					<li>Cómo trabajar con ellos</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Variables III</title>
+
+	<meta name="description" content="PHP - Variables III">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+		}
+		table td {
+			padding: 0.2em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Variables III</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Recordatorio</h2>
+				<ul>
+					<li>Hemos aprendido el concepto de variable.</li>
+					<li>Hemos aprendido cómo se clasifican.</li>
+					<li>Conocemos todos los tipos que permite PHP.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Qué vamos a ver</h2>
+				<ul>
+					<li class="fragment">Conversión entre tipos</li>
+					<li class="fragment">Variables predefinidas</li>
+					<li class="fragment">Constantes</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Conversión entre tipos</h2>
+				<p>Podemos convertir el valor de una variable a otro tipo de dato.</p>
+				<p>Por ejemplo, podemos convertir un número (12) en texto ("12"): Son diferentes internamente.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$variable_convertida = CONVERSIÓN $variable_original;
+				</code></pre>
+				<p>Teniendo las siguientes opciones de conversión:</p>
+				<ul>
+					<li><code style="color:orange;">(int)</code> o <code style="color:orange;">(integer)</code> - Convertir a integer</li>
+					<li><code style="color:orange;">(bool)</code> o <code style="color:orange;">(boolean)</code> - Convertir a boolean</li>
+					<li><code style="color:orange;">(float)</code>, <code style="color:orange;">(double)</code> o <code style="color:orange;">(real)</code> - Convertir a float</li>
+					<li><code style="color:orange;">(string)</code> - Convertir a string</li>
+					<li><code style="color:orange;">(array)</code> - Convertir a array (está sin definir aún)</li>
+					<li><code style="color:orange;">(object)</code> - Convertir a object</li>
+					<li><code style="color:orange;">(unset)</code> - Convertir a NULL</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Conversión entre tipos</h2>
+				<h3>Algunas reglas:</h3>
+				<table style="width: 100%">
+					<tr>
+						<td style="color: orange;">Desde \ Hasta</td>
+						<td><code style="color:orange;">String</code></td>
+						<td><code style="color:orange;">Integer</code></td>
+						<td><code style="color:orange;">Float</code></td>
+						<td><code style="color:orange;">Boolean</code></td>
+					</tr>
+					<tr>
+						<td><code style="color:orange;">String</code></td>
+						<td>=</td>
+						<td>"NUM*" = NUM<br />"TEXTO*" = 0</td>
+						<td>"NUM*" = NUM<br />"*NUM" = 0</td>
+						<td>"" o "0" = FALSE<br />SI NO = TRUE</td>
+					</tr>
+					<tr>
+						<td><code style="color:orange;">Integer</code></td>
+						<td>=</td>
+						<td>=</td>
+						<td>=</td>
+						<td>0 = FALSE<br />SI NO = TRUE</td>
+					</tr>
+					<tr>
+						<td><code style="color:orange;">Float</code></td>
+						<td>=</td>
+						<td>Redondea</td>
+						<td>=</td>
+						<td>0 = FALSE<br />SI NO = TRUE</td>
+					</tr>
+					<tr>
+						<td><code style="color:orange;">Boolean</code></td>
+						<td>TRUE = "1"<br />FALSE = ""</td>
+						<td>TRUE = 1<br />FALSE = 0</td>
+						<td>TRUE = 1<br />FALSE = 0</td>
+						<td>=</td>
+					</tr>
+				</table>
+			</section>
+
+			<section>
+				<h2>Conversión entre tipos</h2>
+				<h3>Ejemplos</h3>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$edad_string = "25"; // Es de tipo string (está entre comillas)
+$edad_int = (integer) $edad_string; // $edad_int vale 25 (integer).
+
+$pi = 3.14; // De tipo float
+$pi_redondeado = (integer) $pi; // Vale 3, de float a integer
+
+$es_siglo_21 = TRUE; // Vale TRUE, luego es boolean
+$es_siglo_21_string = (string) $es_siglo_21; // ¡Se convierte a "1"!
+
+$pelicula = "12 monos"; // De tipo string
+$pelicula_integer = (int) $pelicula; // 12
+
+$frase = "Tengo 105"; // De tipo string
+$frase_integer = (int) $frase; // 0
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Variables predefinidas</h2>
+				<p>PHP incorpora un gran número de variables predefinidas (creadas automáticamente). Éstas son las principales (de tipo array, contienen muchos valores):</p>
+				<ul>
+					<li>$_SERVER - Variables del entorno de ejecución</li>
+					<li>$_GET - Variables recibidas por HTTP GET</li>
+					<li>$_POST - Variables recibidas por HTTP POST</li>
+					<li>$_FILES - Variables con ficheros cargados por HTTP</li>
+					<li>$_REQUEST - Combina $_GET, $_POST y $_FILES</li>
+					<li>$_COOKIE - Variables de las cookies HTTP</li>
+					<li>$_SESSION - Variables de sesión PHP</li>
+					<li>$_ENV - Variables de entorno</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Variables predefinidas</h2>
+				<h3>Ejemplos</h3>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+// Muestra información sobre el navegador que realizó la petición
+echo $_SERVER['HTTP_USER_AGENT'];
+
+// Muestra la IP del cliente
+echo $_SERVER['REMOTE_ADDR'];
+				</code></pre>
+				<p><br />Más adelante veremos formularios, cookies y sesiones, y utilizaremos $_POST, $_GET, $_FILES, $_COOKIE y $_SESSION.</p>
+			</section>
+
+			<section>
+				<h2>Constantes</h2>
+				<p>Similar a una variable, pero su valor no se puede modificar. A la hora de nombrarlas se siguen las mismas reglas que con las variables, solo que no comienzan por $. Por convenio se suelen utilizar solo letras mayúsculas.</p>
+				<p>Sintaxis:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+define("NOMBRE", valor);
+
+// Ejemplo:
+define("PI", 3.1415);
+				</code></pre>
+				<p>Sintaxis nueva (desde PHP 5.3):</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+const NOMBRE = valor;
+
+// Ejemplo
+const PI = 3.1415;
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Constantes predefinidas</h3>
+				<p>Algunas son:</p>
+				<ul>
+					<li>__LINE__ : Línea actual del fichero</li>
+					<li>__FILE__ : Fichero actual</li>
+					<li>__DIR__ : Directorio actual</li>
+				</ul>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+// Suponemos que este fichero está en /var/www/U8/ejemplo.php
+echo __FILE__; // Muestra /var/www/U8/ejemplo.php
+echo __DIR__; // Muestra /var/www/U8
+echo __LINE__; // Muestra 4
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<p>Fin apartado de variables</p>
+				<ul>
+					<li>Qué es y para qué sirve una variable</li>
+					<li>Tipos escalares: string, integer, float y boolean</li>
+					<li>Otros tipos: array, object, resource y null</li>
+					<li>Conversión entre tipos</li>
+					<li>Variables predefinidas</li>
+					<li>Constantes</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

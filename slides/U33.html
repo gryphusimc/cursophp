@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Imágenes II</title>
+
+	<meta name="description" content="PHP - Imágenes II">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+
+		#DIV_1 {
+			text-align: left;
+			box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 0px 1px inset;
+			color: rgb(115, 115, 115);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(115, 115, 115);
+			word-spacing: -2px;
+			background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+			border: 0px none rgb(217, 217, 217);
+			border-radius: 0 0 2px 2px;
+			font: normal normal normal 16px/24px 'Source Code Pro', monospace;
+			font-size: 20px;
+			outline: rgb(115, 115, 115) none 0px;
+			padding: 12px;
+			margin: 5px 0;
+		}/*#DIV_1*/
+
+		#SPAN_2, #SPAN_7 {
+			color: rgb(102, 153, 51);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(102, 153, 51);
+			word-spacing: -2px;
+			border: 0px none rgb(102, 153, 51);
+			border-radius: 0 0 0 0;
+			outline: rgb(102, 153, 51) none 0px;
+		}/*#SPAN_2*/
+
+		#A_3 {
+			color: rgb(102, 153, 51);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(102, 153, 51);
+			word-spacing: -2px;
+			border-top: 0px none rgb(102, 153, 51);
+			border-right: 0px none rgb(102, 153, 51);
+			border-bottom: 1px solid rgb(102, 153, 51);
+			border-left: 0px none rgb(102, 153, 51);
+			outline: rgb(102, 153, 51) none 0px;
+		}/*#A_3*/
+
+		#SPAN_3, #SPAN_5 {
+			color: rgb(115, 115, 115);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(115, 115, 115);
+			word-spacing: -2px;
+			border: 0px none rgb(115, 115, 115);
+			border-radius: 0 0 0 0;
+			outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_3, #SPAN_5*/
+
+		#SPAN_4, #SPAN_6 {
+			color: rgb(115, 115, 115);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(115, 115, 115);
+			word-spacing: -2px;
+			border: 0px none rgb(115, 115, 115);
+			outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_4, #SPAN_6*/
+
+		#STRONG_4 {
+			color: rgb(51, 102, 153);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(51, 102, 153);
+			word-spacing: -2px;
+			border: 0px none rgb(51, 102, 153);
+			border-radius: 0 0 0 0;
+			outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_4*/
+
+		#STRONG_5 {
+			color: rgb(51, 102, 153);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(51, 102, 153);
+			word-spacing: -2px;
+			border: 0px none rgb(51, 102, 153);
+			outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_5*/
+
+		#CODE_8 {
+			color: rgb(51, 102, 153);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(51, 102, 153);
+			word-spacing: -2px;
+			border: 0px none rgb(51, 102, 153);
+			outline: rgb(51, 102, 153) none 0px;
+		}/*#CODE_8*/
+
+
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Imágenes II</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Qué vamos a ver</h2>
+				<p>Ya sabemos lo básico para trabajar con imágenes: recortarlas, combinarlas, escalarlas, cambiar de formato, aplicar filtros, etc.</p>
+				<p>Vamos a ver cómo podemos podemos crear con colores, trabajar con píxeles individuales, añadir textos, formas geométricas, etc.</p>
+			</section>
+
+			<section>
+				<h2>imagecolorallocate()</h2>
+				<p>Crea un color para una imagen.</p>
+				<div id="DIV_1">
+					<span id="SPAN_2">int</span> <span id="SPAN_3"><strong id="STRONG_4">imagecolorallocate</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">resource</span> 
+					<code id="CODE_7">$image
+					</code></span> , <span id="SPAN_8"><span id="SPAN_2">int</span> 
+					<code id="CODE_10">$red
+					</code></span> , <span id="SPAN_11"><span id="SPAN_2">int</span> 
+					<code id="CODE_13">$green
+					</code></span> , <span id="SPAN_14"><span id="SPAN_2">int</span> 
+					<code id="CODE_16">$blue
+					</code></span> )
+				</div>
+				<p>Asignamos un valor a cada color RGB (Red Green Blue) entre <code>0</code> y <code>255</code> (o entre <code>0x00</code> y <code>0xFF</code>):</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+// Por defecto tiene negro de color de fondo:
+$imagen = imagecreatetruecolor(100, 100);
+
+// Creamos un color blanco:
+$color = imagecolorallocate($imagen, 0xFF, 0xFF, 0xFF);
+
+// Mostramos y destruimos la imagen:
+header("Content-Type: image/png");
+imagepng($imagen);
+imagedestroy($imagen);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Consultar un color</h2>
+				<p>Si queremos consultar el color que hay en un determinado píxel podemos usar <code>imagecolorat()</code> y <code>imagecolorsforindex()</code>. La primera nos devolverá el color en forma de entero (<code>int</code>) y la segunda extrae el color individual de cada color RGB.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">int</span> <span id="SPAN_3"><strong id="STRONG_4">imagecolorat</strong></span> (
+					 <span id="SPAN_5"><span id="SPAN_2">resource</span> <code id="CODE_7">$image</code></span> ,
+					 <span id="SPAN_8"><span id="SPAN_2">int</span> <code id="CODE_10">$x</code></span> ,
+					 <span id="SPAN_11"><span id="SPAN_2">int</span> <code id="CODE_13">$y</code></span> )
+				</div>
+
+				<div id="DIV_1">
+					 <span id="SPAN_2">array</span> <span id="SPAN_3"><strong id="STRONG_4">imagecolorsforindex</strong></span> (
+					 <span id="SPAN_5"><span id="SPAN_2">resource</span> <code id="CODE_7">$image</code></span> ,
+					 <span id="SPAN_8"><span id="SPAN_2">int</span> <code id="CODE_10">$index</code></span> )
+				</div>
+			</section>
+
+			<section>
+				<h2>imagesetpixel()</h2>
+				<p>Asignamos el valor (color) de un pixel individual.</p>
+				<div id="DIV_1">
+					<span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">imagesetpixel</strong></span> (
+					<span id="SPAN_5"><span id="SPAN_2">resource</span> <code id="CODE_7">$image</code></span> ,
+					<span id="SPAN_8"><span id="SPAN_2">int</span> <code id="CODE_10">$x</code></span> ,
+					<span id="SPAN_11"><span id="SPAN_2">int</span> <code id="CODE_13">$y</code></span> ,
+					<span id="SPAN_14"><span id="SPAN_2">int</span> <code id="CODE_16">$color</code></span> )
+				</div>
+			</section>
+
+			<section>
+				<h2>imagettftext()</h2>
+				<p>Escribe un texto en una imagen usando fuentes TrueType (TTF).</p>
+				<div id="DIV_1">
+					<span id="SPAN_2">array</span> <span id="SPAN_3"><strong id="STRONG_4">imagettftext</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">resource</span> 
+					<code id="CODE_7">$image
+					</code></span> , <span id="SPAN_8"><span id="SPAN_2">float</span> 
+					<code id="CODE_10">$size
+					</code></span> , <span id="SPAN_11"><span id="SPAN_2">float</span> 
+					<code id="CODE_13">$angle
+					</code></span> , <span id="SPAN_14"><span id="SPAN_2">int</span> 
+					<code id="CODE_16">$x
+					</code></span> , <span id="SPAN_17"><span id="SPAN_2">int</span> 
+					<code id="CODE_19">$y
+					</code></span> , <span id="SPAN_20"><span id="SPAN_2">int</span> 
+					<code id="CODE_22">$color
+					</code></span> , <span id="SPAN_23"><span id="SPAN_2">string</span> 
+					<code id="CODE_25">$fontfile
+					</code></span> , <span id="SPAN_26"><span id="SPAN_2">string</span> 
+					<code id="CODE_28">$text
+					</code></span> )
+				</div>
+				<p>Continuando con el ejemplo anterior:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+// Por defecto tiene negro de color de fondo:
+$imagen = imagecreatetruecolor(100, 30);
+
+// Creamos un color blanco:
+$color = imagecolorallocate($imagen, 0xFF, 0xFF, 0xFF);
+
+// Añadimos un texto:
+imagettftext($imagen, 12, 0, 10, 20, $color, "arial.ttf", "Probando...");
+
+// Mostramos y destruimos la imagen:
+header("Content-Type: image/png");
+imagepng($imagen);
+imagedestroy($imagen);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>El orden importa</h2>
+				<p>Al dibujar sobre un lienzo (recurso gd), lo último que añadamos se situará sobre todo lo demás que hubiera. Prueba a ejecutar el código del ejemplo anterior añadiendo otro texto en la misma posición:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+// Por defecto tiene negro de color de fondo:
+$imagen = imagecreatetruecolor(200, 30);
+
+// Creamos un color blanco:
+$color1 = imagecolorallocate($imagen, 0xFF, 0xFF, 0xFF);
+// Creamos un color amarillo
+$color2 = imagecolorallocate($imagen, 0xFF, 0x00, 0x00);
+
+// Añadimos un texto:
+imagettftext($imagen, 12, 0, 10, 20, $color1, "arial.ttf", "Probando...");
+imagettftext($imagen, 20, 0, 10, 20, $color2, "arial.ttf", "Otra prueba");
+
+// Mostramos y destruimos la imagen:
+header("Content-Type: image/png");
+imagepng($imagen);
+imagedestroy($imagen);
+</code></pre>
+			</section>
+
+			<section>
+				<h2>imageline()</h2>
+				<p>Dibuja una línea recta.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">imageline</strong></span> (
+					 <span id="SPAN_5"><span  id="SPAN_2">resource</span> <code id="CODE_7">$image</code></span> ,
+					 <span id="SPAN_8"><span  id="SPAN_2">int</span> <code id="CODE_10">$x1</code></span> ,
+					 <span id="SPAN_11"><span id="SPAN_2">int</span> <code id="CODE_13">$y1</code></span> ,
+					 <span id="SPAN_14"><span id="SPAN_2">int</span> <code id="CODE_16">$x2</code></span> ,
+					 <span id="SPAN_17"><span id="SPAN_2">int</span> <code id="CODE_19">$y2</code></span> ,
+					 <span id="SPAN_20"><span id="SPAN_2">int</span> <code id="CODE_22">$color</code></span> )
+				</div>
+				<p>Por ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$im = imagecreatetruecolor(300, 100);
+$color = imagecolorallocate($im, 0xFF, 0xFF, 0xFF);
+
+imageline($im, 4, 4, 295, 95, $color);
+header("Content-Type: image/png");
+imagepng($im);
+imagedestroy($im);
+</code></pre>
+			</section>
+
+			<section>
+				<h2>imagefilledrectangle()</h2>
+				<p>Crea un rectángulo con relleno.</p>
+				<div id="DIV_1">
+					<span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">imagefilledrectangle</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">resource</span> 
+					<code id="CODE_7">$image
+					</code></span> , <span id="SPAN_8"><span id="SPAN_2">int</span> 
+					<code id="CODE_10">$x1
+					</code></span> , <span id="SPAN_11"><span id="SPAN_2">int</span> 
+					<code id="CODE_13">$y1
+					</code></span> , <span id="SPAN_14"><span id="SPAN_2">int</span> 
+					<code id="CODE_16">$x2
+					</code></span> , <span id="SPAN_17"><span id="SPAN_2">int</span> 
+					<code id="CODE_19">$y2
+					</code></span> , <span id="SPAN_20"><span id="SPAN_2">int</span> 
+					<code id="CODE_22">$color
+					</code></span> )
+				</div>
+				<p>Dibujamos un rectángulo blanco:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$im = imagecreatetruecolor(300, 100);
+$color = imagecolorallocate($im, 0xFF, 0xFF, 0xFF);
+
+// Fíjate en las coordenadas:
+imagefilledrectangle($im, 4, 4, 295, 95, $color);
+header("Content-Type: image/png");
+imagepng($im);
+imagedestroy($im);
+</code></pre>
+			</section>
+
+			<section>
+				<h2>imagefilledellipse()</h2>
+				<p>Crea una elipse con relleno.</p>
+				<div id="DIV_1">
+					<span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">imagefilledellipse</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">resource</span> 
+					<code id="CODE_7">$image
+					</code></span> , <span id="SPAN_8"><span id="SPAN_2">int</span> 
+					<code id="CODE_10">$cx
+					</code></span> , <span id="SPAN_11"><span id="SPAN_2">int</span> 
+					<code id="CODE_13">$cy
+					</code></span> , <span id="SPAN_14"><span id="SPAN_2">int</span> 
+					<code id="CODE_16">$width
+					</code></span> , <span id="SPAN_17"><span id="SPAN_2">int</span> 
+					<code id="CODE_19">$height
+					</code></span> , <span id="SPAN_20"><span id="SPAN_2">int</span> 
+					<code id="CODE_22">$color
+					</code></span> )
+				</div>
+				<p>Dibujamos un círculo negro:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$im = imagecreatetruecolor(300, 100);
+
+// Pintamos un fondo blanco
+$bg = imagecolorallocate($im, 0xFF, 0xFF, 0xFF);
+imagefilledrectangle($im, 0, 0, 300, 100, $bg);
+
+// Pintamos el círculo
+$fg = imagecolorallocate($im, 0, 0, 0);
+imagefilledellipse($im, 150, 50, 40, 40, $fg);
+
+header("Content-Type: image/png");
+imagepng($im);
+imagedestroy($im);
+</code></pre>
+			</section>
+
+			<section>
+				<h2>imagefilledpolygon()</h2>
+				<p>Dibuja un polígono con relleno.</p>
+				<div id="DIV_1" style="font-size: 18px;">
+					<span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">imagefilledpolygon</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">resource</span> 
+					<code id="CODE_7">$image
+					</code></span> , <span id="SPAN_8"><span id="SPAN_2">array</span> 
+					<code id="CODE_10">$points
+					</code></span> , <span id="SPAN_11"><span id="SPAN_2">int</span> 
+					<code id="CODE_13">$num_points
+					</code></span> , <span id="SPAN_14"><span id="SPAN_2">int</span> 
+					<code id="CODE_16">$color
+					</code></span> )
+				</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$im = imagecreatetruecolor(300, 300);
+
+$bg = imagecolorallocate($im, 230, 95, 0); // Pintamos el fondo
+imagefilledrectangle($im, 0, 0, 300, 300, $bg);
+
+// Pintamos una triángulo blanco
+$coordenadas = [
+	150, 50,
+	50, 190,
+	250, 190];
+$fg = imagecolorallocate($im, 0x00, 0x00, 0xCC);
+imagefilledpolygon($im, $coordenadas, 3, $fg);
+
+header("Content-Type: image/png");
+imagepng($im);
+imagedestroy($im);
+</code></pre>
+			</section>
+
+			<section>
+				<h2>imagefilledarc</h2>
+				<p>Dibuja una curva (arco) con relleno.</p>
+				<div id="DIV_1">
+					<span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">imagefilledarc</strong></span> ( <span id="SPAN_5"><span id="SPAN_6">resource</span> 
+					<code id="CODE_7">$image
+					</code></span> , <span id="SPAN_2"><span id="SPAN_9">int</span> 
+					<code id="CODE_10">$cx
+					</code></span> , <span id="SPAN_2"><span id="SPAN_12">int</span> 
+					<code id="CODE_13">$cy
+					</code></span> , <span id="SPAN_2"><span id="SPAN_15">int</span> 
+					<code id="CODE_16">$width
+					</code></span> , <span id="SPAN_2"><span id="SPAN_18">int</span> 
+					<code id="CODE_19">$height
+					</code></span> , <span id="SPAN_2"><span id="SPAN_21">int</span> 
+					<code id="CODE_22">$start
+					</code></span> , <span id="SPAN_2"><span id="SPAN_24">int</span> 
+					<code id="CODE_25">$end
+					</code></span> , <span id="SPAN_2"><span id="SPAN_27">int</span> 
+					<code id="CODE_28">$color
+					</code></span> , <span id="SPAN_2"><span id="SPAN_30">int</span> 
+					<code id="CODE_31">$style
+					</code></span> )
+				</div>
+				<ul>
+					<li><code>$image</code> — recurso imagen gd</li>
+					<li><code>$cx</code> y <code>$cy</code> — coordenadas del centro</li>
+					<li><code>$width</code> y <code>$height</code> — ancho y alto</li>
+					<li><code>$start</code> y <code>$end</code> — grado de inicio y de fin</li>
+					<li><code>$color</code> — color de relleno</li>
+					<li><code>$style</code> — puede ser:
+						<ul>
+							<li><code>IMG_ARC_PIE</code>: Relleno tipo gráfico de pastel.</li>
+							<li><code>IMG_ARC_CHORD</code>: Une inicio y fin con una recta.</li>
+							<li><code>IMG_ARC_NOFILL</code>: Solo el borde (sin relleno).</li>
+							<li><code>IMG_ARC_EDGED</code>: Traza líneas de inicio y final al centro.</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Ejemplo de imagefilledarc()</h3>
+				<pre><code data-trim contenteditable style="font-size: 17px; margin-top: 20px; text-align: left; max-height: none;">
+&lt;?php
+// Por defecto tiene negro de color de fondo:
+$imagen = imagecreatetruecolor(500, 350);
+
+// Creamos un color amarillo
+$color = imagecolorallocate($imagen, 0xFF, 0xFF, 0x00);
+
+// Arcos:
+imagettftext($imagen, 12, 0, 50, 45, $color, "arial.ttf", "IMG_ARC_PIE");
+imagefilledarc($imagen, 100, 100, 180, 90, 50, 340, $color, IMG_ARC_PIE);
+
+imagettftext($imagen, 12, 0, 350, 45, $color, "arial.ttf", "IMG_ARC_CHORD");
+imagefilledarc($imagen, 400, 100, 180, 90, 50, 340, $color, IMG_ARC_CHORD);
+
+imagettftext($imagen, 12, 0, 50, 190, $color, "arial.ttf", "IMG_ARC_NOFILL");
+imagefilledarc($imagen, 100, 250, 180, 90, 50, 340, $color, IMG_ARC_NOFILL);
+
+imagettftext($imagen, 12, 0, 250, 190, $color, "arial.ttf", "IMG_ARC_PIE|IMG_ARC_EDGED");
+imagefilledarc($imagen, 400, 250, 180, 90, 50, 340, $color, IMG_ARC_NOFILL|IMG_ARC_EDGED);
+
+// Mostramos y destruimos la imagen:
+header("Content-Type: image/png");
+imagepng($imagen);
+imagedestroy($imagen);
+</code></pre>
+			</section>
+
+			<section>
+				<h2>Figuras sin relleno</h2>
+				<p>Hemos visto funciones para crear figuras con un color de relleno. Tenemos las mismas funciones para crear esas figuras sin relleno y con contorno:</p>
+				<ul>
+					<li><code>imagearc()</code></li>
+					<li><code>imageellipse()</code></li>
+					<li><code>imagepolygon()</code></li>
+					<li><code>imagerectangle()</code></li>
+				</ul>
+				<p>Por ejemplo, un rectángulo sin relleno:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$im = imagecreatetruecolor(300, 100);
+$color = imagecolorallocate($im, 0xFF, 0xFF, 0xFF);
+imagerectangle($im, 4, 4, 295, 95, $color);
+header("Content-Type: image/png");
+imagepng($im);
+imagedestroy($im);
+</code></pre>
+			</section>
+
+			<section>
+				<h2>imagesetthickness()</h2>
+				<p>Por defecto los bordes son de 1px. Esta función establece un nuevo ancho ancho, que se asignará en futuras llamadas a funciones que dibujen bordes o líneas —<code>imageline()</code>.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">imagesetthickness</strong></span> (
+					 <span id="SPAN_5"><span id="SPAN_6">resource</span> <code id="CODE_7">$image</code></span> ,
+					 <span id="SPAN_8"><span id="SPAN_9">int</span> <code id="CODE_10">$thickness</code></span> )
+				</div>
+				<p>Dibujamos el rectángulo del ejemplo anterior, pero con un borde de 3px.:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$im = imagecreatetruecolor(300, 100);
+$color = imagecolorallocate($im, 0xFF, 0xFF, 0xFF);
+imagesetthickness($im, 3);
+imagerectangle($im, 4, 4, 295, 95, $color);
+header("Content-Type: image/png");
+imagepng($im);
+imagedestroy($im);
+</code></pre>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<p>En este unidad hemos aprendido cómo trabajar <em>a bajo nivel</em> con imágenes:</p>
+				<ul>
+					<li><code>imagecolorallocate()</code>: creando colores</li>
+					<li><code>imagecollorat()</code> y <code>imagesetpixel()</code>: leyendo pixeles y estableciendo colores a uno solo pixel.</li>
+					<li><code>imagettftext()</code>: escribiendo texto TTF.</li>
+					<li>Formas, con y sin relleno:
+						<ul>
+							<li><code>imageline()</code>: líneas</li>
+							<li><code>imagerectangle()</code>: rectángulos</li>
+							<li><code>imageellipse()</code>: elipses</li>
+							<li><code>imagepolygon()</code>: polígonos</li>
+							<li><code>imagearc()</code>: arcos</li>
+						</ul>
+					</li>
+					<li><code>imagesetthickness()</code>: modificar el grosor del borde</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+			{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+			{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+</script>
+
+</body>
+</html>

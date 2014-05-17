@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Ficheros IV</title>
+
+	<meta name="description" content="PHP - Ficheros IV">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+
+		#DIV_1 {
+			text-align: left;
+		    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 0px 1px inset;
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+		    border: 0px none rgb(217, 217, 217);
+		    border-radius: 0 0 2px 2px;
+		    font: normal normal normal 16px/24px 'Source Code Pro', monospace;
+		    font-size: 20px;
+		    outline: rgb(115, 115, 115) none 0px;
+		    padding: 12px;
+		    margin: 5px 0;
+		}/*#DIV_1*/
+
+		#SPAN_2, #SPAN_7 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border: 0px none rgb(102, 153, 51);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#SPAN_2*/
+
+		#A_3 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border-top: 0px none rgb(102, 153, 51);
+		    border-right: 0px none rgb(102, 153, 51);
+		    border-bottom: 1px solid rgb(102, 153, 51);
+		    border-left: 0px none rgb(102, 153, 51);
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#A_3*/
+
+		#SPAN_3, #SPAN_5 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_3, #SPAN_5*/
+
+		#SPAN_4, #SPAN_6 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_4, #SPAN_6*/
+
+		#STRONG_4 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_4*/
+
+		#STRONG_5 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_5*/
+
+		#CODE_8 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#CODE_8*/
+
+
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Ficheros IV</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>php://</h2>
+				<p>Wrapper que nos da acceso a <em>flujos</em> de Entrada/Salida.</p>
+				<p><em>Ficheros</em> (flujos) a los que podemos acceder:</p>
+				<ul>
+					<li><code>php://stdin</code> — Entrada estándar (CLI)</li>
+					<li><code>php://stdout</code> — Salida estándar (CLI)</li>
+					<li><code>php://stderr</code> — Salida de errores (CLI)</li>
+					<li><code>php://input</code> — Datos POST</li>
+					<li><code>php://output</code> - Salida, como con <code>echo</code></li>
+					<li><code>php://memory</code> — Fichero temporal (en memoria)</li>
+					<li><code>php://temp</code> - Fichero temporal (quizás en disco)</li>
+					<li><code>php://filter</code> - <em>Meta-wrapper</em> que aplica filtros</li>
+					<li><code>php://fd</code> - Acceso a un descriptor de fichero</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>¿Qué es CLI?</h2>
+				<p><em>Command Line Interface</em> (Interfaz de Línea de Comandos): una aplicación en consola.</p>
+				<p>Ya lo hemos usado en algún ejemplo, cuando desde la consola cargamos un script PHP con:
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$ php archivo.php
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Parámetros a CLI</h3>
+				<p>Las aplicaciones de consola a menudo reciben parámetros:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+# Muestra el contenido del directorio en que nos encontramos:
+$ ls
+# Muestra el contenido detallado
+$ ls -l
+# Muestra el contenido ordenado por tamaño
+$ ls -lS
+				</code></pre>
+				<p>Podemos crear aplicaciones CLI con PHP que reciban parámetros. Podremos obtener información de éstos usando <code>$argc</code>, <code>$argv</code> o <code>getopt()</code>.</p>
+			</section>
+
+			<section>
+				<h3>$argc y $argv</h3>
+				<p>Son variables predefinidas (globales), como <code>$_SERVER</code> o <code>$GLOBALS</code>, que almacenan información de los parámetros pasados al escript actual si se ejecuta en modo CLI.</p>
+				<ul>
+					<li><code>$argc</code> — Número de parámetros.</li>
+					<li><code>$argv</code> — Valores de parámetros. Un array.</li>
+				</ul>
+				<p><br />Guarda este código en <code>fichero.php</code>:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+echo "Parámetros: $argc. Valores: ".implode(", ", $argv).".\n";
+				</code></pre>
+				<p>Ejecútalo desde la consola así y observa la salida:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$ php fichero.php param1 param2 param3
+				</code></pre>
+				<p>¡El nombre del fichero cuenta como parámetro!</p>
+			</section>
+
+			<section>
+				<h3>getopt()</h3>
+				<p>Analiza y devuelve información de los parámetros en modo CLI.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">array</span> <span id="SPAN_3"><strong id="STRONG_4">getopt</strong></span> ( <span id="SPAN_5"><span id="SPAN_6">string</span> 
+						<code id="CODE_7">$options
+						</code></span> [, <span id="SPAN_8"><span id="SPAN_9">array</span> 
+							<code id="CODE_10">$longopts
+							</code></span> ] )
+				</div>
+				<p><code>$options</code> es un string donde ponemos una letra por cada opción disponible. Añadiéndole <code>:</code> indicamos que recibe un valor. Con <code>::</code> el valor es opcional. Estos argumentos comienzan con un <code>-</code>.</p>
+				<p><code>$longopts</code> es un array de opciones largas que comienzan con <code>--</code>, por ejemplo <code>--valor</code>.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$corto = "abcf:v::";
+$largo  = ["obligatorio:", "opcional::", "opcion1", "opcion2"];
+$opciones = getopt($corto, $largo);
+print_r($opciones);
+				</code></pre>
+				<p>Ejecuta ahora con estos parámetros y observa el resultado:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+php fichero.php -abj -f1 -v=2 --opcional --obligatorio
+</code></pre>
+			</section>
+			<section>
+				<h2>E/S estándar en CLI</h2>
+				<p>Las aplicaciones CLI (independientemente del lenguaje en que se hagan) tienen un flujo de entrada, <code>stdin</code>, y dos de salida, <code>stdout</code> y <code>stderr</code>.</p>
+				<p>¿Cuándo usar <code>stdout</code> y cuándo <code>stderr</code>?</p>
+				<p>Como regla general, si vamos a mostrar un error, usaremos <code>stderr</code>. En cualquier otro caso, usaremos <code>stdout</code>.</p>
+			</section>
+
+			<section>
+				<h2>Accediendo a la E/S en CLI</h2>
+				<p><code>php://stdin</code> nos permite leer de la entrada estándar. Abriendo este <em>fichero</em> y leyendo una línea con <code>fgets()</code> podremos solicitar datos al usuario. Sólo en CLI.</p>
+				<p>Si abrimos y escribimos en <code>php://stdout</code> o en <code>php://stderr</code> estaremos mostrando un mensaje en la salida estándar o en la salida de errores respectivamente. Sólo en CLI.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$stdout = fopen("php://stdout", "w");
+$stderr = fopen("php://stderr", "w");
+$stdin = fopen("php://stdin", "r");
+
+fwrite($stdout, "Bienvenido a mi aplicación\nPor favor, introduce tu nombre: ");
+
+$nombre = trim(fgets($stdin));
+
+if (strlen($nombre))
+	echo "Hola $nombre :)\n";
+else
+	fwrite($stderr, "Error: nombre vacío.\n");
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Constantes de E/S en CLI</h2>
+				<p>PHP pone a nuestra disposición tres constantes, <code>STDIN</code>, <code>STDOUT</code> y <code>STDERR</code>, que contienen un recurso <strong>ya abierto</strong> a los flujos <code>php://stdin</code>, <code>php://stdout</code> y <code>php://stderr</code> respectivamente.</p>
+				<p>El ejemplo anterior lo podríamos haber escrito así:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+fwrite(STDOUT, "Bienvenido a mi aplicación\nPor favor, introduce tu nombre: ");
+
+$nombre = trim(fgets(STDIN));
+
+if (strlen($nombre))
+	echo "Hola $nombre :)\n";
+else
+	fwrite(STDERR, "Error: nombre vacío.\n");
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>php://input</h2>
+				<p>Se corresponde con los datos en bruto que, en entorno HTTP, recibe PHP mediante una petición POST.</p>
+				<br />
+				<h2>php://output</h2>
+				<p>Escribe en el buffer de salida de los constructores <code>echo</code> y <code>print</code>. No es lo mismo que <code>php://stdout</code>; este último solo funciona en CLI, mientras que <code>php://output</code> funciona en CLI y en HTTP.</p>
+			</section>
+
+			<section>
+				<h2>php://memory</h2>
+				<p>Es un flujo que nos permite crear, en modo lectura-escritura, un fichero <em>virtual</em> que solo existe en memoria, pero no en disco.</p>
+				<p>Útil para evitar crear ficheros temporales.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+
+$pf = fopen("php://memory", 'w+b');
+
+fwrite($pf, "En un lugar de la Mancha...");
+
+rewind($pf);
+$i = 0;
+while (!feof($pf)) {
+	$i++;
+	echo fread($pf, 1);
+}
+
+echo "\n$i\n";
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>php://temp</h2>
+				<p>Igual a <code>php://memory</code>, salvo que si excede un determinado tamaño (por defecto 2MB), guarda en disco. Si queremos conocer la ubicación donde se creará el fichero temporal, usaremos <code>sys_get_temp_dir()</code>. Igualmente, podremos cambiar el tamaño a partir del cual se guarda en disco, añadiendo <code>/maxmemory:NN</code> siendo <code>NN</code> el tamaño en bytes.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$size = 1024 * 1024; // 1MB
+$pf = fopen("php://temp/maxmemory:$size", 'r+');
+
+fwrite($pf, "En un lugar de la Mancha...");
+
+rewind($pf);
+while (!feof($pf)) {
+	echo fgetc($pf)." ";
+}
+echo "\n";
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>tmpfile()</h3>
+				<p>También podríamos usar la función <code>tmpfile()</code>, que nos devuelve un recurso de fichero a un archivo temporal y nombre único. Se elimina automáticamente al cerrarlo con <code>fclose()</code>.</p>
+				<p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">resource</span> <span id="SPAN_3"><strong id="STRONG_4">tmpfile</strong></span> ( <span id="SPAN_5">void</span> )
+				</div>
+				<p>Ejecuta este código en CLI y, antes de continuar, comprueba el contenido del directorio temporal.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$temp = tmpfile();
+fwrite($temp, "escribiendo en el archivo temporal");
+echo "Consultar el fichero temporal en ".sys_get_temp_dir()."\n";
+echo "Pulsa intro para continuar";
+fgetc(STDIN);
+fseek($temp, 0);
+echo fread($temp, 1024)."\n";
+fclose($temp); // esto elimina el archivo
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>tempnam()</h3>
+				<p>Genera un nombre temporal y único para un fichero. <strong>Ojo:</strong> solo produce un nombre. Deberás crearlo tú y borrarlo tú. </p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">string</span> <span id="SPAN_3"><strong id="STRONG_4">tempnam</strong></span> ( <span id="SPAN_5"><span id="SPAN_6">string</span> 
+						<code id="CODE_7">$dir
+						</code></span> , <span id="SPAN_8"><span id="SPAN_2">string</span> 
+							<code id="CODE_10">$prefix
+							</code></span> )
+				</div>
+			</section>
+
+			<section>
+				<h2>php://fd</h2>
+				<p>Abre un descriptor de fichero, por ejemplo <code>php://fd/3</code>.</p>
+				<br />
+				<h2>php://filter</h2>
+				<p>Es un <em>meta-wrapper</em> que nos permite aplicar filtros al acceder (lectura o escritura) a un fichero. Consulta <code>stream_get_filters()</code> para ver la lista completa de filtros que tienes disponible. Sintaxis:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+php://filter/[read|write]=&lt;filtro&gt;/resource=&lt;ruta_al_recurso_para_abrir&gt;
+				</code></pre>
+				<p>Ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+readfile("php://filter/read=string.tolower/resource=http://www.php.net");
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<ul>
+					<li>
+						Trabajo en CLI.
+						<ul>
+							<li>Parámetros: <code>$argc</code>, <code>$argv</code> y <code>getopt()</code></li>
+							<li>E/S estándar: <code>php://stdin</code>, <code>php://stdout</code> y <code>php://stderr</code></li>
+							<li>Constantes: <code>STDIN</code>, <code>STDOUT</code> y <code>STDERR</code></li>
+						</ul>
+					</li>
+					<li>Entrada POST: <code>php://input</code></li>
+					<li>Salida general: <code>php://output</code></li>
+					<li>Espacio temporal
+						<ul>
+							<li>Memoria temporal: <code>php://memory</code></li>
+							<li>Fichero temporal: <code>php://temp</code></li>
+							<li>Con funciones: <code>tmpfile()</code> o <code>tempnam</code>.</li>
+						</ul>
+					</li>
+					<li>Descriptores de ficheros: <code>php://fd</code></li>
+					<li>Filtros: <code>php://filter</code></li>
+				</ul>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

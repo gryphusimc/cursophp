@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Imágenes I</title>
+
+	<meta name="description" content="PHP - Imágenes I">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+
+		#DIV_1 {
+			text-align: left;
+		    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 0px 1px inset;
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+		    border: 0px none rgb(217, 217, 217);
+		    border-radius: 0 0 2px 2px;
+		    font: normal normal normal 16px/24px 'Source Code Pro', monospace;
+		    font-size: 20px;
+		    outline: rgb(115, 115, 115) none 0px;
+		    padding: 12px;
+		    margin: 5px 0;
+		}/*#DIV_1*/
+
+		#SPAN_2, #SPAN_7 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border: 0px none rgb(102, 153, 51);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#SPAN_2*/
+
+		#A_3 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border-top: 0px none rgb(102, 153, 51);
+		    border-right: 0px none rgb(102, 153, 51);
+		    border-bottom: 1px solid rgb(102, 153, 51);
+		    border-left: 0px none rgb(102, 153, 51);
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#A_3*/
+
+		#SPAN_3, #SPAN_5 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_3, #SPAN_5*/
+
+		#SPAN_4, #SPAN_6 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_4, #SPAN_6*/
+
+		#STRONG_4 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_4*/
+
+		#STRONG_5 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_5*/
+
+		#CODE_8 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#CODE_8*/
+
+
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Imágenes I</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>libgd</h2>
+				<p>Es una biblioteca externa que incluye PHP de manera predeterminada.</p>
+				<p>Esta biblioteca permite crear y manipular imágenes.</p>
+				<p>Es el estándar <em>de facto</em> para tratamiento de imágenes en PHP. También se utiliza mucho <code>imagemagick</code>.</p>
+			</section>
+
+			<section>
+				<h2>imagecreatetruecolor()</h2>
+				<p>Crea un recurso asociado a una nueva imagen (vacía) del tamaño indicado. Este recurso es de tipo imagen.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">resource</span> <span id="SPAN_3"><strong id="STRONG_4">imagecreatetruecolor</strong></span> ( <span id="SPAN_5"><span id="SPAN_6">int</span> 
+						<code id="CODE_7">$width
+						</code></span> , <span id="SPAN_8"><span id="SPAN_9">int</span> 
+							<code id="CODE_10">$height
+							</code></span> )
+				</div>
+				<p>Ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+// Creamos un recurso de imagen gd:
+$imagen = imagecreatetruecolor(800, 600);
+echo get_resource_type($imagen); // Muestra 'gd'
+
+// También podemos crearlo así:
+$imagen2 = @imagecreatetruecolor(800, 600) or die ("Error al crear imagen");
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>imagedestroy()</h2>
+				<p>Igual que debemos cerrar los ficheros con <code>fclose()</code>, también debemos cerrar los recursos de tipo imagen gd después de usarlo. Para ello utilizaremos <code>imagedestroy()</code>.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">imagedestroy</strong></span> ( <span id="SPAN_5"><span id="SPAN_6">resource</span> 
+						<code id="CODE_7">$image
+						</code></span> )
+				</div>
+				<p>Flujo de trabajo general:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+// Abrimos el recurso (creamos la imagen):
+$imagen = @imagecreatetruecolor(800, 600) or die ("Error al crear imagen");
+
+// Trabajamos con ella (la mostramos o guardamos)
+
+// Cerramos recurso (destruimos imagen):
+imagedestroy($imagen);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Otras formas de crear recursos gd</h2>
+				<p>Hemos visto que podemos crear una imagen vacía mediante <code>imagecreatetruecolor()</code>. Tenemos muchas más formas:</p>
+				<ul>
+					<li><code>imagecreatefromgif()</code> - A partir de un fichero gif.</li>
+					<li><code>imagecreatefromjpeg()</code> - A partir de un fichero jpg.</li>
+					<li><code>imagecreatefrompng()</code> - A partir de un fichero png.</li>
+					<li><code>imagecreatefromwebp()</code> - A partir de un fichero webp.</li>
+					<li><code>imagecreatefromstring()</code> - A partir de un string.</li>
+				</ul>
+				<p>Para crear un recurso gd a partir de un fichero gif:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+// Abrimos el fichero
+$nombreimagen = "logo.gif";
+$im = @imagecreatefromgif($nombreimagen);
+
+// Trabajamos con la imagen
+// Finalmente la borramos
+imagedestroy($im);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Mostrar/Guardar una imagen</h2>
+				<p>De poco nos sirve abrir/crear imágenes sin hacer nada más. Vamos a ver cómo podemos guardar una imagen o cómo mostrarla al navegador. Vamos a especificar más el flujo general de trabajo:</p>
+				<ol style="width: 600px;">
+					<li>Abrimos o creamos la imagen.</li>
+					<li>Trabajamos con ella.</li>
+					<li>Guardamos o mostramos la imagen.</li>
+					<li>Destruimos el recurso.</li>
+				</ol>
+				<p><br />Tenemos varias funciones, dependiendo del formato que queramos usar.</p>
+			</section>
+
+			<section>
+				<h2>Funciones de salida de imágenes</h2>
+				<p>Podemos usar todas estas funciones para guardar o mostrar una imagen:</p>
+				<ul>
+					<li><code>imagegif()</code></li>
+					<li><code>imagepng()</code></li>
+					<li><code>imagejpeg()</code></li>
+					<li><code>imagewebp()</code></li>
+				</ul>
+				<p><br />Ejemplo que muestra cómo convertir de gif a png una imagen:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$im = @imagecreatefromgif("logo.gif");
+imagepng($im, "logo.png");
+imagedestroy($im);
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Mostrando una imagen</h3>
+				<p>PHP no solo sirve contenido tipo texto (HTML o texto plano), sino que también puede mostrar una imagen. Para ello, usaremos las mismas funciones que para guardar imágenes, pero sin indicar el nombre del fichero donde la guardaremos. Pero para que funcione debemos asegurarnos de que no mostramos nada más antes, y debemos usar la función <code>header()</code>, que indica al navegador que estamos sirviendo una imagen.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+// echo "Hola"; // Esto haría que no funcionara
+$im = @imagecreatefrompng("logo.png") or die("Error al cargar imagen");
+
+// Tampoco funcionaría si no llamáramos a header()
+header("Content-Type: image/gif"); 
+imagegif($im);
+imagedestroy($im);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>imagesx() e imagesy()</h2>
+				<p>Obtienen el ancho y el alto respectivamente de un recurso de tipo <code>gd</code>.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">int</span> <span id="SPAN_3"><strong id="STRONG_4">imagesx</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">resource</span> 
+						<code id="CODE_7">$image
+						</code></span> )
+				</div>
+
+				<div id="DIV_1">
+					 <span id="SPAN_2">int</span> <span id="SPAN_3"><strong id="STRONG_4">imagesy</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">resource</span> 
+						<code id="CODE_7">$image
+						</code></span> )
+				</div>
+				<p>Ejemplo de uso:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$im = @imagecreatefrompng("logo.png") or die("Error al cargar imagen");
+
+$ancho = imagesx($im);
+$alto  = imagesy($im);
+
+echo "La imagen tiene ${ancho}px de ancho y ${alto}px de alto\n";
+imagedestroy($im);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>imagecopy()</h2>
+				<p>Copia y/o recorta una imagen, sin cambiar su tamaño.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">imagecopy</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">resource</span> 
+						<code id="CODE_7">$dst_im
+						</code></span> , <span id="SPAN_8"><span id="SPAN_2">resource</span> 
+							<code id="CODE_10">$src_im
+							</code></span> , <span id="SPAN_11"><span id="SPAN_2">int</span> 
+								<code id="CODE_13">$dst_x
+								</code></span> , <span id="SPAN_14"><span id="SPAN_2">int</span> 
+									<code id="CODE_16">$dst_y
+									</code></span> , <span id="SPAN_17"><span id="SPAN_2">int</span> 
+										<code id="CODE_19">$src_x
+										</code></span> , <span id="SPAN_20"><span id="SPAN_2">int</span> 
+											<code id="CODE_22">$src_y
+											</code></span> , <span id="SPAN_23"><span id="SPAN_2">int</span> 
+												<code id="CODE_25">$src_w
+												</code></span> , <span id="SPAN_26"><span id="SPAN_2">int</span> 
+													<code id="CODE_28">$src_h
+													</code></span> )
+				</div>
+				<p>Parámetros:</p>
+				<ul>
+					<li><code>$dst_im</code> - Imagen de destino.</li>
+					<li><code>$src_im</code> - Imagen de origen.</li>
+					<li><code>$dst_x</code> - Coordenada x de destino.</li>
+					<li><code>$dst_y</code> - Coordenada y de destino.</li>
+					<li><code>$src_x</code> - Coordenada x de origen.</li>
+					<li><code>$src_y</code> - Coordenada y de origen.</li>
+					<li><code>$src_w</code> - Ancho.</li>
+					<li><code>$src_h</code> - Alto.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Ejemplo de imagecopy()</h3>
+				<p>Vamos a crear una nueva imagen que sea un <em>recorte</em> del recuadro superior izquierdo de 100x100px. Fíjate en que las coordenadas (0,0) están en la esquina superior izquierda.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$orig = @imagecreatefrompng("logo.png") or die("Error al cargar imagen");
+$dest = imagecreatetruecolor(100, 100);
+
+imagecopy($dest, $orig, 0, 0, 0, 0, 100, 100);
+header("Content-Type: image/png");
+imagepng($dest);
+
+imagedestroy($orig);
+imagedestroy($dest);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>imagecopyresampled()</h2>
+				<p>Copia, escala y recorta una imagen. O combinar varias.</p>
+
+				<div id="DIV_1">
+					 <span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">imagecopyresampled</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">resource</span> 
+						<code id="CODE_7">$dst_image
+						</code></span> , <span id="SPAN_8"><span id="SPAN_2">resource</span> 
+							<code id="CODE_10">$src_image
+							</code></span> , <span id="SPAN_11"><span id="SPAN_2">int</span> 
+								<code id="CODE_13">$dst_x
+								</code></span> , <span id="SPAN_14"><span id="SPAN_2">int</span> 
+									<code id="CODE_16">$dst_y
+									</code></span> , <span id="SPAN_17"><span id="SPAN_2">int</span> 
+										<code id="CODE_19">$src_x
+										</code></span> , <span id="SPAN_20"><span id="SPAN_2">int</span> 
+											<code id="CODE_22">$src_y
+											</code></span> , <span id="SPAN_23"><span id="SPAN_2">int</span> 
+												<code id="CODE_25">$dst_w
+												</code></span> , <span id="SPAN_26"><span id="SPAN_2">int</span> 
+													<code id="CODE_28">$dst_h
+													</code></span> , <span id="SPAN_29"><span id="SPAN_2">int</span> 
+														<code id="CODE_31">$src_w
+														</code></span> , <span id="SPAN_32"><span id="SPAN_2">int</span> 
+															<code id="CODE_34">$src_h
+															</code></span> )
+				</div>
+				<ul>
+					<li><code>$dst_image</code> - Imagen de destino.</li>
+					<li><code>$src_image</code> - Imagen de origen.</li>
+					<li><code>$dst_x</code> - Coordenada x de destino.</li>
+					<li><code>$dst_y</code> - Coordenada y de destino.</li>
+					<li><code>$src_x</code> - Coordenada x de origen.</li>
+					<li><code>$src_y</code> - Coordenada y de origen.</li>
+					<li><code>$dst_w</code> - Ancho de destino.</li>
+					<li><code>$dst_h</code> - Alto de destino.</li>
+					<li><code>$src_w</code> - Ancho de origen.</li>
+					<li><code>$src_h</code> - Alto de origen.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Ejemplo de imagecopyresampled()</h3>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left; max-height: none;">
+&lt;?php
+$orig = @imagecreatefrompng("logo.png") or die("Error al cargar imagen");
+$ancho = imagesx($orig);
+$alto  = imagesy($orig);
+$dest1 = imagecreatetruecolor($ancho, $alto);
+$dest2 = imagecreatetruecolor(100, 100);
+$dest3 = imagecreatetruecolor($ancho/2, $alto/2);
+
+imagecopyresampled($dest1, $orig, 0, 0, 0, 0, $ancho, $alto, $ancho, $alto);
+imagepng($dest1, "logo.1.png"); // Copiamos
+
+imagecopyresampled($dest2, $orig, 0, 0, 0, 0, 100, 100, 100, 100);
+imagepng($dest2, "logo.2.png"); // Recortamos como con imagecopy()
+
+imagecopyresampled($dest3, $orig, 0, 0, 0, 0, $ancho/2, $alto/2, $ancho, $alto);
+imagepng($dest3, "logo.3.png"); // Escalamos
+
+imagedestroy($orig);
+imagedestroy($dest1);
+imagedestroy($dest2);
+imagedestroy($dest3);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>imagerotate()</h2>
+				<p>Rota una imagen con el ángulo indicado y devuelve una nueva.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">resource</span> <span id="SPAN_3"><strong id="STRONG_4">imagerotate</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">resource</span> 
+						<code id="CODE_7">$image
+						</code></span> , <span id="SPAN_8"><span id="SPAN_2">float</span> 
+							<code id="CODE_10">$angle
+							</code></span> , <span id="SPAN_11"><span id="SPAN_2">int</span> 
+								<code id="CODE_13">$bgd_color
+								</code></span> [, <span id="SPAN_14"><span id="SPAN_2">int</span> 
+									<code id="CODE_16">$ignore_transparent
+									</code> <span id="SPAN_17">= 0</span></span> ] )
+				</div>
+				<p>Por ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left; max-height: none;">
+&lt;?php
+$im = @imagecreatefrompng("logo.png") or die("Error al cargar imagen");
+$nueva = imagerotate($im, 180, 0); // El 0 es el color negro.
+header("Content-Type: image/png");
+imagepng($nueva);
+imagedestroy($im);
+imagedestroy($nueva);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>imageflip()</h2>
+				<p>En PHP 5.5 o superior. Voltea una imagen en el modo indicado (vertical, horizontal o ambos).</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">imageflip</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">resource</span> 
+						<code id="CODE_7">$image
+						</code></span> , <span id="SPAN_8"><span id="SPAN_2">int</span> 
+							<code id="CODE_10">$mode
+							</code></span> )
+				</div>
+				<p>Modos:</p>
+				<ul>
+					<li><code>IMG_FLIP_HORIZONTAL</code> voltea horizontalmente.</li>
+					<li><code>IMG_FLIP_VERTICAL</code> voltea verticalmente.</li>
+					<li><code>IMG_FLIP_BOTH</code> voltea en ambos sentidos.</li>
+				</ul>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left; max-height: none;">
+&lt;?php
+$im = @imagecreatefrompng("logo.png") or die("Error al cargar imagen");
+imageflip($im, IMG_FLIP_VERTICAL); // Volteo vertical
+header("Content-Type: image/png");
+imagepng($im);
+imagedestroy($im);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>imagefilter()</h2>
+				<p>Aplica un filtro a una imagen.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">imagefilter</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">resource</span> 
+						<code id="CODE_7">$image
+						</code></span> , <span id="SPAN_8"><span id="SPAN_2">int</span> 
+							<code id="CODE_10">$filtertype
+							</code></span> [, <span id="SPAN_11"><span id="SPAN_2">int</span> 
+								<code id="CODE_13">$arg1
+								</code></span> [, <span id="SPAN_14"><span id="SPAN_2">int</span> 
+									<code id="CODE_16">$arg2
+									</code></span> [, <span id="SPAN_17"><span id="SPAN_2">int</span> 
+										<code id="CODE_19">$arg3
+										</code></span> [, <span id="SPAN_20"><span id="SPAN_2">int</span> 
+											<code id="CODE_22">$arg4
+											</code></span> ]]]] )
+				</div>
+				<p>Existen unos 12 filtros, alguno de ellos permiten parámetros para configurarlos. Algunos filtros son:</p>
+				<ul>
+					<li><code>IMG_FILTER_NEGATE</code> - invierte los colores</li>
+					<li><code>IMG_FILTER_GRAYSCALE</code> - convierte a escala de grises</li>
+					<li><code>IMG_FILTER_GAUSSIAN_BLUR</code> - desenfoque gaussiano</li>
+					<li><code>IMG_FILTER_PIXELATE</code> - pixelar (con parámetros)</li>
+				</ul>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left; max-height: none;">
+&lt;?php
+$im = @imagecreatefrompng("logo.png") or die("Error al cargar imagen");
+imagefilter($im, IMG_FILTER_NEGATE);
+imagefilter($im, IMG_FILTER_PIXELATE, 20);
+header("Content-Type: image/png");
+imagepng($im);
+imagedestroy($im);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<ul>
+					<li><code>libgd</code>, biblioteca gráfica.</li>
+					<li><code>imagecreatetruecolor()</code>, crea una imagen en blanco.</li>
+					<li><code>imagedestroy()</code>, cerrar un recurso imagen gd.</li>
+					<li>Crear una imagen a partir de un fichero.</li>
+					<li>Mostrar y guardar imágenes.</li>
+					<li><code>imagesx()</code> e <code>imagesy()</code>, ancho y alto.</li>
+					<li><code>imagecopy()</code> copiar o recortar una imagen.</li>
+					<li><code>imagecopyresampled()</code> copar, recotar o escalar.</li>
+					<li><code>imagerotate()</code> gira una imagen.</li>
+					<li><code>imageflip()</code> voltea una imagen.</li>
+					<li><code>imagefilter()</code> aplicar filtros.</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

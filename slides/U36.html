@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Carga de ficheros por HTTP</title>
+
+	<meta name="description" content="PHP - Carga de ficheros por HTTP">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+
+		#DIV_1 {
+			text-align: left;
+			box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 0px 1px inset;
+			color: rgb(115, 115, 115);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(115, 115, 115);
+			word-spacing: -2px;
+			background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+			border: 0px none rgb(217, 217, 217);
+			border-radius: 0 0 2px 2px;
+			font: normal normal normal 16px/24px 'Source Code Pro', monospace;
+			font-size: 20px;
+			outline: rgb(115, 115, 115) none 0px;
+			padding: 12px;
+			margin: 5px 0;
+		}/*#DIV_1*/
+
+		#SPAN_2, #SPAN_7 {
+			color: rgb(102, 153, 51);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(102, 153, 51);
+			word-spacing: -2px;
+			border: 0px none rgb(102, 153, 51);
+			border-radius: 0 0 0 0;
+			outline: rgb(102, 153, 51) none 0px;
+		}/*#SPAN_2*/
+
+		#A_3 {
+			color: rgb(102, 153, 51);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(102, 153, 51);
+			word-spacing: -2px;
+			border-top: 0px none rgb(102, 153, 51);
+			border-right: 0px none rgb(102, 153, 51);
+			border-bottom: 1px solid rgb(102, 153, 51);
+			border-left: 0px none rgb(102, 153, 51);
+			outline: rgb(102, 153, 51) none 0px;
+		}/*#A_3*/
+
+		#SPAN_3, #SPAN_5 {
+			color: rgb(115, 115, 115);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(115, 115, 115);
+			word-spacing: -2px;
+			border: 0px none rgb(115, 115, 115);
+			border-radius: 0 0 0 0;
+			outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_3, #SPAN_5*/
+
+		#SPAN_4, #SPAN_6 {
+			color: rgb(115, 115, 115);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(115, 115, 115);
+			word-spacing: -2px;
+			border: 0px none rgb(115, 115, 115);
+			outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_4, #SPAN_6*/
+
+		#STRONG_4 {
+			color: rgb(51, 102, 153);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(51, 102, 153);
+			word-spacing: -2px;
+			border: 0px none rgb(51, 102, 153);
+			border-radius: 0 0 0 0;
+			outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_4*/
+
+		#STRONG_5 {
+			color: rgb(51, 102, 153);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(51, 102, 153);
+			word-spacing: -2px;
+			border: 0px none rgb(51, 102, 153);
+			outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_5*/
+
+		#CODE_8 {
+			color: rgb(51, 102, 153);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(51, 102, 153);
+			word-spacing: -2px;
+			border: 0px none rgb(51, 102, 153);
+			outline: rgb(51, 102, 153) none 0px;
+		}/*#CODE_8*/
+
+
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Carga de ficheros por HTTP</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Carga de ficheros</h2>
+				<p>En la unidad anterior vimos cómo enviar formularios en HTML, a través de HTTP. Podíamos usar una petición <code>GET</code> o <code>POST</code>.</p>
+				<p>Sin embargo nos dejamos un tipo de entrada de datos muy habitual: los ficheros.</p>
+				<p>Creamos un elemento HTML de tipo fichero así:</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;input type="file" name="nombre_del_elemento" /&gt;
+</code></pre>
+			</section>
+
+			<section>
+				<h2>Formulario</h2>
+				<p>Sin embargo, para enviar ficheros solamente podremos utilizar formularios <code>POST</code>. Y tendrán que incluir un nuevo atributo:</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;form enctype="multipart/form-data" method="POST"&gt;
+    Enviar este archivo: &lt;input name="archivo_de_usuario" type="file" /&gt;
+    &lt;button&gt;Enviar archivo&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+				<p>Hemos tenido que asignar el valor <code>multipart/form-data</code> al atributo <code>enctype</code>. Por omisión, los formularios son de otro tipo: <code>application/x-www-form-urlencoded</code>.</p>
+			</section>
+
+			<section>
+				<h2>$_FILES</h2>
+				<p>Para subir ficheros debemos usar el método <code>POST</code>, y todos los elementos del formulario irán a <code>$_POST</code> salvo los ficheros, que estarán en un elemento del array global <code>$_FILES</code>. Para cada fichero enviado tendremos en <code>$_FILES</code> tenemos estos índices:</p>
+				<ul>
+					<li><code>name</code> nombre original.</li>
+					<li><code>type</code> tipo, por ejemplo <code>image/png</code>.</li>
+					<li><code>size</code> tamaño en bytes.</li>
+					<li><code>tmp_name</code> ruta y nombre temporal del archivo en el servidor.</li>
+					<li><code>error</code> código de error (si lo hubiera).</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Recogiendo el fichero</h2>
+				<p>Cuando un usuario envía un fichero, éste se almacena temporalmente en <code>$_FILES['fichero']['tmp_name']</code>, dentro de la carpeta de ficheros temporales.</p>
+				<p>Tenemos que moverlo de esa carpeta temporal a una carpeta de nuestra aplicación. Para moverlo, no usaremos <code>rename()</code>, sino <code>move_uploaded_file()</code>:</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">move_uploaded_file</strong></span> (
+					 <span id="SPAN_5"><span id="SPAN_2">string</span> <code id="CODE_7">$filename</code></span> ,
+					 <span id="SPAN_8"><span id="SPAN_2">string</span> <code id="CODE_10">$destination</code></span> )
+				</div>
+				<p>Si todo ha sido correcto, devuelve <code>TRUE</code>.</p>
+			</section>
+
+			<section>
+				<h2>Ejemplo</h2>
+				<p>Supón que el formulario envía un fichero al siguiente script:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$uploaddir = dirname(__FILE__)."/";
+$uploadfile = $uploaddir . basename($_FILES['fichero']['name']);
+
+if (move_uploaded_file($_FILES['fichero']['tmp_name'], $uploadfile)) {
+    echo "Fichero correcto y movido con éxito.\n";
+} else {
+    echo "¡Posible ataque!\n";
+}
+
+echo 'Información de depuración:';
+echo "&lt;pre&gt;";
+print_r($_FILES);
+echo "&lt;/pre&gt;";
+				</code></pre>
+				<p><code>move_uploaded_file()</code> comprueba y mueve el fichero temporal a una ruta <em>definitiva</em>. Típicamente tendremos una carpeta para almacenar los ficheros subidos por los usuarios (como sus fotos de perfil).</p>
+			</section>
+
+			<section>
+				<h2>Permisos</h2>
+				<p>Todos los procesos de un ordenador son ejecutados en nombre de un usuario. Normalmente hay un usuario <em>virtual</em> para el servidor web, por ejemplo <code>www-data</code>. Es posible que, de manera predeterminada, este usuario no tenga permisos para añadir ficheros a ninguna carpeta, y la subida de ficheros falle. Es un error muy frecuente al trabajar con carga de ficheros. Para evitarlo, debemos asegurarnos de que el servidor web puede escribir en el directorio. Normalmente se puede hacer desde el propio cliente FTP.</p>
+
+			</section>
+
+			<section>
+				<h2>Ajustes de php.ini</h2>
+				<p>Hay determinados ajustes de <code>php.ini</code> que afectan a la subida de ficheros. En caso de error, comprueba si los valores de estos ajustes son los que están limitando la carga de archivos:</p>
+				<ul>
+					<li><code>file_uploads</code> habilita la carga de archivos.</li>
+					<li><code>upload_max_filesize</code> tamaño máximo aceptado.</li>
+					<li><code>upload_tmp_dir</code> carpeta temporal de ficheros subidos.</li>
+					<li><code>post_max_size</code> tamaño máximo aceptado en datos POST.</code></li>
+					<li><code>max_input_time</code> tiempo máximo de espera recibiendo datos.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<p>Para subir ficheros usaremos formularios <code>POST</code> con <code>enctype=multipart/form-data</code>.</p>
+				<p>Recibiremos los datos en <code>$_FILES</code>.</p>
+				<p>Lo moveremos a su carpeta final mediante <code>move_uploaded_file()</code>.</p>
+				<p>Existen numerosos ajustes de <code>php.ini</code> que afectan al comportamiento de la subida de ficheros mediante HTTP.</p>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+			{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+			{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+</script>
+
+</body>
+</html>

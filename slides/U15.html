@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Funciones del sistema</title>
+
+	<meta name="description" content="PHP - Funciones del sistema">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.5em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Funciones del sistema</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>¿Qué es una función?</h2>
+				<ul>
+					<li>Una "herramienta" que hace algo por nosotros.</li>
+					<li>A veces reciben parámetros (valores).</li>
+					<li>A veces retornan valores.</li>
+				</ul>
+				<p><br />Por ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$resultado = nombre_funcion($parametro1, $parametro2);
+				</code></pre>
+				<p><br />Ya hemos usado una función:</p>
+				<p><code style="color:orange;">phpversion()</code>, para conocer la versión de PHP que utilizamos.</p>
+			</section>
+
+			<section>
+				<h2>Componentes de una función</h2>
+				<p>Para utilizar una función necesitamos conocer tres componentes:</p>
+				<ul>
+					<li>Nombre de la función</li>
+					<li>Tipo de dato que genera</li>
+					<li>Lista de parámetros que recibe</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Ejemplo</h3>
+				<p>Supón una función llamada suma, que recibe dos enteros y genera (devuelve) otro entero:</p>
+				<ul>
+					<li class="fragment">Nombre: suma</li>
+					<li class="fragment">Tipo de dato: numérico</li>
+					<li class="fragment">Parámetros: $numero1 y $numero2, ambos de tipo integer</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Funciones de PHP</h2>
+				<p>PHP incorpora un gran número de funciones a nuestra disposición para ayudarnos con nuestras aplicaciones.</p>
+				<p>Por ejemplo, incluye funciones:</p>
+				<ul>
+					<li class="fragment">Matemáticas</li>
+					<li class="fragment">Para manejo de ficheros</li>
+					<li class="fragment">Para manejo de imágenes</li>
+					<li class="fragment">De bases de datos</li>
+					<li class="fragment">De arrays</li>
+					<li class="fragment">De strings</li>
+					<li class="fragment">¡Y muchas más!</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Documentación de funciones</h2>
+				<p>Recordando: las funciones las describimos con 3 componentes: (1) nombre, (2) tipo de dato que devuelve y (3) parámetros.</p>
+				<p>Vamos a ver cómo leer la documentación de funciones de PHP:</p>
+				<div class="fragment">
+					<p><br />Siguiendo con el ejemplo de la función suma, la describimos así:</p>
+					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+	integer suma(integer $numero1, integer $numero2)
+					</code></pre>
+					<p>Solo con eso ya sabríamos cómo usar la función:</p>
+					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+	$valor = suma(15, 201);
+					</code></pre>
+				</div>
+			</section>
+
+			<section>
+				<h2>Pseudotipos documentando funciones</h2>
+				<p>Hay funciones que permiten parámetros de varios tipos. Por ejemplo, la función suma podría aceptar también variables Float</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$valor = suma(15.1, 202.09);
+				</code></pre>
+				<p>Para facilitar la documentación, se recurre a pseudotipos:</p>
+				<ul>
+					<li><code style="color:orange;">number</code> - Indica que la variable puede ser Integer o Float</li>
+					<li><code style="color:orange;">mixed</code> - Indica que la variable puede ser de varios tipos (no necesariamente todos)</li>
+				</ul>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+number suma(number $numero1, number $numero2)
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Parámetros opcionales</h2>
+				<p>Hay funciones cuyos parámetros son opcionales.</p>
+				<p>Por ejemplo, volviendo con la función suma(), supongamos que podemos pasarle opcionalmente 2 o 3 números:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$valor1 = suma(15, 202, 12);
+$valor2 = suma(15, 202);
+				</code></pre>
+				<p>En este caso, el parámetro opcional iría entre corchetes:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+number suma(number $numero1, number $numero2 [, number $numero3])
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Parámetros ilimitados</h2>
+				<p>Igualmente, hay funciones cuyo número total de parámetros es indeterminado.</p>
+				<p>Por ejemplo, la función suma() podría aceptar tantos valores como le proporcionemos:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$valor = suma(15, 202, 12, -5, -105, 1009, 5, 99);
+				</code></pre>
+				<p>Los parámetros obligatorios (los dos primeros al menos) irían como hasta ahora. El resto de parámetros opcionales los nombraríamos con '...' (tres puntos):
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+number suma(number $numero1, number $numero2 [, number $...])
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Ejemplo</h3>
+				<p>Ya conocemos la función <code style="color:orange">phpversion()</code>. Vamos a ver cómo es en la documentación de PHP:</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto; font-family:monospace; font-size:0.6em; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">phpversion</span><span style="color:#003369;"> </span>([ <span style="color:#881350;">string</span> <span style="color:#825900;">$extension</span> ] )</div>
+				<div class="fragment">
+					<p><br />Vemos esta información:</p>
+					<ul>
+						<li>Nombre: phpversion</li>
+						<li>Valor devuelto: string</li>
+						<li>Parámetros: un string opcional</li>
+					</ul>
+				</div>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<p class="fragment">Hemos aprendido qué es una función</p>
+				<p class="fragment">Sabemos que PHP incorpora numerosas funciones predeterminadas</p>
+				<p class="fragment">Cómo leer la documentación de PHP para entender una función</p>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Variables II</title>
+
+	<meta name="description" content="PHP - Variables II">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+		table td {
+			padding: 0.2em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Variables II</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Recordatorio</h2>
+				<p>Las variables son "espacios" donde alojar un valor.</p>
+				<p>En PHP, su nombre debe comenzar con el carácter $.</p>
+				<p>Hemos aprendido cuáles son los tipos escalares: string, integer, float y boolean.</p>
+			</section>
+
+			<section>
+				<h2>Qué vamos a ver</h2>
+				<p>Nuevos tipos que veremos:</p>
+				<ul>
+					<li>Tipos compuestos:
+						<ul>
+							<li><strong>array</strong>: matriz, arreglo.</li>
+							<li><strong>object</strong>: objeto</li>
+						</ul>
+					</li>
+					<li>Otros tipos:
+						<ul>
+							<li><strong>resource</strong>: recurso</li>
+							<li><strong>NULL</strong>: valor nulo</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Array</h2>
+				<p>Los arrays (matrices, arreglos) son un tipo de dato compuesto que permiten almacenar una lista de valores.</p>
+				<p>En PHP los arrays son diferentes a otros lenguajes, dado que en este lenguaje los arrays realmente son mapas, aunque en el contexto de PHP se les llama igualmente arrays.</p>
+				<p>Un mapa es un tipo de dato compuesto que permite almacenar una lista de claves y sus valores asociados.</p>
+			</section>
+
+			<section>
+				<h3>Sintaxis array</h3>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$variable = array(
+	'clave1' => 'valor1',
+	'clave2' => 'valor2',
+	...
+);
+				</code></pre>
+				<p>Podemos omitir la clave:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$variable = array('valor1', 'valor2', ...);
+				</code></pre>
+				<p>Que será equivalente a esto:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$variable = array(
+	0 => 'valor1',
+	1 => 'valor2',
+	...
+);
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Claves y valores</h3>
+				<p>Supón que queremos almacenar la población de 5 ciudades:</p>
+				<table>
+					<tr>
+						<td>Nueva York</td>
+						<td>París</td>
+						<td>Tokio</td>
+						<td>Sidney</td>
+						<td>Buenos Aires</td>
+					</tr>
+					<tr>
+						<td>8,336,697</td>
+						<td>2,243,833</td>
+						<td>13,157,428</td>
+						<td>4,627,345</td>
+						<td>2,890,151</td>
+					</tr>
+				</table>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$poblacion_nueva_york = 8336697;
+$poblacion_paris = 2243833;
+$poblacion_tokio = 13157428;
+$poblacion_sidney = 4627345;
+$poblacion_buenos_aires = 2890151;
+				</code></pre>
+				<p>Con arrays:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$poblacion = array(
+	'nueva_york' => 8336697,
+	'paris' => 2243833,
+	'tokio' => 13157428,
+	'sidney' => 4627345,
+	'buenos_aires' = >2890151
+);
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Acceder a un elemento de un array</h3>
+				<p>Debemos usar la siguiente sintaxis:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$variable['nombre_clave'];
+				</code></pre>
+				<p>Volviendo al ejemplo de las ciudades:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$poblacion = array(
+	'nueva_york' => 8336697,
+	'paris' => 2243833,
+	'tokio' => 13157428,
+	'sidney' => 4627345,
+	'buenos_aires' = >2890151
+);
+
+echo $poblacion['nueva_york']; // Muestra 8336697
+				</code></pre>
+				<p>También podemos añadir o modificar elementos:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$poblacion['los_angeles'] = 3792621; // Añadimos un nuevo valor al array
+$poblacion['paris'] = 2351495; // Modificamos un valor del array
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Object</h2>
+				<p>Es un tipo de datos compuesto avanzado. En siguientes unidades lo estudiaremos.</p>
+				<p>A diferencia de los arrays, que únicamente almacenan claves y valores, los objetos también almacenan acciones que se pueden realizar sobre esos datos.</p>
+				<p>Por ejemplo, podemos tener un tipo de objeto llamado "Vehículo", donde uno de sus valores almacene la velocidad. Podría tener una acción que mostrara la velocidad actual del vehículo.</p>
+			</section>
+
+			<section>
+				<h2>Resource</h2>
+				<p>Tal como señala la documentación oficial de PHP:</p>
+				<blockquote>Un valor tipo resource es una variable especial, que contiene una referencia a un recurso externo. Los recursos son creados y usados por funciones especiales.</blockquote>
+			</section>
+
+			<section>
+				<h2>NULL</h2>
+				<p>Es el <em>valor</em> que tiene una variable <em>que no tiene ningún valor</em>.</p>
+				<p>Puede ser porque aún no se le haya asignado ningún valor, o porque se haya destruido el valor que tuviera.</p>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<p>Ya conocemos prácticamente todos los tipos de datos de PHP</p>
+				<p>Introducción a los arrays</p>
+				<p>Muy breve introducción a los objetos</p>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

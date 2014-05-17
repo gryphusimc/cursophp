@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Ficheros III</title>
+
+	<meta name="description" content="PHP - Ficheros III">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+
+		#DIV_1 {
+			text-align: left;
+		    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 0px 1px inset;
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+		    border: 0px none rgb(217, 217, 217);
+		    border-radius: 0 0 2px 2px;
+		    font: normal normal normal 16px/24px 'Source Code Pro', monospace;
+		    font-size: 20px;
+		    outline: rgb(115, 115, 115) none 0px;
+		    padding: 12px;
+		    margin: 5px 0;
+		}/*#DIV_1*/
+
+		#SPAN_2, #SPAN_7 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border: 0px none rgb(102, 153, 51);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#SPAN_2*/
+
+		#A_3 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border-top: 0px none rgb(102, 153, 51);
+		    border-right: 0px none rgb(102, 153, 51);
+		    border-bottom: 1px solid rgb(102, 153, 51);
+		    border-left: 0px none rgb(102, 153, 51);
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#A_3*/
+
+		#SPAN_3, #SPAN_5 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_3, #SPAN_5*/
+
+		#SPAN_4, #SPAN_6 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_4, #SPAN_6*/
+
+		#STRONG_4 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_4*/
+
+		#STRONG_5 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_5*/
+
+		#CODE_8 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#CODE_8*/
+
+
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Ficheros III</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Recursos</h2>
+				<p>Al igual que <code>string</code>, <code>array</code> o <code>callable</code>, un recurso es un tipo de dato de PHP (<code>resource</code>). Guarda una referencia a un recurso externo. Algunos ejemplos:</p>
+				<ul>
+					<li>Ficheros</li>
+					<li>Bases de datos</li>
+					<li>Imágenes</li>
+				</ul><br /><br />
+				<h3>get_resource_type()</h3>
+				<p>Función que nos indica de qué tipo de recurso es una variable.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">string</span> <span id="SPAN_3"><strong id="STRONG_4">get_resource_type</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">resource</span> 
+						<code id="CODE_7">$handle
+						</code></span> )
+				</div>
+			</section>
+
+			<section>
+				<h2>Cursor</h2>
+				<p>Llamamos cursor (puntero, <em>pointer</em>) a la estructura que señala en qué posición del fichero estamos trabajando.</p>
+				<p>Como el cursor cuando editas un texto:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+Este es el contenido de un fichero de texto.
+
+Continúa por aquí.
+				</code></pre>
+				<p>Por ejemplo, al leer un fichero, el cursor automáticamente irá avanzando a través del archivo para leer cada bloque de información.</p>
+			</section>
+
+			<section>
+				<h2>Ficheros como recursos</h2>
+				<p>Además de leer y escribir en ficheros con las funciones que hemos visto, podemos usar otras, basadas en recursos:</p>
+				<ul>
+					<li>Abrir: <code>fopen()</code>.</li>
+					<li>Leer: <code>fread()</code>, <code>fgets()</code>, <code>fgetss()</code>.</li>
+					<li>Esribir: <code>fwrite()</code>.</li>
+					<li>Mover cursor: <code>fseek()</code>, <code>rewind()</code>.</li>
+					<li>Cerrar: <code>fclose()</code>.</li>
+				</ul>
+				<blockquote>Ventaja: con estas funciones, podemos trabajar con ficheros binarios de manera segura.</blockquote>
+			</section>
+
+			<section>
+				<h2>fopen()</h2>
+				<p>Abre un fichero y devuelve el recurso asociado a éste. Recuerda: puedes usar <code>wrappers</code>.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">resource</span> <span id="SPAN_3"><strong id="STRONG_4">fopen</strong></span> ( <span id="SPAN_5"><span id="SPAN_6">string</span> 
+						<code id="CODE_7">$filename
+						</code></span> , <span id="SPAN_8"><span id="SPAN_9">string</span> 
+							<code id="CODE_10">$mode
+							</code></span> [, <span id="SPAN_11"><span id="SPAN_12">bool</span> 
+								<code id="CODE_13">$use_include_path
+								</code> <span id="SPAN_14">= false</span></span> [, <span id="SPAN_15"><span id="SPAN_16">resource</span> 
+									<code id="CODE_17">$context
+									</code></span> ]] )
+				</div>
+			</section>
+
+			<section>
+				<h3>Modos de fopen()</h3>
+				<ul>
+					<li><code>r</code> - Lectura. Si no existe: error. Cursor: inicio.</li>
+					<li><code>r+</code> - Lectura y escritura. Si no existe: error. Cursor: inicio.</li>
+					<li><code>w</code> - Escritura. Si no existe: se crea. Cursor: inicio.</li>
+					<li><code>w+</code> - Lectura y escritura. Si no existe: se crea. Cursor: inicio</li>
+					<li><code>a</code> - Escritura. Si no existe: se crea. Cursor: final.</li>
+					<li><code>a+</code> - Lectura y escritura. Si no existe: se crea. Cursor: final.</li>
+				</ul>
+				<p><br />Para evitar problemas, al trabajar con ficheros binarios es recomendable poner además la letra <code>b</code>.</p>
+				<p>Ejemplos:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$fichero = fopen("ejemplo.txt", "w+"); // No es binario, es texto
+$imagen = fopen("logo.gif", "rb"); // Una imagen es binario, luego ponemos 'b'
+$url = fopen("http://www.php.net/", "rb"); // No es binario, pero ponemos 'b'
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>fclose()</h2>
+				<p>Cierra un fichero. Libera el recurso.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">fclose</strong></span> ( <span id="SPAN_5"><span id="SPAN_6">resource</span> 
+						<code id="CODE_7">$handle
+						</code></span> )
+				</div>
+				<p>El flujo de trabajo es el siguiente:</p>
+				<ol style="width: 600px;">
+					<li>Abrimos fichero con <code>fopen()</code>.</li>
+					<li>Trabajamos con el fichero.</li>
+					<li>Cerramos el fichero con <code>fclose()</code>.</li>
+				</ol>
+			</section>
+
+			<section>
+				<h2>feof()</h2>
+				<p>Nos indica si el cursor de un fichero se encuentra en el final del mismo.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">feof</strong></span> ( <span id="SPAN_5"><span id="SPAN_6">resource</span> 
+						<code id="CODE_7">$handle
+						</code></span> )
+				</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$fichero = fopen("prueba.txt", "r");
+
+if (feof($fichero)) {
+	echo "Estamos al final del fichero";
+} else {
+	echo "No estamos al final del fichero";
+}
+
+fclose($fichero);
+				</code></pre>
+				<blockquote>EOF significa <em>End of File</em> (Final de fichero).</blockquote>
+			</section>
+
+			<section>
+				<h2>fread()</h2>
+				<p>Lee <code>n</code> bytes, de manera segura, de un fichero (recurso) y lo devuelve. <code>FALSE</code>, en caso de error.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">string</span> <span id="SPAN_3"><strong id="STRONG_4">fread</strong></span> ( <span id="SPAN_5"><span id="SPAN_6">resource</span> 
+						<code id="CODE_7">$handle
+						</code></span> , <span id="SPAN_8"><span id="SPAN_9">int</span> 
+							<code id="CODE_10">$length
+							</code></span> )
+				</div>
+				<p>Lee <code>$lenght</code> bytes, salvo error o que se haya llegado a <code>EOF</code>.</p>
+				<p>Ejemplo: guardar el HTML de la página http://www.php.net/:</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$handle = fopen("http://www.php.net/", "rb");
+$contents = '';
+$i = 0;
+while (!feof($handle)) {
+	$i++;
+	$contents .= fread($handle, 8192);
+}
+fclose($handle);
+
+echo "Hemos hecho $i iteraciones para leer ".strlen($contents)."bytes";
+</code></pre>
+			</section>
+
+			<section>
+				<h2>fgets()</h2>
+				<p>Igual que <code>fread()</code>, salvo que detiene la lectura si llega al final de una línea.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">string</span> <span id="SPAN_3"><strong id="STRONG_4">fgets</strong></span> ( <span id="SPAN_5"><span id="SPAN_6">resource</span> 
+						<code id="CODE_7">$handle
+						</code></span> [, <span id="SPAN_8"><span id="SPAN_9">int</span> 
+							<code id="CODE_10">$length
+							</code></span> ] )
+				</div>
+				<p>Ejemplo:</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$handle = fopen("http://www.php.net/", "rb");
+$contents = '';
+$i = 0;
+while (!feof($handle)) {
+	$i++;
+	$contents .= fgets($handle, 8192);
+}
+fclose($handle);
+
+echo "Hemos hecho $i iteraciones para leer ".strlen($contents)."bytes";
+</code></pre>
+			</section>
+
+			<section>
+				<h2>fgetss()</h2>
+				<p>Igual que <code>fgets()</code>, salvo que elimina las etiquetas PHP y HTML.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">string</span> <span id="SPAN_3"><strong id="STRONG_4">fgets</strong></span> ( <span id="SPAN_5"><span id="SPAN_6">resource</span> 
+						<code id="CODE_7">$handle
+						</code></span> [, <span id="SPAN_8"><span id="SPAN_9">int</span> 
+							<code id="CODE_10">$length
+							</code></span> ] )
+				</div>
+				<br />
+
+				<h2>fgetc()</h2>
+				<p>Igual que <code>fread()</code>, salvo que solamente lee un carácter.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">string</span> <span id="SPAN_3"><strong id="STRONG_4">fgetc</strong></span> ( <span id="SPAN_5"><span id="SPAN_6">resource</span> 
+						<code id="CODE_7">$handle
+						</code></span> )
+				</div>
+			</section>
+
+			<section>
+				<h2>fwrite()</h2>
+				<p>Escribe en un fichero. Devuelve el número de bytes escritos o <code>FALSE</code> si hubo un error.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">int</span> <span id="SPAN_3"><strong id="STRONG_4">fwrite</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">resource</span> 
+						<code id="CODE_7">$handle
+						</code></span> , <span id="SPAN_8"><span id="SPAN_2">string</span> 
+							<code id="CODE_10">$string
+							</code></span> [, <span id="SPAN_11"><span id="SPAN_2">int</span> 
+								<code id="CODE_13">$length
+								</code></span> ] )
+				</div>
+				<p>Trata de averigar, sin ejecutarlo, la salida de este programa:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$modos = 'waw';
+$nombre = 'fichero.txt';
+
+for ($i = 0; $i&lt; strlen($modos); $i++) {
+	$pf = fopen('fichero.txt', $modos[$i]);
+	fwrite($pf, '1');
+	fwrite($pf, '23');
+	fclose($pf);
+
+	readfile($nombre);
+	echo "&lt;br /&gt;";
+}
+</code></pre>
+			</section>
+
+			<section>
+				<h2>fseek()</h2>
+				<p>Coloca el cursor en la posición indicada.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">int</span> <span id="SPAN_3"><strong id="STRONG_4">fseek</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">resource</span> 
+						<code id="CODE_7">$handle
+						</code></span> , <span id="SPAN_2"><span id="SPAN_9">int</span> 
+							<code id="CODE_10">$offset
+							</code></span> [, <span id="SPAN_11"><span id="SPAN_2">int</span> 
+								<code id="CODE_13">$whence
+								</code> <span id="SPAN_14">= SEEK_SET</span></span> ] )
+				</div>
+				<p><code>$whence</code> puede ser:</p>
+				<ul>
+					<li><code>SEEK_SET</code> - La posición es la indicada en $offset.</li>
+					<li><code>SEEK_CUR</code> - La posición es la del cursor + $offset.</li>
+					<li><code>SEEK_END</code> - La posición es la del final + $offset.</li>
+				</ul>
+				<p>Ejemplo: crear un fichero vacío de 1MB</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$size = 1024 * 1024;
+$pf = fopen("prueba.bin", 'w');
+fseek($pf, $size, SEEK_END);
+fwrite($pf, 0);
+fclose($pf);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>rewind()</h2>
+				<p>Coloca el cursor en la posición inicial del fichero.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">rewind</strong></span> ( <span id="SPAN_5"><span id="SPAN_6">resource</span> 
+						<code id="CODE_7">$handle
+						</code></span> )
+				</div><br />
+
+				<h2>ftell</h2>
+				<p>Devuelve un entero indicando la posición actual del cursor.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">int</span> <span id="SPAN_3"><strong id="STRONG_4">ftell</strong></span> ( <span id="SPAN_5"><span id="SPAN_6">resource</span> 
+						<code id="CODE_7">$handle
+						</code></span> )
+				</div>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<ul>
+					<li>Recursos de tipo fichero.</li>
+					<li>Concepto de cursor.</li>
+					<li>
+						Funciones de ficheros basadas en <code>resource</code> y cursores:
+						<ul>
+							<li>Apertura: <code>fopen()</code></li>
+							<li>Cierre: <code>fclose()</code></li>
+							<li>Lectura: <code>fread()</code>, <code>fgets()</code>, <code>fgetss()</code> y <code>fgetc</code></li>
+							<li>Escritura: <code>fwrite()</code></li>
+							<li>Info del cursor: <code>feof()</code> y <code>ftell</code></li>
+							<li>Mover cursor: <code>fseek()</code> y <code>rewind</code></li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Ficheros II</title>
+
+	<meta name="description" content="PHP - Ficheros II">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+
+		#DIV_1 {
+			text-align: left;
+		    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 0px 1px inset;
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+		    border: 0px none rgb(217, 217, 217);
+		    border-radius: 0 0 2px 2px;
+		    font: normal normal normal 16px/24px 'Source Code Pro', monospace;
+		    font-size: 20px;
+		    outline: rgb(115, 115, 115) none 0px;
+		    padding: 12px;
+		    margin: 5px 0;
+		}/*#DIV_1*/
+
+		#SPAN_2, #SPAN_7 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border: 0px none rgb(102, 153, 51);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#SPAN_2*/
+
+		#A_3 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border-top: 0px none rgb(102, 153, 51);
+		    border-right: 0px none rgb(102, 153, 51);
+		    border-bottom: 1px solid rgb(102, 153, 51);
+		    border-left: 0px none rgb(102, 153, 51);
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#A_3*/
+
+		#SPAN_3, #SPAN_5 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_3, #SPAN_5*/
+
+		#SPAN_4, #SPAN_6 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_4, #SPAN_6*/
+
+		#STRONG_4 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_4*/
+
+		#STRONG_5 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_5*/
+
+		#CODE_8 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#CODE_8*/
+
+
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Ficheros II</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Leeyendo el contenido de ficheros</h2>
+				<p>Vamos a ver diferentes métodos, ninguno basado en recursos:</p>
+				<ul>
+					<li><code>file_get_contents()</code> - Lee y retorna el contenido</li>
+					<li><code>file()</code> - Lee y retorna el contenido en un array</li>
+					<li><code>readfile()</code> - Lee y muestra el contenido</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>file_get_contents()</h3>
+				<p>Lee y devuelve el contenido de un fichero en un string.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">string</span> <span id="SPAN_3"><strong id="STRONG_4">file_get_contents</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">string</span> 
+						<code id="CODE_7">$filename
+						</code></span> [, <span id="SPAN_8"><span id="SPAN_2">bool</span> 
+							<code id="CODE_10">$use_include_path
+							</code> <span id="SPAN_11">= false</span></span> [, <span id="SPAN_12"><span id="SPAN_2">resource</span> 
+								<code id="CODE_14">$context
+								</code></span> [, <span id="SPAN_15"><span id="SPAN_2">int</span> 
+									<code id="CODE_17">$offset
+									</code> <span id="SPAN_18">= -1</span></span> [, <span id="SPAN_19"><span id="SPAN_2">int</span> 
+										<code id="CODE_21">$maxlen
+										</code></span> ]]]] )
+				</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$fichero = "prueba.txt";
+
+if (file_exists($fichero) &amp;&amp; is_readable($fichero)) {
+	// Guardamos en $texto el contenido del fichero
+	$texto = file_get_contents($fichero);
+	echo nl2br($texto);
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>file()</h3>
+				<p>Lee y devuelve el contenido de un fichero en un array de strings, un elemento por línea.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">array</span> <span id="SPAN_3"><strong id="STRONG_4">file</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">string</span> 
+						<code id="CODE_7">$filename
+						</code></span> [, <span id="SPAN_8"><span id="SPAN_2">int</span> 
+							<code id="CODE_10">$flags
+							</code> <span id="SPAN_11">= 0</span></span> [, <span id="SPAN_12"><span id="SPAN_2">resource</span> 
+								<code id="CODE_14">$context
+								</code></span> ]] )
+				</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$fichero = "prueba.txt";
+
+if (file_exists($fichero) &amp;&amp; is_readable($fichero)) {
+	// Guardamos el contenido del fichero en el array $texto_array
+	$texto_array = file($fichero);
+
+	foreach($texto_array as $linea) {
+		echo $linea."<br />";
+	}
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>readfile()</h3>
+				<p>Lee y envía a la salida estandar (como echo) el contenido de un fichero.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">int</span> <span id="SPAN_3"><strong id="STRONG_4">readfile</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">string</span> 
+						<code id="CODE_7">$filename
+						</code></span> [, <span id="SPAN_8"><span id="SPAN_2">bool</span> 
+							<code id="CODE_10">$use_include_path
+							</code> <span id="SPAN_11">= false</span></span> [, <span id="SPAN_12"><span id="SPAN_2">resource</span> 
+								<code id="CODE_14">$context
+								</code></span> ]] )
+				</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$fichero = "prueba.txt";
+
+if (file_exists($fichero) &amp;&amp; is_readable($fichero)) {
+	header("Content-Type: text/plain");
+
+	// Muestra directamente el contenido de $fichero
+	readfile($fichero);
+}
+				</code></pre>
+				<p><strong>Nota</strong>: Aún no hemos visto la función <code>header()</code>. En este caso indicamos que el contenido no es HTML, sino texto plano.</p>
+			</section>
+
+			<section>
+				<h2>Escribiendo el contenido de un fichero</h2>
+				<h3>file_put_contents()</h3>
+				<div id="DIV_1">
+					 <span id="SPAN_2">int</span> <span id="SPAN_3"><strong id="STRONG_4">file_put_contents</strong></span> ( <span id="SPAN_5"><span id="SPAN_2">string</span> 
+						<code id="CODE_7">$filename
+						</code></span> , <span id="SPAN_8"><span id="SPAN_2">mixed</span> 
+							<code id="CODE_11">$data
+							</code></span> [, <span id="SPAN_12"><span id="SPAN_2">int</span> 
+								<code id="CODE_14">$flags
+								</code> <span id="SPAN_15">= 0</span></span> [, <span id="SPAN_16"><span id="SPAN_2">resource</span> 
+									<code id="CODE_18">$context
+									</code></span> ]] )
+				</div>
+				<p>Consulta los <code>flags</code> disponibles.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$fichero = "prueba.txt";
+date_default_timezone_set("Europe/Madrid");
+
+if (file_exists($fichero) &amp;&amp; is_writeable($fichero)) {
+	$linea = "Son las ".date("H:i:s")."\n";
+	file_put_contents($fichero, $linea, FILE_APPEND);
+
+	header("Content-Type: text/plain");
+
+	// Muestra directamente el contenido de $fichero
+	readfile($fichero);
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Wrappers</h2>
+				<p>Cuando abrimos un fichero, como por ejemplo éste,</p>
+				<code>/var/www/dominio.com/pictures/pic039.jpg</code>
+				<p>es como si hiciéramos esto:</p>
+				<code>file:///var/www/dominio.com/pictures/pic039.jpg</code>
+				<p><br />¿Qué es ese <code>file://</code> que precede al nombre del fichero?</p>
+				<p class="fragment">Es un <em>wrapper</em> (envoltura).</p>
+			</section>
+
+			<section>
+				<h2>Wrappers predeterminados</h2>
+				<p>PHP incluye un gran número de wrappers:</p>
+				<ul>
+					<li><code>file://</code> - Sistema local de archivos.</li>
+					<li><code>http://</code> - Acceso a URL mediante HTTP(S).</li>
+					<li><code>ftp://</code> - Conexión a un servidor FTP(S)</li>
+					<li><code>php://</code> - Flujos de E/S.</li>
+					<li><code>ssh2://</code> - Conexión mediante SSH2.</li>
+					<li><code>zip://</code> - Ficheros comprimidos con ZIP.</li>
+				</ul>
+				<p><br />Podemos usarlos con todas las funciones de ficheros.</p>
+			</section>
+
+			<section>
+				<h2>stream_get_wrappers()</h2>
+				<p>Devuelve un array con los wrappers disponibles en nuestro sistema.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">array</span> <span id="SPAN_3"><strong id="STRONG_4">stream_get_wrappers</strong></span> ( <span id="SPAN_2">void</span> )
+				</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+
+print_r(stream_get_wrappers());
+</code></pre>
+			</section>
+
+			<section>
+				<h2>Ejemplos con wrappers</h2>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+// leemos del wrapper http://
+$contenido = file_get_contents("http://www.google.com");
+
+// Escribimos sin indicar wrapper (por omisión, file://)
+file_put_contents("google.html", $contenido);
+
+// Leemos a partir del wrapper file://
+$contenido1 = file_get_contents("file:///Users/chuso/hubiC/Ejemplos/google.html");
+
+// Escribimos en ftp://
+@file_put_contents("ftp://usuario:pass@host.com/google.html", $contenido1);
+
+echo htmlentities(utf8_encode($contenido1));
+				</code></pre>
+				<blockquote>Fíjate que hemos puesto una <code>@</code> antes de <code>file_put_contents()</code>. Sirve para que no se muestren errores en caso de que los hubiera.</blockquote>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<ul>
+					<li>
+						Funciones para leer ficheros:
+						<ul>
+							<li><code>file_get_contents()</code></li>
+							<li><code>file()</code></li>
+							<li><code>readfile()</code></li>
+						</ul>
+					</li>
+					<li>
+						Funciones para escribir ficheros:
+						<ul>
+							<li><code>file_put_contents()</code></li>
+						</ul>
+					</li>
+					<li>Wrappers (envolturas)</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

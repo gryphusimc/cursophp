@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Condicionales</title>
+
+	<meta name="description" content="PHP - Condicionales">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+		}
+		table td {
+			padding: 0.2em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Condicionales</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Problemática</h2>
+				<p>Hasta ahora, el flujo de ejecución es secuencial: Se ejecuta una línea tras otra. A veces necesitaremos modificar esto, y lo lograremos mediante las <strong>estructuras de control</strong>.</p>
+				<p>Por ejemplo, a veces necesitaremos dividir el flujo de ejecución, de manera que se ejecute un código u otro en función de una condición. ¿Cómo lo haremos? Con condicionales:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+si condicion
+	entonces haz esto
+				</code></pre>
+				En concreto:
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+if ($condicion) {
+	// haz esto
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Condiciones</h2>
+				<p>¿Qué es exactamente una condición?</p>
+				<p>Por ejemplo, para votar es necesario ser mayor de 18 años. Entonces la condición para votar es que la edad sea igual o mayor que 18.</p>
+				<p>¿Recuerdas los <strong>operadores de comparación</strong>?</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$edad = 21;
+define('EDAD_VOTAR', 18); // Constante, no varía
+
+$es_mayor_de_edad = $edad >= EDAD_VOTAR; // TRUE
+
+if ($es_mayor_de_edad) {
+	echo "Puedes votar\n";
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Añadir condiciones a la sentencia if</h2>
+				<p>No es necesario que guardemos el valor de la condición en una variable. La mayoría de las veces ubicaremos la propia comprobación dentro de la sentencia if</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$edad = 21;
+define('EDAD_VOTAR', 18); // Constante, no varía
+
+if ($edad >= EDAD_VOTAR) {
+	echo "Puedes votar\n";
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Si no se cumple la condición</h2>
+				<p>Hay determinados casos en los que no desearemos también añadir código que se ejecute en caso de que la condición no se haya cumplido.</p>
+
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+si condicion
+	entonces haz esto
+si no
+	entonces haz esto otro
+				</code></pre>
+				En concreto:
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+if ($condicion) {
+	// haz esto
+} else {
+	// haz esto otro
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Ejemplo else</h2>
+				<p>Continuando con el ejemplo de la mayoría de edad, tendríamos:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$edad = 21;
+define('EDAD_VOTAR', 18); // Constante, no varía
+
+if ($edad >= EDAD_VOTAR) {
+	echo "Puedes votar\n";
+} else {
+	echo "Aún no puedes votar\n";
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>elseif</h2>
+				<p>Quizás queramos realizar alguna comprobación previa antes de llegar a else.</p>
+				<p>El agua tiene 3 estados: sólido, líquido y gaseoso. Entre 0ºC y 100ºC está líquido. Por encima de 100ºC está gaseoso. Y por debajo de 0ºC está sólido.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$temperatura = 29;
+
+if ($temperatura >= 100) {
+	echo "Agua en estado gaseoso\n";
+} elseif ($temperatura >= 0) {
+	echo "Agua en estado líquido\n";
+} else {
+	echo "Agua en estado sólido\n";
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Varios elseif</h2>
+				<p>Veamos otro ejemplo. La atmósfera tiene 4 capas:</p>
+				<ol>
+					<li>Troposfera, por debajo de 15Km</li>
+					<li>Estratosfera, entre 15 y 50Km</li>
+					<li>Mesosfera, entre 50 y 80Km</li>
+					<li>Termosfera, por encima de 80Km</li>
+				</ol>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$altitud = 51;
+
+if ($altitud >= 80) {
+	echo "Termosfera\n";
+} elseif ($altitud >= 50) {
+	echo "Mesosfera\n";
+} elseif ($altitud >= 15) {
+	echo "Estratosfera\n";
+} else {
+	echo "Troposfera\n";
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Switch</h2>
+				<p>Supongamos una serie de comparaciones else/elseif/else en la que solo utilizamos el operador de igualdad, por ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$color = "red"; // Ponemos el nombre de un color en inglés
+
+if ($color == "red") {
+	echo "Rojo\n";
+} elseif ($color == "green") {
+	echo "Verde\n";
+} elseif ($color == "white") {
+	echo "Blanco\n";
+} else {
+	echo "No conozco ese color\n";
+}
+				</code></pre>
+				<p>En este caso (todas las comparaciones son de igualdad) podremos utilizar una sintaxis alternativa utilizando switch (siguiente diapositiva)</p>
+			</section>
+
+			<section>
+				<h2>Switch</h2>
+				<p>El ejemplo anterior podríamos reescribirlo así:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$color = "red"; // Ponemos el nombre de un color en inglés
+
+switch ($color) {
+	case "red":
+		echo "Rojo\n";
+		// break sirve para salir del switch.
+		// Si no lo pusiéramos, seguiría y escribiría "Verde"
+		break;
+	case "green":
+		echo "Verde\n";
+		break;
+	case "white":
+		echo "Blanco\n";
+		break;
+	default:
+		echo "No conozco ese color\n";
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Sintaxis alternativa</h2>
+				<p>Algunas estructuras de control permiten una sintaxis alternativa, por ejemplo if, else y elseif</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+if ($edad >= 18) {
+	echo "Puedes votar\n";
+} else {
+	echo "Aún no puedes votar\n";
+}
+
+// Podría reescribirse como:
+if ($edad >= 18):
+	echo "Puedes votar\n";
+else:
+	echo "Aún no puedes votar\n";
+endif;
+				</code></pre>
+				<p>Esta sintaxis alternativa se suele utilizar para generar plantillas de HTML</p>
+			</section>
+
+			<section>
+				<h2>Ejemplo</h2>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;Ejemplo&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;?php $edad = 21; if ($edad &gt;= 18): ?&gt;
+	&lt;p&gt;Para votar pulsa &lt;a href='/votar.php'&gt;aquí&lt;/a&gt;&lt;p&gt;
+&lt;?php else: ?&gt;
+	&lt;p&gt;Aún no puedes votar&lt;p&gt;
+&lt;?php endif; ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<p>Hemos visto:</p>
+				<ul>
+					<li>Qué es una estructura de control.</li>
+					<li>if</li>
+					<li>elseif</li>
+					<li>else</li>
+					<li>switch</li>
+					<li>sintaxis alternativa</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

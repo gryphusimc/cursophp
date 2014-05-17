@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Funciones de texto HTML y URL</title>
+
+	<meta name="description" content="PHP - Funciones de texto HTML y URL">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.5em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+
+		table.symbols {
+			font-size: 1em !important;
+		}
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Funciones de texto HTML y URL</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>PHP y HTML</h2>
+				<p><strong>Recordemos</strong>: PHP se puede utilizar en muchos contextos.</p>
+				<p>Pero aquél donde más éxito tiene es en HTML.</p>
+				<p>Por esa razón el propio lenguaje contiene un gran número de funciones de strings pensadas para HTML.</p>				
+			</section>
+
+			<section>
+				<h2>nl2br()</h2>
+				<p>Si en HTML ponemos un cambio de línea (<code>\n</code>) esto no supone una nueva línea en el código. Para ello debemos usar <code>&lt;br /&gt;</code>
+				<p><code>nl2br()</code> convierte todos los caracteres <code>\n</code> en <code>&lt;br /&gt;</code></p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.7em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">nl2br</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$string</span> [, <span style="color:#881350;">bool</span> <span style="color:#825900;">$is_xhtml</span> = <span style="color:#881350;">true</span> ] )</div>
+			</section>
+
+			<section>
+				<h2>Entidades HTML</h2>
+				<p>Comenzamos el curso asumiendo conocimientos de HTML.</p>
+				<p>¿Cómo podemos mostrar el símbolo '<code>&lt;</code>' (menor que) en HTML?</p>
+				<p>Escribiendo su entidad HTML: <code>&amp;lt;</code></p>
+				<p>Algunos ejemplos:</p>
+				
+				<table class="symbols">
+					<thead>
+						<tr>
+							<th>Símbolo</th>
+							<th>Entidad HTML</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>&lt;</code></td>
+							<td><code>&amp;lt;</code></td>
+						</tr>
+						<tr>
+							<td><code>&gt;</code></td>
+							<td><code>&amp;gt;</code></td>
+						</tr>
+						<tr>
+							<td><code>&amp;</code></td>
+							<td><code>&amp;amp;</code></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section>
+				<h2>Seguridad en HTML</h2>
+				<p>Recuerda: desconfía siempre de aquello que provenga de fuera.</p>
+				<p>Supón que un usuario se registra usando este nombre:</p>
+				<p><code>&lt;a href="http://a.cz/virus.php"&gt;Click aquí&lt;/a&gt;</code></p>
+				<p>Cada vez que mostráramos su nombre, pondríamos un vínculo a una página con un virus (simplificando mucho).</p>
+				<p>¿Cómo lo solucionamos?</p>
+			</section>
+
+			<section>
+				<h2>htmlspecialchars()</h2>
+				<p>Convierte caracteres especiales (<code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code> y <code>&quot;</code>) a sus entidades HTML</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">htmlspecialchars</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$string</span> [, <span style="color:#881350;">int</span> <span style="color:#825900;">$flags</span> = ENT_COMPAT | ENT_HTML401 [, <span style="color:#881350;">string</span> <span style="color:#825900;">$encoding</span> = <span style="color:#eb7300;">'UTF-8'</span> [, <span style="color:#881350;">bool</span> <span style="color:#825900;">$double_encode</span> = <span style="color:#881350;">true</span> ]]] )</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$nombre = '&lt;a href="http://a.cz/virus.php"&gt;Click aquí&lt;/a&gt;';
+
+echo $nombre;
+// &lt;a href="http://a.cz/virus.php"&gt;Click aquí&lt;/a&gt;
+
+echo htmlspecialchars($nombre);
+// &amp;lt;a href=&amp;quot;http://a.cz/virus.php&amp;quot;&amp;gt;Click aquí&amp;lt;/a&amp;gt;
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>htmlentities()</h2>
+				<p>Convierte todos los caracteres (posibles) a sus entidades HTML corresdientes.</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">htmlentities</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$string</span> [, <span style="color:#881350;">int</span> <span style="color:#825900;">$flags</span> = ENT_COMPAT | ENT_HTML401 [, <span style="color:#881350;">string</span> <span style="color:#825900;">$encoding</span> = <span style="color:#eb7300;">'UTF-8'</span> [, <span style="color:#881350;">bool</span> <span style="color:#825900;">$double_encode</span> = <span style="color:#881350;">true</span> ]]] )</div>
+				<p>Esta función no convierte solo los caracteres especiales, sino todos aquellos que tengan alguna entidad HTML.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$precio = "El precio será de 1000€";
+
+echo htmlspecialchars($precio);
+// El precio será de 1000€
+
+echo htmlentities($precio);
+// El precio ser&amp;aacute; de 1000&amp;euro;
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>htmlspecialchars_decode()</h2>
+				<p>Inversa de <code>htmlspecialchars()</code></p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#003369;">htmlspecialchars_decode </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$string</span> [, <span style="color:#881350;">int</span> <span style="color:#825900;">$flags</span> = ENT_COMPAT | ENT_HTML401 ] )</div><br />
+
+				<h2>html_entity_decode()</h2>
+				<p>Inversa de <code>htmlentities()</code></p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">html_entity_decode</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$string</span> [, <span style="color:#881350;">int</span> <span style="color:#825900;">$flags</span> = ENT_COMPAT | ENT_HTML401 [, <span style="color:#881350;">string</span> <span style="color:#825900;">$encoding</span> = <span style="color:#eb7300;">'UTF-8'</span> ]] )</div>
+			</section>
+
+			<section>
+				<h2>wordwrap()</h2>
+				<p>Separar en líneas. <span class="fragment">¡También útil fuera de HTML!</span></p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">wordwrap</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$str</span> [, <span style="color:#881350;">int</span> <span style="color:#825900;">$width</span> = <span style="color:#0000ff;">75</span> [, <span style="color:#881350;">string</span> <span style="color:#825900;">$break</span> = <span style="color:#eb7300;">&quot;\n&quot;</span> [, <span style="color:#881350;">bool</span> <span style="color:#825900;">$cut</span> = <span style="color:#881350;">false</span> ]]] )</div><br />
+				<p>Ejemplo</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$texto = "El veloz murciélago hindú comía feliz cardillo y kiwi";
+$nuevotexto = wordwrap($texto, 20, "&lt;br /&gt;\n");
+
+echo $nuevotexto;
+				</code></pre>
+				<p>El ejemplo de arriba produce:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+El veloz murciélago&lt;br /&gt;
+hindú comía feliz&lt;br /&gt;
+cardillo y kiwi
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>parse_url()</h2>
+				<h3>Analizar y extraer los campos de una URL</h3>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.7em; font-family:monospace; ">mixed <span style="color:#661aa9;">parse_url</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$url</span> [, <span style="color:#881350;">int</span> <span style="color:#825900;">$component</span> = -<span style="color:#0000ff;">1</span> ] )</div><br />
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$url = "http://www.ejemplo.com:8080/pagina.php?parametro1=valor1#apartado";
+$partes = parse_url($url);
+				</code></pre>
+				<p>Genera el siguiente array:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+array(
+	"scheme"    => "http",
+	"host"      => "www.ejemplo.com",
+	"port"      => 8080,
+	"path"      => "/pagina.php",
+	"query"     => "parametro1=valor1",
+	"fragment"  => "apartado"
+);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Codificación de URL</h2>
+				<p>Cuando proporcionamos un dato que formará parte de URL debemos codificarlo a su juego de caracteres.</p>
+				<p>Por ejemplo, la URL de la entrada de la «Unión Europea» en la Wikipedia es así:</p>
+				<p><code>http://es.wikipedia.org/wiki/Uni%C3%B3n%20Europea</code></p>
+				<p>Y se convierte a:</p>
+				<p><code>http://es.wikipedia.org/wiki/Unión Europea</code></p>
+			</section>
+
+			<section>
+				<h2>urlencode()</h2>
+				<p>Prepara un texto para adjuntarlo a una URL.</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">urlencode</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$str</span> )</div><br />
+				<h2>urldecode()</h2>
+				<p>Decodificar un texto de una URL.</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">urldecode</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$str</span> )</div>
+				<p>Ejemplo</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$url = "http://es.wikipedia.org/wiki/Uni%C3%B3n%20Europea";
+echo urldecode($url);
+// Muestra "http://es.wikipedia.org/wiki/Unión Europea"
+				</code></pre>
+
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<ul>
+					<li>Funciones HTML:
+						<ul>
+							<li><code>nl2br()</code></li>
+							<li>Entidades HTML</li>
+							<li><code>htmlspecialchars()</code></li>
+							<li><code>htmlentities()</code></li>
+							<li><code>htmlspecialchars_decode()</code> y <code>html_entity_decode()</code></li>
+							<li><code>wordwrap()</code></li>
+						</ul>
+					</li>
+					<li>Funciones de URL:
+						<ul>
+							<li><code>parse_url()</code></li>
+							<li>Codificación URL</li>
+							<li><code>urlencode()</code> y <code>urldecode()</code></li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

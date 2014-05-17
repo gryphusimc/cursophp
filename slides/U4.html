@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Qué es PHP</title>
+
+	<meta name="description" content="PHP - Qué es PHP">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Qué es PHP</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Qué es PHP</h2>
+				<ul>
+					<li>Lenguaje de programación</li>
+					<li>De código abierto</li>
+					<li>Interpretado (no se compila)</li>
+					<li>Multiplataforma</li>
+					<li>Orientado a objetos</li>
+					<li>Débilmente tipado</li>
+					<li>Presente en el 80% de los servidores web</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Historia (I)</h2>
+				<p>Creado por Rasmus Lerdorf en 1994, como un conjunto de utilidades para monitorizar las visitas a su CV. Lo llamó <span style="white-space: nowrap;">«Personal Home Page»</span>.</p>
+				<p>Continuó trabajando en él hasta que, en 1996, ya era un lenguaje de programación propiamente dicho: PHP 2.0. Presente en 1% de los servidores.</p>
+				<p>En 1997, Andi Gutmans y Zeev Suraski, de Tel Aviv reprogramaron el núcleo de PHP, produciendo una versión similar a la que utilizamos hoy. Se redefinió el nombre del lenguaje, pasando a significar "PHP Hypertext Preprocessor". En 1998 estaba presente en el 10% de los servidores.</p>
+			</section>
+
+			<section>
+				<h2>Historia (II)</h2>
+				<p>Andi y Zeev realizaron un nuevo motor para PHP, bautizado como Zend, para corregir problemas de diseño y mantenimiento. Esto produjo la versión 4.0 de PHP en mayo de 2000.</p>
+				<p>En julio de 2004 se lanza PHP 5, con la segunda versión del motor Zend. El modelo de objetos fue totalmente reescrito, y se incluyeron numerosas funciones nuevas.</p>
+			</section>
+
+			<section>
+				<h2>Uso de PHP</h2>
+				<p>Wikipedia, Facebook, Wordpress.com</p>
+				<h3><br />Wordpress</h3>
+				<p>Es el CMS (Sistema de Gestión de Contenidos) más utilizado en todo el mundo. En torno al 20% de todos los sitios web funcionan con Wordpress.</p>
+			</section>
+
+			<section>
+				<h2>¡Hola, Mundo!</h2>
+				<p>Y por fin, vemos código en PHP:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;Ejemplo&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;?php echo "¡Hola, Mundo!"; ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+				</code></pre>
+				<p>Genera este código HTML:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;Ejemplo&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	¡Hola, Mundo!
+&lt;/body&gt;
+&lt;/html&gt;
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>En resumen</h2>
+				<ul>
+					<li>PHP es un lenguaje usado para web en el lado del servidor</li>
+					<li>PHP hace funcionar muchas de las mayores páginas</li>
+					<li>PHP es el lenguaje más utilizado en servidores web</li>
+					<li>PHP es el lenguaje del principal CMS: Wordpress</li>
+				</ul>
+				<p><br />¡Y además es de los lenguajes más sencillos! <strong>Nota</strong>: No siempre es bueno esto.</p>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Variables I</title>
+
+	<meta name="description" content="PHP - Variables I">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Variables I</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>¿Qué es una variable?</h2>
+				<p>Se trata de una «casilla» donde guardamos un «dato».</p>
+				<p><br />Se componen de dos partes:</p>
+				<ol>
+					<li><strong>Identificador</strong>: Un nombre con el que hacer referencia a esta variable</li>
+					<li><strong>Valor</strong>: Son los datos que va a almacenar la variable</li>
+				</ol>
+			</section>
+
+			<section>
+				<h2>Características</h2>
+				<ul>
+					<li><strong>Tamaño</strong>: Fijo o variable.</li>
+					<li><strong>Ámbito</strong>: Local o global.</li>
+					<li><strong>Tipo</strong>: Numérico entero, número real, texto, etc.</li>
+					<li><strong>Tipado</strong>: Estático o dinámico.</li>
+				</ul>
+
+				<p><br />En PHP son de tamaño variable y de tipado dinámico. No solo no hay que definir el tipo, sino que una misma variable se podría modificar para que almacenara cualquier otro tipo.</p>
+			</section>
+
+			<section>
+				<h2>Nombrar una variable en PHP</h2>
+				<p>Se representan por un signo de dólar seguido por su nombre.</p>
+				<div class="fragment">
+					<p><br />El nombre sigue algunas reglas:</p>
+					<ul>
+						<li>Diferencia minúsculas y mayúsculas. $foo es distinto a $FOO.</li>
+						<li>Puede contener letras, números o guiones bajos</li>
+						<li>Pero debe comenzar por una letra o por un guión bajo.</li>
+					</ul>
+				</div>
+				<div class="fragment">
+					<p><br />Por ejemplo:</p>
+					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$altitud, $FechaNacimiento, $_direccion, $cotizacion2013 // Válidos
+$2013cotizacion, fechaNacimiento, $valor1º // Inválidos
+					</code></pre>
+				</div>
+			</section>
+
+			<section>
+				<h2>Crear una variable en PHP</h2>
+				<p>Únicamente tenemos que asignarle un valor:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$nombre = "Hugo";
+				</code></pre>
+				<p class="fragment">Utilizamos el operador '=', para asignar a la variable de la izquierda el valor que haya a la derecha.</p>
+				<div class="fragment">
+					<p>Ahora, una vez que la variable está creada, ya podemos utilizarla:</p>
+					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+echo $nombre; // Escribe el valor que tuviera la variable $nombre: Hugo
+					</code></pre>
+				</div>
+			</section>
+
+			<section>
+				<h2>Tipos en PHP</h2>
+					<ul>
+						<li>Tenemos cuatro tipos escalares:
+							<ul>
+								<li><strong>string</strong>: cadena de texto.</li>
+								<li><strong>integer</strong>: número entero.</li>
+								<li><strong>float</strong>: double, número real.</li>
+								<li><strong>boolean</strong>: booleano, lógico, verdadero-falso.</li>
+							</ul>
+						</li>
+						<li>Dos tipos compuestos:
+							<ul>
+								<li><strong>array</strong>: matriz, arreglo.</li>
+								<li><strong>object</strong>: objeto</li>
+							</ul>
+						</li>
+						<li>Y otros tipos:
+							<ul>
+								<li><strong>resource</strong>: recurso</li>
+								<li><strong>NULL</strong>: valor nulo</li>
+							</ul>
+						</li>
+					</ul>
+			</section>
+
+			<section>
+				<h2>String</h2>
+				<p>Contienen una secuencia de cero o más caracteres. Varias formas. Vamos a ver dos.</p>
+				<h3>Comillas simples</h3>
+				<p>Consiste en encerrar la cadena de texto entre comillas simples:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$nombre = 'Juan';
+				</code></pre>
+				<div class="fragment">
+					<p>¿Y si quisiéramos que el texto tuviera una comilla simple?</p>
+					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+	$restaurante = 'Foster\'s Hollywood';
+					</code></pre>
+				</div>
+				<div class="fragment">
+					<p>¿Y si queremos mostrar la barra?</p>
+					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+	$dir = 'C:\\WINDOWS';
+					</code></pre>
+				</div>
+			</section>
+
+			<section>
+				<h2>String</h2>
+				<h3>Comillas dobles</h3>
+				<p>También podemos encerrar el texto entre comillas dobles. <br />Permite:</p>
+				<ul>
+					<li>Expandir variables dentro del texto.
+						<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$nombre = "Luis";
+$saludo = "Hola $nombre!"; // Hola Luis!
+						</code></pre>
+					</li>
+					<li>Insertar caracteres escapados, como \n (cambio de línea) o \t (carácter tabulador).
+						<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$nombre = "Luis";
+$saludo = "Hola " . $nombre . "!\n"; // Hola Luis!\n
+						</code></pre>
+						<p>Para <strong>concatenar</strong> dos textos usamos el operador '.' (punto):</p>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Integer</h2>
+				<p>Este tipo de variable permite almacenar un valor numérico sin decimales. Nunca hay que poner separador de miles.</p>
+				<p>Podemos usar operadores matemáticos:</p>
+				<ul>
+					<li>+ : Para la suma</li>
+					<li>- : Para la resta</li>
+					<li>* : Para la multiplicación</li>
+					<li>/ : Para la división</li>
+				</ul>
+				<p><br />Ejemplos:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$numero1 = 15;
+$numero2 = -3;
+$numero3 = 0;
+$media = ($numero1 + $numero2 + $numero3) / 3; // La media es 4
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Float</h2>
+				<p>Este tipo de variable permite almacenar valores numéricos con decimales. Para separar decimales se utiliza el carácter '.'</p>
+				<p><br />Ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$PI = 3.1415; // Valor de PI (Float)
+$radio = 15; // Radio de un círculo (Integer)
+
+// Podemos hacer operaciones matemáticas combinando Integer y Float
+$area = $PI * $radio * $radio; // Área del círculo
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Boolean</h2>
+				<p>El tipo boolean es el más simple, y únicamente acepta dos valores: TRUE o FALSE</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+// Supongamos que hoy es martes
+$ayer_fue_lunes = TRUE;
+$ayer_fue_jueves = FALSE;
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<p>Hemos aprendido:</p>
+				<ul>
+					<li>Qué es y para qué sirve una variable.</li>
+					<li>Cómo son las variables en PHP y qué tipos hay.</li>
+					<li>Cómo utilizar los tipos escalares: string, integer, float y boolean.</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

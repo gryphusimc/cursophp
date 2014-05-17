@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Funciones de texto</title>
+
+	<meta name="description" content="PHP - Funciones de texto">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.5em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Funciones de texto</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Secciones</h2>
+				<p>Hay muchas secciones que tratan sobre funciones para strings:</p>
+				<ul>
+					<li><strong>Funciones básicas de strings</strong>.</li>
+					<li>Funciones para expresiones regulares.</li>
+					<li>Funciones para leer y generar URL</li>
+					<li>Funciones criptográficas (mcrypt y mhash)</li>
+					<li>Funciones de caracteres</li>
+					<li>Funciones de texto multibyte</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>echo y print</h2>
+				<h3>Mostrar texto</h3>
+				<p>Técnicamente no son funciones, sino <em>constructores del lenguaje</em>.</p>
+				<p>Con <code>echo</code> y con <code>print</code> podemos mostrar un texto en pantalla:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+echo "Mensaje 1";
+print "Mensaje 2";
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>is_string()</h2>
+				<h3>Averiguar si es un string</h3>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">bool</span> <span style="color:#661aa9;">is_string</span><span style="color:#003369;"> </span>( mixed <span style="color:#825900;">$var</span> )</div><br />
+				<p>Ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+is_string("Hola"); // TRUE
+is_string(M_PI);   // FALSE
+is_string(12);     // FALSE
+is_string('c');    // TRUE
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>strlen()</h2>
+				<h3>Tamaño de un string</h3>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">int</span> <span style="color:#661aa9;">strlen</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$string</span> )</div>
+				<p><br />Ejemplo: Mostrar cada letra en una línea:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+   /* NOTA: Para consultar un carácter concreto de un string, podemos acceder
+   a la posición del carácter como si el string fuera un array de caracteres.
+
+   Ejemplo:
+   $mensaje = "Hola";
+   echo $mensaje[0];
+
+   Muestra 'H' */
+
+$str = "Palabra";
+
+for ($i=0; $i&lt;strlen($str); $i++) {
+	echo $str[$i]."\n";
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>strpos()</h2>
+				<h3>Encontrar posición de un texto en un string</h3>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; ">mixed <span style="color:#661aa9;">strpos</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$haystack</span> , mixed <span style="color:#825900;">$needle</span> [, <span style="color:#881350;">int</span> <span style="color:#825900;">$offset</span> = <span style="color:#0000ff;">0</span> ] )</div>
+				<p><br />Ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$str = "En un lugar de la Mancha...";
+strpos($str, "En"); // Devuelve un (int) 0
+strpos($str, "Walter"); // Devuelve un (bool) FALSE
+strpos($str, "Mancha"); // Devuelve un 18
+strpos($str, "l", 10); // Devuelve un 15 (segunda 'l');
+
+if (strpos($str, "X") !== FALSE) {
+	echo "¡Encontrado!";
+} else {
+	echo "No encontrado :(";
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>substr()</h2>
+				<h3>Extraer una parte de un string</h3>
+<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">substr</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$string</span> , <span style="color:#881350;">int</span> <span style="color:#825900;">$start</span> [, <span style="color:#881350;">int</span> <span style="color:#825900;">$length</span> ] )</div>
+				<p><br />Ejemplo los caracteres del 10 al 14:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$str = "En un lugar de la Mancha";
+// Opción 1: Carácter a carácter
+$str1 = $str[10].$str[11].$str[12].$str[13].$str[14]; // ¿Y si fueran 100?
+
+// Opción 2: Un bucle
+$str2 = "";
+for ($i=10; $i&lt;=14; $i++) {
+	$str2 .= $str[$i];
+}
+
+// Opción 3: substr:
+$str3 = substr($str, 10, 5);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>strtolower()</h2>
+				<h3>Convertir a minúsculas</h3>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">strtolower</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$str</span> )</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$str = "En un lugar de la Mancha";
+echo strtolower($str); // "en un lugar de la mancha"
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>strtoupper()</h2>
+				<h3>Convertir a mayúsculas</h3>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">strtoupper</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$str</span> )</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$str = "En un lugar de la Mancha";
+echo strtoupper($str); // "EN UN LUGAR DE LA MANCHA"
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>ucfirst()</h2>
+				<p>Convierte a mayúsculas la primera letra del string</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">ucfirst</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$str</span> )</div><br />
+				<h2>ucwords()</h2>
+				<p>Convierte a mayúsculas la primera letra de cada palabra</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">ucwords</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$str</span> )</div>
+			</section>
+
+			<section>
+				<h2>trim()</h2>
+				<h3>Eliminar espacios inciales y finales</h3>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">trim</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$str</span> [, <span style="color:#881350;">string</span> <span style="color:#825900;">$charlist</span> = <span style="color:#eb7300;">&quot; \t\n\r\0\x0B&quot;</span> ] )</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+echo trim("   \tHola    \tMundo    \n"); // "Hola    \tMundo"
+				</code></pre>
+				<h3>ltrim()</h3>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">ltrim</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$str</span> [, <span style="color:#881350;">string</span> <span style="color:#825900;">$charlist</span> ] )
+				</div>
+				<h3>rtrim()</h3>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">rtrim</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$str</span> [, <span style="color:#881350;">string</span> <span style="color:#825900;">$charlist</span> ] )</div>
+			</section>
+
+			<section>
+				<h2>Ejemplo</h2>
+				<p>A partir de un string <code>$str</code>, seleccionar todo el texto que hay tras la primera aparición de una l (minúscula), convertirlo a minúsculas, y eliminar los espacios en blanco que haya al final.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$pos = strpos($str, 'l');
+$substr = substr($str, $pos);
+$minusculas = strtolower($substr);
+$fin = rtrim($minusculas);
+echo $fin;
+
+// Resumido:
+echo rtrim(strtolower(substr($str,strpos($str, 'l'))));
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<p>Hemos visto:</p>
+				<ul>
+					<li>Cómo mostrar texto: <code>echo</code> y <code>print</code></li>
+					<li>Calcular tamaño de un string: <code>strlen()</code></li>
+					<li>Encontrar posición de un texto: <code>strpos()</code></li>
+					<li>Obtener un extracto: <code>substr()</code></li>
+					<li>Convertir a mayúsculas y minúsculas: <code>strtoupper()</code> y <code>strtolower()</code></li>
+					<li>Capitalizar frases o palabras: <code>ucfirst()</code> y <code>ucwords()</code></li>
+					<li>Eliminar espacios en blanco: <code>trim()</code>, <code>ltrim()</code> y <code>rtrim()</code></li>
+				</ul>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

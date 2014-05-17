@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Sesiones</title>
+
+	<meta name="description" content="PHP - Sesiones">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+
+		#DIV_1 {
+			text-align: left;
+			box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 0px 1px inset;
+			color: rgb(115, 115, 115);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(115, 115, 115);
+			word-spacing: -2px;
+			background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+			border: 0px none rgb(217, 217, 217);
+			border-radius: 0 0 2px 2px;
+			font: normal normal normal 16px/24px 'Source Code Pro', monospace;
+			font-size: 20px;
+			outline: rgb(115, 115, 115) none 0px;
+			padding: 12px;
+			margin: 5px 0;
+		}/*#DIV_1*/
+
+		#SPAN_2, #SPAN_7 {
+			color: rgb(102, 153, 51);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(102, 153, 51);
+			word-spacing: -2px;
+			border: 0px none rgb(102, 153, 51);
+			border-radius: 0 0 0 0;
+			outline: rgb(102, 153, 51) none 0px;
+		}/*#SPAN_2*/
+
+		#A_3 {
+			color: rgb(102, 153, 51);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(102, 153, 51);
+			word-spacing: -2px;
+			border-top: 0px none rgb(102, 153, 51);
+			border-right: 0px none rgb(102, 153, 51);
+			border-bottom: 1px solid rgb(102, 153, 51);
+			border-left: 0px none rgb(102, 153, 51);
+			outline: rgb(102, 153, 51) none 0px;
+		}/*#A_3*/
+
+		#SPAN_3, #SPAN_5 {
+			color: rgb(115, 115, 115);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(115, 115, 115);
+			word-spacing: -2px;
+			border: 0px none rgb(115, 115, 115);
+			border-radius: 0 0 0 0;
+			outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_3, #SPAN_5*/
+
+		#SPAN_4, #SPAN_6 {
+			color: rgb(115, 115, 115);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(115, 115, 115);
+			word-spacing: -2px;
+			border: 0px none rgb(115, 115, 115);
+			outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_4, #SPAN_6*/
+
+		#STRONG_4 {
+			color: rgb(51, 102, 153);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(51, 102, 153);
+			word-spacing: -2px;
+			border: 0px none rgb(51, 102, 153);
+			border-radius: 0 0 0 0;
+			outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_4*/
+
+		#STRONG_5 {
+			color: rgb(51, 102, 153);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(51, 102, 153);
+			word-spacing: -2px;
+			border: 0px none rgb(51, 102, 153);
+			outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_5*/
+
+		#CODE_8 {
+			color: rgb(51, 102, 153);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(51, 102, 153);
+			word-spacing: -2px;
+			border: 0px none rgb(51, 102, 153);
+			outline: rgb(51, 102, 153) none 0px;
+		}/*#CODE_8*/
+
+
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Sesiones</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Problema</h2>
+				<p>Planteamos un escenario muy sencillo: queremos conocer cuántas veces ha cargado un usuario nuestra web. Al usuario sabemos cómo identificarlo: mediante una cookie. Pero ¿cómo contabilizamos el número de veces que ha cargado la página? Las variables se destruyen al finalizar cada petición; no nos sirven.</p>
+				<p>Podemos guardar el contador en un fichero, pero necesitaremos tener un fichero por cada usuario. Al igual que un proceso que, periódicamente, elimine los ficheros antiguos.</p>
+				<p>También podemos usar bases de datos, pero sería igualmente aparatoso.</p>
+			</section>
+
+			<section>
+				<h2>Variables de sesión</h2>
+				<p>PHP nos ofrece un mecanismo para almacenar variables en un espacio accesible en las distintas peticiones de un usuario. Es, por tanto, un espacio en memoria vinculado al usuario que realiza la petición, y no a la petición en sí. A este espacio lo llamamos <em>sesión</em>.</p>
+				<p>Para identificar al usuario, el mecanismo de sesiones crea automáticamente una determinada cookie que se elimina al cerrar el navegador.</p>
+			</section>
+
+			<section>
+				<h2>session_start()</h2>
+				<p>Es la función que inicia una sesión. En caso de que ya existiera, continúa la que hubiera.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">session_start</strong></span> ( <span id="SPAN_2">void</span> )
+				</div>
+				<p>Flujo de trabajo:</p>
+				<ol>
+					<li>El usuario carga la página.</li>
+					<li>Ésta inicia una nueva sesión con <code>session_start()</code>. Se envía al usuario una cookie con un ID de sesión (identificador).</li>
+					<li>El usuario vuelve a cargar la página. Envía la cookie.</li>
+					<li>Se llama a <code>session_start()</code> que comprueba que existe una cookie de sesión, así que continúa la sesión del paso 1.</li>
+				</ol>
+			</section>
+
+			<section>
+				<h2>Nombre de la sesión</h2>
+				<p>El nombre predeterminado de la sesión será <code>PHPSESSID</code>. Este valor se usará como nombre de la cookie que se envía al usuario.</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+// Comprueba las cookies que tienes tras cargar esta página:
+session_start();
+</code></pre>
+				<p>Para consultar o cambiar el nombre de una sesión usaremos <code>session_name()</code>:</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">string</span> <span id="SPAN_3"><strong id="STRONG_4">session_name</strong></span>
+					 ([ <span id="SPAN_5"><span id="SPAN_2">string</span> <code id="CODE_7">$name</code></span> ] )
+				</div>
+				<p>Comprueba ahora el nombre de la cookie:</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+session_name('SESIONCURSO');
+session_start();
+</code></pre>
+			</section>
+
+			<section>
+				<h2>$_SESSION</h2>
+				<p>Ya sabemos cómo iniciar y nombrar una sesión. Ahora necesitamos saber cómo almacenar variables en ella.</p>
+				<p>Usaremos la variable global <code>$_SESSION</code>. Es un array asociativo donde podremos almacenar todas aquellas variables que queramos compartir entre las distintas peticiones de un mismo usuario.</p>
+				<blockquote>Los manuales antiguos recomendaban usar <code>session_register()</code>. Dejó de funcionar en PHP 5.4. ¡No lo utilices!</blockquote>
+			</section>
+
+			<section>
+				<h3>Ejemplo</h3>
+				<p>En el siguiente ejemplo vemos cómo crear una variable de sesión, o cómo actualizarla en caso de que ya existiera:</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+session_start();
+
+if (!isset($_SESSION['contador'])) {
+	$_SESSION['contador'] = 1;	
+} else {
+	$_SESSION['contador']++;
+}
+
+echo "Has cargado esta página ".$_SESSION['contador']." veces";
+</code></pre>
+			</section>
+
+			<section>
+				<h2>Datos en sesiones</h2>
+				<p>En la variable <code>$_SESSION</code> podremos almacenar todos los tipos de datos que hemos conocido, salvo los de tipo recurso.</p>
+				<p>Este código sería incorrecto:</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+session_start();
+
+if (!isset($_SESSION['fichero'])) {
+	echo "Creamos el fichero&lt;br /&gt;";
+	$_SESSION['fichero'] = fopen("borrame.txt", "w+");
+} else {
+	echo "El fichero se creó en una petición anterior a esta.&lt;br /&gt;";
+}
+
+echo 'En $_SESSION[\'fichero\'] tenemos una variable de tipo ';
+echo gettype($_SESSION['fichero']);
+</code></pre>
+			</section>
+
+			<section>
+				<h2>Eliminar datos de una sesión</h2>
+				<p>Las variables regulares de PHP se eliminan como muy tarde cuando finaliza la petición HTTP. Sin embargo las variables de sesión perduran entre peticiones. Se borran automáticamente al sobrepasar un determinado número de segundos (ajuste <code>session.gc_maxlifetime</code> de php.ini).</p>
+				<p>Podemos forzar el borrado de una variable llamando a <code>unset()</code>.</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+session_start();
+
+if (!isset($_SESSION['contador'])) {
+	$_SESSION['contador'] = 1;	
+} elseif ($_SESSION['contador'] == 10) {
+	unset($_SESSION['contador']);
+} else {
+	$_SESSION['contador']++;
+}
+
+echo "Has cargado esta página ".$_SESSION['contador']." veces";
+</code></pre>
+			</section>
+
+			<section>
+				<h2>Cookies vs sesiones</h2>
+				<ul>
+					<li>
+						La mayor diferencia es el tiempo de vida:
+						<ul>
+							<li>Las sesiones finalizan al cerrar el navegador.</li>
+							<li>Las cookies pueden finalizar a largo plazo.</li>
+						</ul>
+					</li>
+					<li>Seguridad:
+						<ul>
+							<li>Las sesiones son seguras: el usuario solo tiene acceso a su ID de sesión. La info se guarda en el servidor.</li>
+							<li>Las cookies pueden ser inseguras (como el ejemplo que vimos al estudiarlas): La info se guarda en el clienet (la cookie).</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<p>Una sesión es un espacio persistente entre peticiones.</p>
+				<p>Utiliza una cookie (por defecto <code>PHPSESSID</code>) que almacena el ID de sesión.</p>
+				<p>Iniciamos la sesión con <code>session_start()</code>.</p>
+				<p>Finaliza al cerrar el navegador.</p>
+				<p>Las variables de sesión las guardamos en el array global <code>$_SESSION</code>.</p>
+				<p>Podemos comprobar si existe una variabel con <code>isset</code>.</p>
+				<p>Y podemos elminarlas de la sesión con <code>unset</code>.</p>
+				<p>Las sesiones son más seguras que las cookies, pero finalizan antes.</p>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+			{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+			{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+</script>
+
+</body>
+</html>

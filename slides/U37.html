@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Cookies</title>
+
+	<meta name="description" content="PHP - Cookies">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+
+		#DIV_1 {
+			text-align: left;
+			box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 0px 1px inset;
+			color: rgb(115, 115, 115);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(115, 115, 115);
+			word-spacing: -2px;
+			background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+			border: 0px none rgb(217, 217, 217);
+			border-radius: 0 0 2px 2px;
+			font: normal normal normal 16px/24px 'Source Code Pro', monospace;
+			font-size: 20px;
+			outline: rgb(115, 115, 115) none 0px;
+			padding: 12px;
+			margin: 5px 0;
+		}/*#DIV_1*/
+
+		#SPAN_2, #SPAN_7 {
+			color: rgb(102, 153, 51);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(102, 153, 51);
+			word-spacing: -2px;
+			border: 0px none rgb(102, 153, 51);
+			border-radius: 0 0 0 0;
+			outline: rgb(102, 153, 51) none 0px;
+		}/*#SPAN_2*/
+
+		#A_3 {
+			color: rgb(102, 153, 51);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(102, 153, 51);
+			word-spacing: -2px;
+			border-top: 0px none rgb(102, 153, 51);
+			border-right: 0px none rgb(102, 153, 51);
+			border-bottom: 1px solid rgb(102, 153, 51);
+			border-left: 0px none rgb(102, 153, 51);
+			outline: rgb(102, 153, 51) none 0px;
+		}/*#A_3*/
+
+		#SPAN_3, #SPAN_5 {
+			color: rgb(115, 115, 115);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(115, 115, 115);
+			word-spacing: -2px;
+			border: 0px none rgb(115, 115, 115);
+			border-radius: 0 0 0 0;
+			outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_3, #SPAN_5*/
+
+		#SPAN_4, #SPAN_6 {
+			color: rgb(115, 115, 115);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(115, 115, 115);
+			word-spacing: -2px;
+			border: 0px none rgb(115, 115, 115);
+			outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_4, #SPAN_6*/
+
+		#STRONG_4 {
+			color: rgb(51, 102, 153);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(51, 102, 153);
+			word-spacing: -2px;
+			border: 0px none rgb(51, 102, 153);
+			border-radius: 0 0 0 0;
+			outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_4*/
+
+		#STRONG_5 {
+			color: rgb(51, 102, 153);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(51, 102, 153);
+			word-spacing: -2px;
+			border: 0px none rgb(51, 102, 153);
+			outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_5*/
+
+		#CODE_8 {
+			color: rgb(51, 102, 153);
+			letter-spacing: -1px;
+			text-decoration: none solid rgb(51, 102, 153);
+			word-spacing: -2px;
+			border: 0px none rgb(51, 102, 153);
+			outline: rgb(51, 102, 153) none 0px;
+		}/*#CODE_8*/
+
+
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Cookies</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Tenemos un problema</h2>
+				<p>HTTP se creó como un protocolo sin estado. Esto significa que ninguna petición HTTP guarda relación con las anteriores o las posteriores. Surgió entonces un problema: ¿cómo se identifica a los usuarios para mostrarles un contenido privado? Piénsalo: Pedro introduce su usuario y su contraseña, y entonces se le muestra esta URL <strong>privada</strong>:</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+http://www.mipagina.com/privado/index.php
+</code></pre>
+				<p>¿Qué le impide a Raúl acceder a esa URL privada? ¿Cómo sabemos quién es quién?</p>
+			</section>
+
+			<section>
+				<h2>Una solución poco elegante</h2>
+				<p>Durante un tiempo había páginas que optaron por añadir un parámetro GET a la URL. Este parámetro sería una <em>clave</em> temporal que se debería incluir en todas las URLs privadas. Por ejemplo:</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+http://www.mipagina.com/privado/index.php?key=SHhi75-mmG1219qPOAd
+</code></pre>
+				<p>Funcionaba, pero tenía problemas:</p>
+				<ul>
+					<li>El programador debía añadir esa clave a todas las URLs privadas a las que se enlazara.</li>
+					<li>Las URLs generadas eran muy feas.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Cookies</h2>
+				<p>Surgió otra solución: ¿y si, en lugar de apuntar esa clave en cada URL, la almacenamos en un fichero del usuario? Y que cada vez que haga una petición a nuestra web, nos envíe el valor de la cookie en una cabecera.</p>
+				<p>Ventajas:</p>
+				<ul>
+					<li>El programador se olvidaba de añadir la clave a todas las URLs: se enviaba el valor de la clave automáticamente en cada petición.</li>
+					<li>Las URLs volvían a ser limpias ahora que no contenían claves.</li>
+				</ul>
+				<p class="fragment"><br />Pero abrió la puerta a que nuestra privacidad se viera perjudicada: una cookie nos identifica constantemente, con lo que pueden rastrear nuestra actividad.</p>
+			</section>
+
+			<section>
+				<h2>Características</h2>
+				<p>Constan, principalmente, de dos partes: <strong>nombre</strong> y <strong>valor</strong>.</p>
+				<p>Solo se envían al servidor que las emitió. Una página en <code>www.ejemplo.com</code> no puede consultar las cookies de <code>www.miweb.net</code>.</p>
+				<p>Pueden tener fecha de caducidad: perduran hasta que se alcanza esa fecha. Si no se indica, la cookie se borra al cerrar el navegador.</p>
+				<p>Las usamos para identificar usuarios o para personalizar la página. Por ejemplo, si un usuario anónimo rellena el carrito de la compra en nuestra tienda online, podemos identificarle con una cookie para que, la próxima vez que vuelva, el carrito siga como lo dejó.</p>
+			</section>
+
+			<section>
+				<h2>setcookie()</h2>
+				<p>Es la función con la que creamos cookies en PHP:</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">setcookie</strong></span> (
+					 <span id="SPAN_5"><span  id="SPAN_2">string</span> <code id="CODE_7">$name</code></span> [,
+					 <span id="SPAN_8"><span  id="SPAN_2">string</span> <code id="CODE_10">$value</code></span> [,
+					 <span id="SPAN_11"><span id="SPAN_2">int</span> <code id="CODE_13">$expire</code> <span id="SPAN_14">= 0</span></span> [,
+					 <span id="SPAN_15"><span id="SPAN_2">string</span> <code id="CODE_17">$path</code></span> [,
+					 <span id="SPAN_18"><span id="SPAN_2">string</span> <code id="CODE_20">$domain</code></span> [,
+					 <span id="SPAN_21"><span id="SPAN_2">bool</span> <code id="CODE_23">$secure</code> <span id="SPAN_24">= false</span></span> [,
+					 <span id="SPAN_25"><span id="SPAN_2">bool</span> <code id="CODE_27">$httponly</code> <span id="SPAN_28">= false</span></span> ]]]]]] )
+				</div>
+				<ul>
+					<li><code>$name</code> — nombre de la cookie.</li>
+					<li><code>$value</code> — valor de la cookie.</li>
+					<li><code>$expire</code> — fecha en que expira (UNIX timestamp).</li>
+					<li><code>$path</code> — ruta de la web que podrá consultarla.</li>
+					<li><code>$domain</code> — indica qué dominios (y subdominios) podrán consultarla.</li>
+					<li><code>$secure</code> — si es true, sólo se transmite por HTTPS.</li>
+					<li><code>$httponly</code> — si es true, no se carga si la petición es JavaScript.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Ejemplo</h3>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+
+setcookie("uno",  "valor 1");
+setcookie("dos",  "valor 2");
+setcookie("tres", "valor 3", time()+10); // Dura 10 segundos
+</code></pre>
+				<p>La primera crea una cookie de sesión (se borra al cerrar el navegador), de nombre <code>uno</code> y valor <code>valor 1</code>.</p>
+				<p>La segunda también crea una cookie de sesión, de nombre <code>dos</code> y valor <code>valor 2</code>.</p>
+				<p>La tercera crea una cookie que espira a los 10 segundos,, de nombre <code>tres</code> y valor <code>valor 3</code>.</p>
+			</section>
+
+			<section>
+				<h2>$_COOKIE</h2>
+				<p>Al igual que podemos recibir datos del usuario en <code>$_GET</code>, <code>$_POST</code> y <code>$_FILES</code>, las cookies que nos envíen las tendremos en <code>$_COOKIE</code>.</p>
+				<p>Cada cookie será un elemento del array <code>$_COOKIE</code>, donde se usa como clave el nombre de la cookie.</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+
+setcookie("uno",  "valor 1");
+setcookie("dos",  "valor 2");
+setcookie("tres", "valor 3", time()+10); // Dura 10 segundos
+
+echo "&lt;pre&gt;";
+print_r($_COOKIE);
+echo "&lt;/pre&gt;";
+</code></pre>
+				<p>¿Y si las llamadas a <code>setcookie()</code> estuvieran al final?</p>
+			</section>
+
+			<section>
+				<h2>Identificar usuarios</h2>
+				<p>Supón que tenemos los nombres de los usuarios registrados. Deseamos tener un sistema, cuando el usuario introduce su nombre y contraseña correctamente, se le envíe una cookie.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left; max-height: none;">
+&lt;?php if ($_SERVER['REQUEST_METHOD'] != 'POST'): ?&gt;
+&lt;form method="post" action="index.php"&gt;
+    &lt;div&gt;
+        &lt;input type="text"     name="nombre" placeholder="Introduce tu nombre" /&gt;
+        &lt;input type="password" name="pass" placeholder="Introduce tu password" /&gt;
+        &lt;br /&gt;
+        &lt;button&gt;Enviar&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+&lt;?php else:
+    $usuarios = ['pedro' => 'Ped551', 'laura' => '_LaU_27_'];
+    if (!empty($_POST['nombre']) &amp;&amp; $usuarios[$_POST['nombre']] == $_POST['pass']) {
+        setcookie('usuario', $_POST['nombre']);
+        echo "¡Bienvenido/a!";
+    } else {
+        echo "Nombre o contraseña incorrectos.";
+    }
+endif; ?&gt;
+
+</code></pre>
+			</section>
+
+			<section>
+				<h2>Reconocer a un usuario</h2>
+				<p>Ahora ya sabemos cómo enviar a un usuario una cookie para identificarlo en nuestra web. Para comprobar el usuario tan solo tenemos que consultar el valor de <code>$_COOKIE['nombre']</code>.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left; max-height: none;">
+&lt;?php
+$usuarios = ['pedro' => 'Ped551', 'laura' => '_LaU_27_'];
+
+if (array_key_exists($_COOKIE['usuario'], $usuarios)) {
+	echo "Te recuerdo. Eres ".$_COOKIE['usuario'];
+} elseif (array_key_exists('usuario', $_COOKIE)) {
+	echo "No te recuerdo ".$_COOKIE['usuario'].". ¿Seguro que nos conocemos?";
+} else {
+	echo "No has iniciado sesión";
+}
+</code></pre>
+			</section>
+
+			<section>
+				<h2>Asegurando el código</h2>
+				<p>Cualquier usuario podría editar su cookie <code>usuario</code> y cambiar el valor de la misma para suplantar la identidad de otro.</p>
+				<p>Debemos identificar la información de otra forma más segura (codificada). Por ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left; max-height: none;">
+&lt;?php
+$valor = $_POST['nombre'].":".md5($_POST['nombre'].$_POST['pass']);
+setcookie('usuario', $valor);
+				</code></pre>
+				<p>Borra la cookie, actualiza el código, inicia sesión y comprueba el valor de la cookie.</p>
+			</section>
+
+			<section>
+				<h3>Continuación</h3>
+				<p>Y para reconocer al usuario tendríamos el siguiente código:</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left; max-height: none;">
+&lt;?php
+$usuarios = ['pedro' => 'Ped551', 'laura' => '_LaU_27_'];
+
+if (array_key_exists('usuario', $_COOKIE)) {
+    list($usuario, $clave) = explode(":", $_COOKIE['usuario']);
+
+    if (array_key_exists($usuario, $usuarios)) {
+        if (md5($usuario.$usuarios[$usuario]) == $clave) {
+            echo "Te recuerdo. Eres ".$usuario;
+        } else {
+            // Mostramos nuevo mensaje:
+            echo "Clave incorrecta";
+        }
+    } else {
+        echo "No te recuerdo $usuario. ¿Seguro que nos conocemos?";
+    }
+} else {
+    echo "No has iniciado sesión";
+}
+</code></pre>
+			</section>
+
+			<section>
+				<h2>Cerrando sesión</h2>
+				<p>Del mismo modo que creamos cookies para identificar y reconocer a un usuario (iniciar sesión), también necesitamos un mecanismo para eliminar cookies (cerrar sesión). Lo logramos estableciendo una fecha de expiración que ya haya pasado:</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left; max-height: none;">
+&lt;?php
+setcookie('usuario', '', time() - 3600); // El timestamp de hace una hora
+</code></pre>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<p>HTTP es un protocolo sin estado: cada petición es independiente. Se solventó añadiendo cookies: ficheros que contienen texto y están vinculados a un dominio.</p>
+				<p>Con la fecha (UNIX timestamp) controlamos su ciclo de vida:</p>
+				<ul>
+					<li><code>0</code> indica que muere al cerrar el navegador.</li>
+					<li>Una fecha pasada indica que se debe eliminar.</li>
+					<li>En otro caso, se elimina al alcanzar la fecha de expiración.</li>
+				</ul>
+				<p><br />Las creamos con la función <code>setcookie()</code>.</p>
+				<p>Las consultamos en la variable global <code>$_COOKIE</code>.</p>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+			{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+			{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+</script>
+
+</body>
+</html>

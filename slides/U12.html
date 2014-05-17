@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Bucles</title>
+
+	<meta name="description" content="PHP - Bucles">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.5em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Bucles</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Problemática</h2>
+				<p>Tenemos estructuras de control para elegir un código u otro en función de una condición.</p>
+				<p>Nos falta alguna forma de poder repetir una serie de veces un mismo código. Lo logramos con bucles.</p>
+				<h3>¿Qué es un bucle?</h3>
+				<p>Consiste en un bloque de código que, mientras se cumpla una determinada condición, se seguirá repitiendo. Esta condición debe dejar de cumplirse en algún momento, ya que si no tendremos un bucle infinito.</p>
+			</section>
+
+			<section>
+				<h2>Ejemplos</h2>
+				<ul>
+					<li>Mostrar los números del 1 al 100</li>
+					<li>Recorrer los elementos de un array</li>
+					<li>Escribir los múltiplos de 7 hasta el número 1000</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Tipos</h2>
+				<ul>
+					<li>while - Se ejecuta <em>mientras</em> se cumpla la condición. 0 o más repeticiones.</li>
+					<li>do .. while - Se ejecuta <em>mientras</em> se cumpla la condición. 1 o más repeticiones.</li>
+					<li>for - Se suele utilizar para hacer repeticiones de un número determinado de veces.</li>
+					<li>foreach - Lo usamos para recorrer arrays.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>while</h2>
+				<p>Se ejecuta 0 o más veces mientras se cumpla la condición.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+while ($condicion) {
+	// Código que se repite
+}
+				</code></pre>
+				<p>Es decir, para que el código se ejecute, antes debe darse la condición.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$numero = 0;
+while ($numero &lt; 5) {
+	echo $numero." ";
+	$numero = $numero + 1;
+}
+echo "FIN: ".$numero;
+// Mostrará 0 1 2 3 4 FIN: 5
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>do while</h2>
+				<p>Es igual que el while, solo que en lugar de comprobar y luego ejecutar, lo hace al revés: ejecuta y luego comprueba. Debido a eso, realiza como mínimo una repetición</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+do {
+	// código que se repite
+} while ($condicion);
+				</code></pre>
+				<p>El código se ejecuta antes de comprobar la condición</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$numero = 0;
+do {
+	echo $numero." ";
+	++$numero;
+} while($numero &lt; 5);
+echo "FIN ".$numero;
+// Mostrará 0 1 2 3 4 FIN 5;
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>while vs do..while</h3>
+				<p>El uso de uno u otro dependerá de si deseamos que siempre se ejecute o no al menos una vez.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+// Bucle while, no se llega a ejecutar
+$numero = 10;
+while ($numero++ &lt; 5) {
+	echo $numero." ";
+}
+
+// Bucle do..while, sí se llega a ejecutar
+$numero = 10;
+do {
+	echo $numero." ";
+} while ($numero++ &lt; 5);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>for</h2>
+				<p>Es menos intuitivo de todos. No permite hacer nada que no podamos hacer con while y do..while, pero muchas veces es más cómodo.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+for(inicializacion; condición; cambio) {
+	// Código que se repite
+}
+				</code></pre>
+				<p>Ejemplo típico:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+for( $i=1 ; $i &lt;= 500; $i++ ) {
+	echo "No volveré a dejarme los deberes sin hacer\n";
+}
+				</code></pre>
+				<p><strong>Nota: </strong>$i es un contador. Son variables que usamos para contar números.</p>
+			</section>
+
+			<section>
+				<h2>foreach</h2>
+				<p>Nos permite recorrer fácilmente un array.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+foreach($array as $valor) {
+	// Código que se repite
+	// En $valor tendremos cada vez un valor del array
+}
+
+foreach($array as $clave => $valor) {
+	// Ahora además en $claves tendremos cada vez una clave
+}
+				</code></pre>
+				<p>Por ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$numeros = array(12, 10, -1, -25, 8);
+foreach($numeros as $clave => $valor) {
+	echo $clave . "*" . $valor . " = " . $clave * $valor . "\n";
+}
+
+// 0*12 = 0
+// 1*10 = 10
+// 2*-1 = -2
+// 3*-25 = -75
+// 4*8 = 32
+
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>continue y break</h2>
+				<ul>
+					<li>
+						<code style="color:orange;">continue</code> : dentro de un bucle, salta a la siguiente iteración
+						<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$i = 0;
+do {
+	if ($i == 5) {
+		continue;
+	}
+	echo $i." ";
+} while(++$i &lt;= 10);
+// Muestra 0 1 2 3 4 6 7 8 9 10
+						</code></pre>
+					</li>
+					<li>
+						<code style="color:orange;">break</code> : detiene la ejecución de la estructura actual
+						<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$i = 0;
+do {
+	if ($i == 5) {
+		break;
+	}
+	echo $i." ";
+} while(++$i &lt;= 10);
+// Muestra 0 1 2 3 4
+						</code></pre>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Ejemplo</h2>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$i = 10;
+do {
+	if ($i % 3) {
+		continue;
+	}
+	echo $i." ";
+} while(--$i);
+				</code></pre>
+				<table>
+					<thead>
+						<tr>
+							<td>$i</td>
+							<td>$i % 3</td>
+							<td>continue</td>
+							<td>echo</td>
+							<td>--$i</td>
+							<td>while(--$i)</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>10</td>
+							<td>1</td>
+							<td>TRUE</td>
+							<td></td>
+							<td>9</td>
+							<td>TRUE</td>
+						</tr>
+						<tr class="fragment">
+							<td>9</td>
+							<td>0</td>
+							<td>FALSE</td>
+							<td>9</td>
+							<td>8</td>
+							<td>TRUE</td>
+						</tr>
+						<tr class="fragment">
+							<td>8</td>
+							<td>2</td>
+							<td>TRUE</td>
+							<td></td>
+							<td>7</td>
+							<td>TRUE</td>
+						</tr>
+						<tr class="fragment">
+							<td>7</td>
+							<td>1</td>
+							<td>TRUE</td>
+							<td></td>
+							<td>6</td>
+							<td>TRUE</td>
+						</tr>
+						<tr class="fragment">
+							<td>6</td>
+							<td>0</td>
+							<td>FALSE</td>
+							<td>6</td>
+							<td>5</td>
+							<td>TRUE</td>
+						</tr>
+						<tr class="fragment">
+							<td>5</td>
+							<td>2</td>
+							<td>TRUE</td>
+							<td></td>
+							<td>4</td>
+							<td>TRUE</td>
+						</tr>
+						<tr class="fragment">
+							<td>4</td>
+							<td>1</td>
+							<td>TRUE</td>
+							<td></td>
+							<td>3</td>
+							<td>TRUE</td>
+						</tr>
+						<tr class="fragment">
+							<td>3</td>
+							<td>0</td>
+							<td>FALSE</td>
+							<td>3</td>
+							<td>2</td>
+							<td>TRUE</td>
+						</tr>
+						<tr class="fragment">
+							<td>2</td>
+							<td>2</td>
+							<td>TRUE</td>
+							<td></td>
+							<td>1</td>
+							<td>TRUE</td>
+						</tr>
+						<tr class="fragment">
+							<td>1</td>
+							<td>1</td>
+							<td>TRUE</td>
+							<td></td>
+							<td>0</td>
+							<td>FALSE</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<p>Los bucles son estructuras de control que repiten el código hasta que se cumple una determinada condición</p>
+				<p>Bucles disponibles:</p>
+				<ul>
+					<li>while</li>
+					<li>do..while</li>
+					<li>for</li>
+					<li>foreach</li>
+				</ul>
+				<p class="fragment"><br />Y además: break y continue</p>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

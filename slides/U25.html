@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Funciones II</title>
+
+	<meta name="description" content="PHP - Funciones II">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+
+		#DIV_1 {
+			text-align: left;
+		    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 0px 1px inset;
+		    color: rgb(115, 115, 115);
+		    height: 24px;
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+		    border: 0px none rgb(217, 217, 217);
+		    border-radius: 0 0 2px 2px;
+		    font: normal normal normal 16px/24px 'Source Code Pro', monospace;
+		    font-size: 20px;
+		    outline: rgb(115, 115, 115) none 0px;
+		    padding: 12px;
+		    margin: 5px 0;
+		}/*#DIV_1*/
+
+		#SPAN_2, #SPAN_7 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border: 0px none rgb(102, 153, 51);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#SPAN_2*/
+
+		#A_3 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border-top: 0px none rgb(102, 153, 51);
+		    border-right: 0px none rgb(102, 153, 51);
+		    border-bottom: 1px solid rgb(102, 153, 51);
+		    border-left: 0px none rgb(102, 153, 51);
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#A_3*/
+
+		#SPAN_3, #SPAN_5 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_3, #SPAN_5*/
+
+		#SPAN_4, #SPAN_6 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_4, #SPAN_6*/
+
+		#STRONG_4 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_4*/
+
+		#STRONG_5 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_5*/
+
+		#CODE_8 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#CODE_8*/
+
+
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Funciones II</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Funciones variables</h2>
+				<p>Si ponemos paréntesis tras el nombre de una variable, PHP buscará e intentará invocar una función con ese nombre:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+function ejemplo() {
+	echo "Dentro de ejemplo";
+}
+
+$variable1 = "ejemplo";
+$variable2 = "prueba";
+
+$variable1(); // Muestra "Dentro de ejemplo"
+$variable2(); // No existe prueba(). Lanza error.
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Ámbito de variables</h2>
+				<p>Fíjate en el siguiente ejemplo. ¿Qué crees que sucederá?</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$edad = 21;
+
+function mostrar_edad() {
+	echo $edad;
+}
+
+mostrar_edad();
+				</code></pre>
+
+				<div class="fragment">
+					<p>No muestra nada: dentro del <strong>ámbito</strong> (contexto) de la función <code>mostrar_edad()</code> no hay ninguna variable con el nombre <code>$edad</code>.</p>
+					<p>Es decir, hay dos <strong>ámbitos</strong> de variables: el del flujo principal (global) y el de las funciones (local).</p>
+				</div>
+			</section>
+
+			<section>
+				<h2>Concepto de ámbito</h2>
+				<p>De acuerdo a la documentación de PHP:</p>
+				<blockquote>El ámbito de una variable es el contexto dentro del que la variable está definida.</blockquote>
+			</section>
+
+			<section>
+				<h2>Ámbito global</h2>
+				<p>A este ámbito pertenecen todas las variables definidas dentro del flujo principal. Es decir, fuera de una función.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+// Fichero index.php
+$variable = "Ejemplo";
+
+include 'a.php';
+prueba();
+				</code></pre>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+// Fichero a.php
+echo $variable; // ¿Se mostrará "Ejemplo" ?
+
+function prueba() { echo $variable; /* ¿Y aquí se mostrará */ }
+				</code></pre>
+
+				<p>¿Qué ocurre cuando cargamos index.php? <span class="fragment">En el primer <code>echo</code> sí se mostrará (dentro del ámbito global). Dentro de la función, no.</span></p>
+			</section>
+
+			<section>
+				<h2>Palabra clave 'global'</h2>
+				<blockquote>Antes de nada, un consejo: si estás aprendiendo a programar, no uses nunca este recurso.</blockquote>
+				<p>Desde un ámbito local, como dentro una función, podemos acceder a una variable de ámbito global:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$edad = 21;
+
+function mostrar_edad() {
+	global $edad;
+	echo $edad;
+}
+
+mostrar_edad();
+				</code></pre>
+				<p>Ahora sí, ya muestra "21". Si quisiéramos acceder a varias variables globales lo haríamos separando sus nombres por comas</p>
+			</section>
+
+			<section>
+				<h2>$GLOBALS</h2>
+				<blockquote>Mismo consejo: si estás aprendiendo a programar, no uses nunca este recurso.</blockquote>
+				<p>Al comienzo del curso vimos algunas variables predefinidas. <code>$GLOBALS</code> es otra más.</p>
+				<p>Es un array en el que tenemos todas las variables globales:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$edad = 21;
+
+function mostrar_edad() {
+	echo $GLOBALS['edad'];
+}
+
+mostrar_edad();
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Vida de variables locales</h2>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+function incrementar_contador() {
+	$contador = 1;
+	echo $contador;
+	$contador++;
+}
+
+incrementar_contador(); // ¿Qué muestra?
+incrementar_contador(); // ¿Y ahora?
+</code></pre>
+				<p>¿Qué mostrará la primera llamada a <code>incrementar_contador()</code>? En el primer caso será un 1 ¿Y la segunda llamada? <span class="fragment">¡Vuelve a mostrar 1!</span></p>
+				<p class="fragment">Las variables locales <em>mueren</em> cuando el contexto de su ámbito finaliza.</p>
+			</section>
+
+			<section>
+				<h2>Palabra clave 'static'</h2>
+				<p>Al igual que podíamos acceder a variables globales usando <code>global</code>, podremos <em>inmortalizar</em> variables locales con <code>static</code>:</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+function incrementar_contador() {
+	static $contador = 1;
+	echo $contador;
+	$contador++;
+}
+
+incrementar_contador(); // ¿Qué muestra?
+incrementar_contador(); // ¿Y ahora?
+</code></pre>
+				<p>Ahora sí, la segunda llamada a <code>incrementar_contador()</code> nos muestra un 2.</p>
+			</section>
+
+			<section>
+				<h2>Funciones anónimas</h2>
+				<p>Existen situaciones donde desearemos poder pasar como parámetro a una función otra función.</p>
+				<p>Por ejemplo, cuando programamos un plugin para WordPress podremos suscribirnos a un evento.</p>
+				<p>Esto significa que, cada vez que se produzca un determinado evento (por ejemplo, se muestra el pie de página), ofreceremos una función para se ejecute.</p>
+				<p>Pero antes veamos algunos conceptos...</p>
+			</section>
+
+			<section>
+				<h2>Funciones en variables</h2>
+				<p>Del mismo modo que tenemos variables de tipo <code>bool</code>, <code>string</code> o de tipos compuestos como <code>array</code>, también tenemos un tipo <code>callable</code> (invocable). Un ejemplo de variable <code>callable</code>:</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$duplicar = function($variable) { // No tiene nombre la función
+	return $variable * 2;
+}; // Fíjate que ahora, al ser una variable callable, ponemos ';'
+
+echo $duplicar(10); // Muestra 20
+</code></pre>
+				<p>¿Y si añadiéramos este código?</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+function modificar_array($el_array, $la_funcion) {
+	$nuevo_array = [];
+	foreach($el_array as $elemento) {
+		$nuevo_array[] = $la_funcion($elemento);
+	}
+	return $nuevo_array;
+}
+
+$otro_array = modificar_array(range(1,5), $duplicar);
+</code></pre>
+			</section>
+
+			<section>
+				<h3>Resultado</h3>
+				<p>El ejemplo anterior devolvería un nuevo array con los números del 1 al 5 multiplicados por dos (duplicados), pues es lo que hace la variable <code>callable</code> (función) que hemos pasado como parámetro.</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$por_diez = function($variable) { return $variable * 10; };
+$otro_array = modificar_array(range(1,5), $por_diez);
+</code></pre>
+				<p>Y en este caso multiplicamos por diez.</p>
+				<p>Es una herramienta muy potente y, como decíamos, se utiliza a menudo para crear plugins y extensiones en otras plataformas.</p>
+				<p>¡Ya puedes crear tu propio plugin para WordPress!</p>
+			</section>
+
+			<section>
+				<h2>¿Y las funciones anónimas?</h2>
+				<p>Una variable <code>callable</code> es una función anónima: una función sin nombre, almacenada en una variable.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+modificar_array(range(1,5), function($elemento) {
+	return $elemento.$elemento;
+});
+</code></pre>
+				<p>Si has trabajado con JavaScript y jQuery, este estilo de programación te será muy familiar.</p>
+				<p>Nota: las funciones anónimas también son conocidas como clausuras (closures).</p>
+			</section>
+
+			<section>
+				<h2>Antes de PHP 5.3</h2>
+				<p>Las funciones anónimas se introdujeron en PHP 5.3. ¿Qué se hacía antes?</p>
+				<ol>
+					<li>Se creaba una función en el ámbito global (contaminación)</li>
+					<li>Se pasaba como parámetro <strong>el nombre de la función</strong> a la otra función.</li>
+					<li>Mediante el mecanismo de funciones variables, se invocaba a esa función.</li>
+				</ol>
+			</section>
+
+			<section>
+				<h3>Ejemplo</h3>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+function duplicar($variable) { // Ahora es una función convencional
+	return $variable * 2;
+} // Fíjate que ahora, al ser una función, no tiene ';'
+
+$nombre_funcion = "duplicar";
+echo $nombre_funcion(10); // Muestra 20
+
+function modificar_array($el_array, $la_funcion) {
+	$nuevo_array = [];
+	foreach($el_array as $elemento) {
+		$nuevo_array[] = $la_funcion($elemento);
+	}
+	return $nuevo_array;
+}
+
+$otro_array = modificar_array(range(1,5), "duplicar");
+</code></pre>
+			</section>
+
+			<section>
+				<h2>call_user_func()</h2>
+				<p>Igual que tenemos el mecanismo de funciones variables, también podemos utilizar esta función:</p>
+				<div id="DIV_1">
+	 <span id="SPAN_2">mixed</span> <span id="SPAN_4"><strong id="STRONG_5">call_user_func</strong></span> ( <span id="SPAN_6"><span id="SPAN_7">callable</span> 
+		<code id="CODE_9">$callback
+		</code></span> [, <span id="SPAN_10"><span id="SPAN_11">mixed</span> 
+			<code id="CODE_13">$parameter
+			</code></span> [, <span id="SPAN_14"><span id="SPAN_15">mixed</span> 
+				<code id="CODE_17">$...
+				</code></span> ]] )
+</div>
+
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+function duplicar($variable) {
+	return $variable * 2;
+}
+
+function modificar_array($el_array, $la_funcion) {
+	$nuevo_array = [];
+	foreach($el_array as $elemento) {
+		$nuevo_array[] = call_user_func($la_funcion, $elemento);
+	}
+	return $nuevo_array;
+}
+
+$otro_array = modificar_array(range(1,5), "duplicar");
+</code></pre>
+				<p>Muy similar a como se haría en JavaScript.</p>
+			</section>
+
+			<section>
+				<h2>Resumen:</h2>
+				<ul>
+					<li>Funciones variables.</li>
+					<li>Ámbito de variables:
+						<ul>
+							<li>Concepto.</li>
+							<li>Ámbito global y local.</li>
+							<li>Acceso a globales <code>global</code> y <code>$GLOBALS</code>.</li>
+							<li>Palabra clave <code>static</code>.</li>
+						</ul>
+					</li>
+					<li>Funciones anónimas
+						<ul>
+							<li>
+								A partir de PHP 5.3:
+								<ul>
+									<li>Almacenadas en variables.</li>
+									<li>Pasadas como parámetros.</li>
+								</ul>
+							</li>
+							<li>
+								Antes de PHP 5.3:
+								<ul>
+									<li>Mediante funciones variables.</li>
+									<li>Mediante <code>call_user_func()</code>.</li>
+								</ul>
+							</li>
+
+						</ul>
+					</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

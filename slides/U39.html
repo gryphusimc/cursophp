@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Envío de emails</title>
+
+	<meta name="description" content="PHP - Envío de emails">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Envío de Emails</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>mail()</h2>
+				<h3>Función para enviar correos electrónicos</h3>
+				<p>Parámetros:</p>
+				<ul>
+					<li><code>string $to</code> - Destinatario</li>
+					<li><code>string $subject</code> - Asunto</li>
+					<li><code>string $message</code> - Cuerpo del mensaje</li>
+					<li><code>string $additional_headers</code> - Cabeceras</li>
+					<li><code>string $additional_parameters</code></li>
+				</ul>
+				<p><br />Devuelve <code>true</code> si se envía con éxito, o <code>false</code> si ha habido un error.</p>
+			</section>
+
+			<section>
+				<h2>Parámetro $to</h2>
+				<p>Dirección o direcciones de correo electrónico. Si son varias, deben ir separadas por comas.</p>
+				<p>Puede indicarse el nombre usando el siguiente formato:</p>
+				<pre><code>Nombre Usuario &lt;direcciondeejemplo@correo.com&gt;</code></pre>
+				<p>Ejemplos:</p>
+				<ul>
+					<li>usuario@ejemplo.com</li>
+					<li>usuario@ejemplo.com, otro@ejemplo.com</li>
+					<li>Usuario &lt;usuario@ejemplo.com&gt;</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Parámetro $subject</h2>
+				<p>Tan solo es el texto que pondremos como asunto.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$subject = 'Usuario registrado con éxito';
+				</code></pre>
+				<p>A veces dan problemas las tildes. Se corrige así:</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$subject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Parámetro $message</h2>
+				<p>Es el cuerpo del correo en sí. Para añadir un cambio de línea debemos poner <code>\r\n</code>.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$message = "Bienvenido\r\n\r\n";
+$message .= "Ha registrado al usuario ${usuario} con éxito en el sistema";
+				</code></pre>
+				<p>También puede contener HTML:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$message = "&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Correo&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Bienvenido&lt;/h1&gt;
+&lt;p&gt;Ha registrado al usuario ${usuario} con éxito en el sistema.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;";
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Parámetro $additional_headers</h2>
+				<p>Con las cabeceras <em>configuramos</em> el email que vamos a enviar. Por ejemplo, podemos indicar direcciones <code>From</code>, <code>CC</code>, <code>CCO</code> o la dirección de respuesta. Igualmente, podemos indicar el tipo de contenido del correo, por ejemplo <code>text/plan</code> o <code>text/html</code>. Las cabeceras irán separadas por <code>\r\n</code>.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+// Email de origen, de respuesta y contenido HTML en UTF-8
+$headers = 'From: hola@ejemplo.com' . "\r\n" .
+           'Reply-To: hola@ejemplo.com' . "\r\n" .
+           'Content-type: text/html; charset=utf-8' . "\r\n";
+				</code></pre>
+				<p>Algunos clientes de correo electrónico dan fallos al separar cabeceras con <code>\r\n</code>. Si fuera el caso, sepáralas solo con <code>\n</code></p>
+			</section>
+
+			<section>
+				<h2>Parámetro $additional_parameters</h2>
+				<p>Los valores que aquí se introduzcan se proporcionarán al software encargado del envío de emails.</p>
+			</section>
+
+			<section>
+				<h2>Correos más complejos</h2>
+				<p>Existen más posibilidades a la hora de enviar un correo:</p>
+				<ul>
+					<li>Adjuntar ficheros.</li>
+					<li>Iniciar sesión en un servidor de correo SMTP remoto.</li>
+				</ul>
+				<p><br />En esos casos es recomendable utilizar otras funciones, no incluídas de manera predeterminada en PHP, como por ejemplo <a href="http://pear.php.net/package/Mail_Mime"><code>Mail_Mime</code></a>.
+			</section>
+
+			<section>
+				<h2>Ejemplo 1</h2>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$to = "usuario@gmail.com";
+$subject = "Registrado con éxito en mipagina.com";
+$message = "¡Bienvenido!\r\n\r\n";
+$message .= "Has registrado con éxito al usuario ${usuario}";
+$headers = "From: hola@mipagina.com\r\n";
+
+mail($to, $subject, $message, $headers);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Ejemplo 2</h2>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$to = "usuario@gmail.com";
+$subject = '=?UTF-8?B?' . base64_encode("Registrado con éxito en mipagina.com") . '?=';
+$message = "&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Correo&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Bienvenido&lt;/h1&gt;
+&lt;p&gt;Ha registrado al usuario ${usuario} con éxito en el sistema.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;";
+
+$headers = 'From: hola@ejemplo.com' . "\r\n" .
+           'Reply-To: hola@ejemplo.com' . "\r\n" .
+           'MIME-Version: 1.0' . "\r\n";
+           'Content-type: text/html; charset=utf-8' . "\r\n";
+
+if (!mail($to, $subject, $message, $headers)) {
+	echo "Error al enviar el correo";
+}
+				</code></pre>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

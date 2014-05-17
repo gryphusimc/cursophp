@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - En práctica</title>
+
+	<meta name="description" content="PHP - En práctica">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.5em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>En práctica</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Actividad 1</h2>
+				<p>Diseña una aplicación en PHP que convierta un valor en grados Celsius a grados Fahrenheit.</p>
+				<p>Utiliza la siguiente fórmula:</p>
+				<p style="background-color: white; color: #333; font-family: Times; display: inline-block; padding: 10px;"><em>F</em> = (1,8)<em>C</em> + 32</p>
+			</section>
+
+			<section>
+				<h2>Actividad 2</h2>
+				<p>Diseña una aplicación PHP que tenga dos variables de tipo boolean y nos indique cuándo <strong>sólo una de ellas</strong> es TRUE.</p>
+			</section>
+
+			<section>
+				<h2>Actividad 3</h2>
+				<p>Crea una aplicación que muestre todos los números múltipos de 9 y de 13 que hay entre 0 y 1000.</p>
+				<p>Después, guarda todos esos valores en un array.</p>
+			</section>
+
+			<section>
+				<h2>Actividad 4</h2>
+				<p>Crea una aplicación que encuentre los n primeros múltiplos de 7.</p>
+			</section>
+
+			<section>
+				<h2>Actividad 5</h2>
+				<p>Crea un proyecto donde haya 3 ficheros:</p>
+				<ul>
+					<li><code style="color:orange;">lib/foo.php</code> - Debe declarar una variable</li>
+					<li><code style="color:orange;">lib/bar.php</code> - Debe mostrar un mensaje en pantalla</li>
+					<li><code style="color:orange;">index.php</code> - Debe incluir a los otros dos y mostrar el valor la variable de lib/foo.php</li>
+				</ul>
+				<p>Ejecútalo</p>
+				<p><br />¿Qué ocurre si incluyes lib/foo.php en bar.php en lugar de en index.php? ¿Se podrá mostrar la variable en index.php?
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>
