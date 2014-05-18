@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>Curso de PHP - Qué es PHP</title>
+	<title>Curso de PHP - Introducción a PHP</title>
 
-	<meta name="description" content="PHP - Qué es PHP">
+	<meta name="description" content="PHP - Introducción a PHP">
 	<meta name="author" content="Jesús Ruiz-Ayúcar">
 
 	<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -26,13 +26,124 @@
 	<!--[if lt IE 9]>
 	<script src="lib/js/html5shiv.js"></script>
 	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+
+		#DIV_1 {
+			text-align: left;
+		    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 0px 1px inset;
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+		    border: 0px none rgb(217, 217, 217);
+		    border-radius: 0 0 2px 2px;
+		    font: normal normal normal 16px/24px 'Source Code Pro', monospace;
+		    font-size: 20px;
+		    outline: rgb(115, 115, 115) none 0px;
+		    padding: 12px;
+		    margin: 5px 0;
+		}/*#DIV_1*/
+
+		#SPAN_2, #SPAN_7 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border: 0px none rgb(102, 153, 51);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#SPAN_2*/
+
+		#A_3 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border-top: 0px none rgb(102, 153, 51);
+		    border-right: 0px none rgb(102, 153, 51);
+		    border-bottom: 1px solid rgb(102, 153, 51);
+		    border-left: 0px none rgb(102, 153, 51);
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#A_3*/
+
+		#SPAN_3, #SPAN_5 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_3, #SPAN_5*/
+
+		#SPAN_4, #SPAN_6 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_4, #SPAN_6*/
+
+		#STRONG_4 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_4*/
+
+		#STRONG_5 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_5*/
+
+		#CODE_8 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#CODE_8*/
+
+
+	</style>
 </head>
 <body>
 	<div class="reveal">
 		<div class="slides">
 			<section>
 				<h1>Curso de PHP</h1>
-				<h3>Qué es PHP</h3>
+				<h3>Introducción a PHP</h3>
 				<p>
 					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
 				</p>
@@ -108,6 +219,47 @@
 					<li>PHP es el lenguaje del principal CMS: Wordpress</li>
 				</ul>
 				<p><br />¡Y además es de los lenguajes más sencillos! <strong>Nota</strong>: No siempre es bueno esto.</p>
+			</section>
+
+			<section>
+				<h2>Cómo trabajar con PHP</h2>
+				<p>Necesitamos dos herramientas:</p>
+				<h3 style="margin-top:30px;">Editor de texto</h3>
+				<p>Para empezar usaremos un editor de código sencillo que reconozca la sintaxis de PHP. Nos sirve <a href="http://www.sublimetext.com/">Sublime Text</a>, <a href="http://notepad-plus-plus.org/">Notepad++</a>, <a href="https://atom.io/">Atom</a>.</p>
+				<h3 style="margin-top:30px;">Servidor web</h3>
+				<p>Un servidor HTTP con soporte PHP. Utilizaremos el que incorpora PHP.</p>
+			</section>
+
+			<section>
+				<h2>Instalar PHP</h2>
+				<p>Dependerá de tu sistema operativo.</p>
+				<ul>
+					<li><strong>Windows</strong>: Descarga la <a href="https://www.apachefriends.org/es/index.html">suit XAMPP para Windows</a> e instálala.
+					<p>Actualiza la variable de entorno <code>PATH</code> añadiendo: <code>C:\xampp\php</code>.</p>
+					</li>
+					<li><strong>Mac</strong>: Ya lo tienes instalado.</code></li>
+					<li><strong>Ubuntu</strong>: <code>sudo apt-get install php5</code></li>
+				</ul>
+				<p style="margin-top:30px;">¡Así de fácil!</p>
+			</section>
+
+			<section>
+				<h2>Ejecutar código PHP</h2>
+				<p>Tres formas:</p>
+				<ul>
+					<li><strong>Consola interactiva:</strong> <code>php -a</code> (Mac y Linux).</li>
+					<li><strong>En CLI (consola):</strong> <code>php fichero.php</code>.</li>
+					<li><strong>Built-in server:</strong> <code>php -S localhost:8080</code>.</li>
+				</ul>
+				<p style="margin-top:30px;">Somos programadores. ¡Vamos a trabajar mucho en la consola!</p>
+				<p>Vamos a probar las tres formas con el siguiente código (pruébalo tú también en tu equipo):</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php echo "¡Ha funcionado!\n"; ?&gt;
+				</code></pre>
+			</section>
+
+			<section>
+				<h1>¡Bienvenido a PHP!</h1>
 			</section>
 		</div>
 	</div>
