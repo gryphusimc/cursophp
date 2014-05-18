@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Unidad final</title>
+
+	<meta name="description" content="PHP - Unidad final">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Unidad final</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>¡Enhorabuena!</h2>
+				<p>Ya has finalizado el curso.</p>
+				<ul>
+					<li class="fragment">Fundamentos de desarrollo web</li>
+					<li class="fragment">Qué es y cómo trabajar con PHP</li>
+					<li class="fragment">Sintaxis del lenguaje</li>
+					<li class="fragment">Funciones del sistema</li>
+					<li class="fragment">Crear tus propias funciones</li>
+					<li class="fragment">Ficheros</li>
+					<li class="fragment">Imágenes</li>
+					<li class="fragment">HTTP y mail</li>
+				</ul>
+				<p class="fragment">¿Y ahora qué?</p>
+			</section>
+
+			<section>
+				<h2><a href="http://www.php.net/manual/es/language.oop5.php">Modelo de Objetos de PHP</a></h2>
+				<h3 style="margin-top:30px">Objecto</h3>
+				<p>Tipo de dato compuesto que permite agrupar en una misma estructura funciones y variables (propiedades).</p>
+				<h3 style="margin-top:30px;">Clases</h3>
+				<p>Objeto aún no creado. <em>No es lo mismo el tipo de dato <code>string</code> que una variable de tipo <code>string</code>. Lo mismo sucede con las clases y objetos respectivamente.</em></p>
+			</section>
+
+			<section>
+				<h3 style="margin-top:30px;"><a href="http://www.php.net/manual/es/language.oop5.abstract.php">Clases abstractas</a></h3>
+				<p>Clases de las que no se puede crear ningún objeto. ¿Para qué sirven entonces? Pueden crearse <em>subclases</em> de ésta. De las <em>subclases</em> sí se pueden crear objetos.</p>
+				<h3 style="margin-top:30px;"><a href="http://www.php.net/manual/es/language.oop5.interfaces.php">Interfaces</a></h3>
+				<p>Son <em>convenios</em> (acuerdos) a la hora de qué funciones debe tener una clase.</p>
+				<h3 style="margin-top:30px;"><a href="http://www.php.net/manual/es/language.oop5.traits.php">Traits</a></h3>
+				<p>Clases parciales (herencia múltiple).</p>
+			</section>
+
+			<section>
+				<h2><a href="http://www.php.net/manual/en/language.namespaces.php">Espacios de nombres</a></h2>
+				<p>¿Qué ocurre si utilizas una biblioteca que declara nombres de funciones que tú ya habías usado? Produciría un error: dos funciones no pueden tener el mismo nombre.</p>
+				<p>Los espacios de nombres (<em>namespaces</em>) son un mecanismo que evita estos problemas.</p>
+			</section>
+
+			<section>
+				<h2>Extensiones</h2>
+				<p>¿Qué sistema podemos usar para compartir bibliotecas de funciones? Podemos hacerlo a mano, o por medio de <em>extensiones</em>.</p>
+				<p><strong><a href="http://pear.php.net/">PEAR</a></strong> es la propuesta de PHP.</p>
+				<p><strong><a href="http://www.php.net/manual/es/intro.phar.php">phar</a></strong> es un mecanismo de PHP para encapsular toda una aplicación o <em>framework</em> en un único fichero, para facilitar su instalación, distribución e instalación.</p>
+				<p><strong><a href="https://getcomposer.org/">Composer</a></strong> es un repositorio de proyectos que podemos incluir en el nuestro. Utiliza phar como mecanismo de distribución.</p>
+			</section>
+
+			<section>
+				<h2><a href="http://es1.php.net/manual/en/regexp.introduction.php">Expresiones regulares</a></h2>
+				<p>Son un mecanismo muy potente (¡y complejo!) que permite analizar cadenas de texto para comprobar si cumplen un determinado patrón o para extraer partes concretas del texto que, a priori, no podemos saber dónde está.</p>
+				<p>Por ejemplo, ¿cómo nos aseguramos de que un usuario ha introducido correctamente un teléfono? ¡Hay muchos formatos!</p> 
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+0034 655 123 123       +34 655 123 123    655 123 123      655123123    655.123.123
+0012 (91) 123 12 12    (91) 123.12.12     +12 911231212    911231212    91 123 12 12
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>SQL</h2>
+				<p>Es un lenguaje de programación de alto nivel para trabajar con bases de datos.</p>
+				<p>Los principales SGBDR (Sistemas de Gestión de Bases de Datos Relacionales) permiten trabajar con SQL. Por ejemplo, el famosísimo MySQL.</p>
+				<p>PHP incorpora bibliotecas para trabajar con <a href="http://www.php.net/manual/en/set.mysqlinfo.php">MySQL</a>, <a href="http://www.php.net/manual/en/book.pgsql.php">PostgreSQL</a>, <a href="http://www.php.net/manual/en/book.mssql.php">Microsoft SQL Server</a>, <a href="http://www.php.net/manual/en/book.sqlite3.php">SQLite</a>, etc.</p>
+			</section>
+
+			<section>
+				<h2>XML y JSON</h2>
+				<p><strong>XML</strong> es un lenguaje (<em>eXtensible Markup Language</em>) para almacenar, estructurar e intercambiar información. Se utiliza a menudo al comunicar una aplicación con un servicio externo (Twitter, Facebook). La 'X' de <code>AJAX</code> es de XML: <em>Asynchronous Javascript And XML</em>.</p>
+				<p><strong>JSON</strong> es otro modelo (<em>JavaScript Object Notation</em>) con las mismas funciones que XML, pero mucho más sencillo.</p>
+				<p>Los servicios externos más populares suelen permitir trabajar con ellos tanto con XML como con JSON.</p>
+				<p>PHP incorpora numerosas herramientas para trabajar tanto con <a href="http://www.php.net/manual/en/refs.xml.php">XML</a> como con <a href="http://es1.php.net/manual/en/book.json.php">JSON</a>.</p>
+			</section>
+
+			<section>
+				<h2>API REST</h2>
+				<p>¿Y por qué no crear tu propio servicio para que otras aplicaciones consuman datos de ella? Para ello puedes utilizar el patrón <code>REST</code> para crear una <code>API</code>. Una <code>API</code> es una <em>Interfaz Programación de Aplicaciones</em>. Es decir: similar a una biblioteca de funciones.</p>
+			</section>
+
+			<section>
+				<h2>¡Y mucho más!</h2>
+				<ul>
+					<li><a href="http://www.php.net/manual/en/language.exceptions.php">Sistema de excepciones</a>.</li>
+					<li><a href="http://es1.php.net/manual/en/intro.curl.php">cURL</a>.</li>
+					<li><a href="http://xdebug.org/">Depuración con xdebug</a>.</li>
+					<li><a href="http://es1.php.net/manual/en/refs.webservice.php">Servicios web</a>.</li>
+					<li><a href="http://es1.php.net/manual/en/book.memcached.php">Memoria caché con memcahed</a>.</li>
+					<li><a href="http://es1.php.net/manual/en/book.spl.php">Biblioteca PHP estándar</a>.</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>
