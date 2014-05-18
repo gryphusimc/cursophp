@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - MySQL</title>
+
+	<meta name="description" content="PHP - MySQL">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+
+		#DIV_1 {
+			text-align: left;
+		    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 0px 1px inset;
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+		    border: 0px none rgb(217, 217, 217);
+		    border-radius: 0 0 2px 2px;
+		    font: normal normal normal 16px/24px 'Source Code Pro', monospace;
+		    font-size: 20px;
+		    outline: rgb(115, 115, 115) none 0px;
+		    padding: 12px;
+		    margin: 5px 0;
+		}/*#DIV_1*/
+
+		#SPAN_2, #SPAN_7 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border: 0px none rgb(102, 153, 51);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#SPAN_2*/
+
+		#A_3 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border-top: 0px none rgb(102, 153, 51);
+		    border-right: 0px none rgb(102, 153, 51);
+		    border-bottom: 1px solid rgb(102, 153, 51);
+		    border-left: 0px none rgb(102, 153, 51);
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#A_3*/
+
+		#SPAN_3, #SPAN_5 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_3, #SPAN_5*/
+
+		#SPAN_4, #SPAN_6 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_4, #SPAN_6*/
+
+		#STRONG_4 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_4*/
+
+		#STRONG_5 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_5*/
+
+		#CODE_8 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#CODE_8*/
+
+
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>MySQL</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Bases de datos</h2>
+				<p>Son una fabulosa herramienta para almacenar información.</p>
+				<p>La información se almacena en tablas. Por ejemplo, ésta podría ser la tabla <code>usuarios</code>:</p>
+				<table>
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>nombre</th>
+							<th>email</th>
+							<th>password</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>Pedro</td>
+							<td>pedro@ejemplo.com</td>
+							<td>85136c79cbf9fe36bb9d05d0639c70c265c18d37</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>Laura</td>
+							<td>laura@dominio.com</td>
+							<td>39569f01cd454648ca541ee606dfdc8622442d0a</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>Luis</td>
+							<td>luis@miweb.net</td>
+							<td>dcc90dbeb319b458589ebf484da0528ed80f2bf0</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section>
+				<h2>SQL</h2>
+				<p>Lenguaje para comunicamos con bases de datos relacionales.</p>
+				<p>Añadir (<code>C</code>reate):</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+INSERT INTO usuarios(nombre, email, password) VALUES(
+	'María', 'maria@mipagina.es', SHA1('micontraseña'));
+</code></pre>
+				<p>Leer (<code>R</code>ead):</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+SELECT nombre, email, password FROM usuarios WHERE id = 1;
+</code></pre>
+				<p>Actualizar (<code>U</code>pdate):</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+UPDATE usuarios SET password = SHA1('nuevacontraseña') WHERE id = 3;
+</code></pre>
+				<p>Borrar (<code>D</code>elete):</p>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+DELETE FROM usuarios WHERE id = 2;
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>MySQL</h2>
+				<p>Es el gestor de bases de datos más utilizado junto con PHP. Las mayoría de aplicaciones instalables de PHP (Wordpress, Joomla!, Drupal, Magento...) utilizan <code>MySQL</code>. Aunque cada vez se usa más <code>MaríaDB</code>, un fork (proyecto derivado) de <code>MySQL</code>, para garantizar la continuidad del proyecto como software libre (<code>MySQL</code> fue adquirido por Oracle y posteriormente por Sun Microsystems).</p>
+			</section>
+
+			<section>
+				<h2>mysqli_connect()</h2>
+				<p>Es la función que nos conecta a la base de datos MySQL.</p>
+				<div id="DIV_1">
+	 				<span id="SPAN_2"><strong id="STRONG_3">mysqli mysqli_connect</strong></span> ([
+	 				<span id="SPAN_4"><span id="SPAN_2">string</span> <code id="CODE_6">$host</code> <span id="SPAN_7">= ini_get("mysqli.default_host")</span></span> [,
+	 				<span id="SPAN_8"><span id="SPAN_2">string</span> <code id="CODE_10">$username</code> <span id="SPAN_11">= ini_get("mysqli.default_user")</span></span> [,
+	 				<span id="SPAN_12"><span id="SPAN_2">string</span> <code id="CODE_14">$passwd</code> <span id="SPAN_15">= ini_get("mysqli.default_pw")</span></span> [,
+	 				<span id="SPAN_16"><span id="SPAN_2">string</span> <code id="CODE_18">$dbname</code> <span id="SPAN_19">= ""</span></span> [,
+	 				<span id="SPAN_20"><span id="SPAN_2">int</span> <code id="CODE_22">$port</code> <span id="SPAN_23">= ini_get("mysqli.default_port")</span></span> [,
+	 				<span id="SPAN_24"><span id="SPAN_2">string</span> <code id="CODE_26">$socket</code> <span id="SPAN_27">= ini_get("mysqli.default_socket")</span></span> ]]]]]] )
+				</div>
+				<p>Por ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$mysqli = mysqli_connect("localhost", "usuario", "password", "basesdedatos");
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Error al conectar</h2>
+				<p>Devuelven un código de error o un string respectivamente en caso de fallo al conectar. <code>0</code> si no ha habido ningún error.</p>
+				<div id="DIV_1">
+					<span id="SPAN_2">int</span> <span id="SPAN_3"><strong id="STRONG_4">mysqli_connect_errno</strong></span> ( <span id="SPAN_2">void</span> )
+				</div>
+				<div id="DIV_1">
+					 <span id="SPAN_2">string</span> <span id="SPAN_3"><strong id="STRONG_4">mysqli_connect_error</strong></span> ( <span id="SPAN_2">void</span> )
+				</div>
+				<p>Por ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$mysqli = mysqli_connect("localhost", "usuario", "password", "basesdedatos");
+
+if (!$mysqli) {
+	die ("Error al conectar a la base de datos: ".mysqli_connect_error());
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>mysqli_close()</h2>
+				<p>Cierra una conexión con base datos:</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">bool</span> <span id="SPAN_3"><strong id="STRONG_4">mysqli_close</strong></span> (
+					 <span id="SPAN_5"><span id="SPAN_2">mysqli</span> <code id="CODE_8">$link</code></span> )
+				</div>
+				<p>Por ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$mysqli = mysqli_connect("localhost", "usuario", "password", "basesdedatos");
+
+if (!$mysqli) {
+	die ("Error al conectar a la base de datos: ".mysqli_connect_error());
+}
+
+// Trabajamos con la base de datos
+
+mysqli_close($mysqli);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>mysqli_query()</h2>
+				<p>Realiza una consulta a una base de datos:</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">mixed</span> <span id="SPAN_4"><strong id="STRONG_5">mysqli_query</strong></span> (
+					 <span id="SPAN_6"><span id="SPAN_2">mysqli</span> <code id="CODE_9">$link</code></span> ,
+					 <span id="SPAN_10"><span id="SPAN_2">string</span> <code id="CODE_12">$query</code></span> [,
+					 <span id="SPAN_13"><span id="SPAN_2">int</span> <code id="CODE_15">$resultmode</code> <span id="SPAN_16">= MYSQLI_STORE_RESULT</span></span> ] )
+				</div>
+				<p>Ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$mysqli = mysqli_connect("localhost", "usuario", "password", "basesdedatos");
+
+if ($mysqli) {
+	die ("Error al conectar a la base de datos: ".mysqli_connect_error());
+}
+
+$res = mysqli_query($mysqli, "SELECT * FROM usuarios");
+
+mysqli_close($mysqli);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>mysqli_num_rows()</h2>
+				<p>Devuelve el número de filas devueltas por la consulta:</p>
+				<div id="DIV_1">
+					<span id="SPAN_2">int</span> <span id="SPAN_3"><strong id="STRONG_4">mysqli_num_rows</strong></span> (
+					<span id="SPAN_5"><span id="SPAN_2">mysqli_result</span> <code id="CODE_8">$result</code></span> )
+				</div>
+				<p>Ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$mysqli = mysqli_connect("localhost", "usuario", "password", "basesdedatos");
+
+if ($mysqli) {
+	die ("Error al conectar a la base de datos: ".mysqli_connect_error());
+}
+
+$res = mysqli_query($mysqli, "SELECT * FROM usuarios");
+echo "Hay ".mysqli_num_rows($res)." usuarios\n";
+
+mysqli_close($mysqli);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>mysqli_fetch_all()</h2>
+				<p>Obtiene todas las filas en un array.</p>
+				<div id="DIV_1">
+					<span id="SPAN_2">mixed</span> <span id="SPAN_4"><strong id="STRONG_5">mysqli_fetch_all</strong></span> (
+					<span id="SPAN_6"><span  id="SPAN_2">mysqli_result</span> <code id="CODE_9">$result</code></span> [,
+					<span id="SPAN_10"><span id="SPAN_2">int</span> <code id="CODE_12">$resulttype</code> <span id="SPAN_13">= MYSQLI_NUM</span></span> ] )
+				</div>
+				<p>El valor de <code>$resulttype</code> puede ser <code>MYSQLI_NUM</code>, <code>MYSQLI_ASSOC</code> o <code>MYSQLI_BOTH</code>.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$mysqli = mysqli_connect("localhost", "usuario", "password", "basesdedatos");
+
+if ($mysqli) {
+	die ("Error al conectar a la base de datos: ".mysqli_connect_error());
+}
+
+$res = mysqli_query($mysqli, "SELECT * FROM usuarios");
+
+foreach ($usuarios = mysqli_fetch_all($res, MYSQL_ASSOC) as $usuario) {
+	echo "Nombre del usuario ".$usuario['id']." = ".$usuario['nombre']."\n";
+}
+
+mysqli_close($mysqli);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>mysqli_fetch_array()</h2>
+				<p>Obtiene la fila en un array.</p>
+				<div id="DIV_1">
+	 				<span id="SPAN_2">mixed</span> <span id="SPAN_4"><strong id="STRONG_5">mysqli_fetch_array</strong></span> (
+	 				<span id="SPAN_6"><span id="SPAN_7">mysqli_result</span> <code id="CODE_9">$result</code></span> [,
+	 				<span id="SPAN_10"><span id="SPAN_11">int</span> <code id="CODE_12">$resulttype</code> <span id="SPAN_13">= MYSQLI_BOTH</span></span> ] )
+				</div>
+				<p>El valor de <code>$resulttype</code> puede ser <code>MYSQLI_NUM</code>, <code>MYSQLI_ASSOC</code> o <code>MYSQLI_BOTH</code>.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$mysqli = mysqli_connect("localhost", "usuario", "password", "basesdedatos");
+
+if ($mysqli) {
+	die ("Error al conectar a la base de datos: ".mysqli_connect_error());
+}
+
+$res = mysqli_query($mysqli, "SELECT * FROM usuarios WHERE id = 1");
+
+if (mysqli_num_rows($res)) {
+	echo "Nombre del usuario ".$res['id'].": ".$res['nombre']."\n";
+}
+
+mysqli_close($mysqli);
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>mysqli_real_escape_string()</h2>
+				<p>Para evitar ataques de inyección SQL, todos los datos variables que vayamos a usar para construir la consulta debemos pasarlos antes por esta función.</p>
+				<div id="DIV_1">
+					<span id="SPAN_2">string</span> <span id="SPAN_3"><strong id="STRONG_4">mysqli_real_escape_string</strong></span> (
+					<span id="SPAN_5"><span id="SPAN_2">mysqli</span> <code id="CODE_8">$link</code></span> ,
+					<span id="SPAN_9"><span id="SPAN_2">string</span> <code id="CODE_11">$escapestr</code></span> )
+				</div>
+				<p>Si el <code>id</code> del usuario nos llegara por medio de un parámetro <code>GET</code>:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$mysqli = mysqli_connect("localhost", "usuario", "password", "basesdedatos");
+
+if ($mysqli) {
+	die ("Error al conectar a la base de datos: ".mysqli_connect_error());
+}
+
+$SQL = "SELECT * FROM USUARIOS "
+     . "WHERE id = " . mysqli_real_escape_string($msqyli, $_GET['id']);
+
+$res = mysqli_query($mysqli, $SQL);
+
+// Resto del código
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>mysqli_insert_id()</h2>
+				<p>Si la tabla tiene un campo de tipo <code>AUTO_INCREMENT</code>, esta función devuelve el último valor asignado al hacer una operación de tipo <code>INSERT</code>.</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">mixed</span> <span id="SPAN_4"><strong id="STRONG_5">mysqli_insert_id</strong></span> (
+					 <span id="SPAN_6"><span id="SPAN_7">mysqli</span> <code id="CODE_9">$link</code></span> )
+				</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$mysqli = mysqli_connect("localhost", "usuario", "password", "basesdedatos");
+
+if ($mysqli) {
+	die ("Error al conectar a la base de datos: ".mysqli_connect_error());
+}
+
+$SQL = "INSERT INTO USUARIOS(nombre, email, password) VALUES ("
+     . "'" . mysqli_real_escape_string($msqyli, $_GET['nombre']) . "',"
+     . "'" . mysqli_real_escape_string($msqyli, $_GET['email']) . "',"
+     . "SHA1('" . mysqli_real_escape_string($msqyli, $_GET['password']) . "'))";
+
+$res = mysqli_query($mysqli, $SQL);
+echo "El #ID del usuario es ".mysqli_insert_id($mysqli);
+
+// Resto del código
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>mysqli_affected_rows()</h2>
+				<p>Obtiene el número de filas afectadas por la última operación:</p>
+				<div id="DIV_1">
+					<span id="SPAN_2">int</span> <span id="SPAN_3"><strong id="STRONG_4">mysqli_affected_rows</strong></span> (
+					<span id="SPAN_5"><span id="SPAN_6">mysqli</span> <code id="CODE_8">$link</code></span> )
+				</div>
+				<p>Ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php
+$mysqli = mysqli_connect("localhost", "usuario", "password", "basesdedatos");
+
+if ($mysqli) {
+	die ("Error al conectar a la base de datos: ".mysqli_connect_error());
+}
+
+$SQL = "UPDATE USUARIOS(nombre, email, password) SET "
+     . "email = '' ""
+     . "WHERE nombre ='Juan'";
+
+$res = mysqli_query($mysqli, $SQL);
+echo "Se han actualizados ".mysqli_affected_rows($mysqli)." usuarios";
+
+// Resto del código
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Otras interfaces</h2>
+				<p>Hemos usado la API <code>MySQLi</code> (que funciona tanto en modo orientado a objetos como en modo procedural), pero existen otras interfaces para conectar a MySQL desde PHP:</p>
+				<ul>
+					<li>La <a href="http://www.php.net/manual/en/book.mysql.php">API MySQL Original</a>. En PHP 5.5 quedó obsoleta. <strong>Se recomienda encarecidamente no usarlo</strong>.</li>
+					<li>La biblioteca <a href="http://www.php.net/manual/en/book.pdo.php">PDO</a> (<em>PHP Data Objects</em>) para abstraer del motor de base de datos. Trabajaríamos con <code>PDO_MySQL</code>.</li>
+				</ul>
+				<p><br />Por tanto, si vas a programar sin objetos, la recomendación es utilizar MySQLi.</p>
+			</section>
+
+			<section>
+				<h2>Drivers</h2>
+				<p>Las tres API (<code>MySQLi</code>, <code>MySQL</code> y <code>PDO_MySQL</code>) operan internamente usando un driver en C. Hasta la versión 5.3 solo se utilizaba el driver oficial de MySQL. Pero desde PHP 5.3, y por problemas de licencia, se desarrolló un driver nativo por la propia comunidad de PHP: <code>mysqlnd</code>. Desde PHP 5.4 es el driver predeterminado de PHP.</p>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>
