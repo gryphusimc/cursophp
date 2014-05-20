@@ -30,11 +30,23 @@
 		table {
 			border-collapse: collapse;
 			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
 		}
 		table td {
-			padding: 0.2em !important;
+			padding: 0em !important;
 			border: 1px solid white !important;
 			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
 		}
 	</style>
 </head>
@@ -53,7 +65,7 @@
 				<h2>Recordatorio</h2>
 				<p>Las variables son "espacios" donde alojar un valor.</p>
 				<p>En PHP, su nombre debe comenzar con el carácter $.</p>
-				<p>Hemos aprendido cuáles son los tipos escalares: string, integer, float y boolean.</p>
+				<p>Hemos aprendido cuáles son los tipos escalares: <code>string</code>, <code>integer</code>, <code>float</code> y <code>boolean</code>.</p>
 			</section>
 
 			<section>
@@ -62,14 +74,14 @@
 				<ul>
 					<li>Tipos compuestos:
 						<ul>
-							<li><strong>array</strong>: matriz, arreglo.</li>
-							<li><strong>object</strong>: objeto</li>
+							<li><code>array</code>: matriz, arreglo.</li>
+							<li><code>object</code>: objeto</li>
 						</ul>
 					</li>
 					<li>Otros tipos:
 						<ul>
-							<li><strong>resource</strong>: recurso</li>
-							<li><strong>NULL</strong>: valor nulo</li>
+							<li><code>resource</code>: recurso</li>
+							<li><code>NULL</code>: valor nulo</li>
 						</ul>
 					</li>
 				</ul>
@@ -77,8 +89,8 @@
 
 			<section>
 				<h2>Array</h2>
-				<p>Los arrays (matrices, arreglos) son un tipo de dato compuesto que permiten almacenar una lista de valores.</p>
-				<p>En PHP los arrays son diferentes a otros lenguajes, dado que en este lenguaje los arrays realmente son mapas, aunque en el contexto de PHP se les llama igualmente arrays.</p>
+				<p>Los <code>arrays</code> (matrices, arreglos) son un tipo de dato compuesto que permiten almacenar una lista de valores.</p>
+				<p>En PHP los <code>arrays</code> son diferentes a otros lenguajes, dado que en este lenguaje los <code>arrays</code> realmente son mapas, aunque en el contexto de PHP se les llama igualmente <code>arrays</code>.</p>
 				<p>Un mapa es un tipo de dato compuesto que permite almacenar una lista de claves y sus valores asociados.</p>
 			</section>
 
@@ -170,8 +182,8 @@ $poblacion['paris'] = 2351495; // Modificamos un valor del array
 
 			<section>
 				<h2>Object</h2>
-				<p>Es un tipo de datos compuesto avanzado. En siguientes unidades lo estudiaremos.</p>
-				<p>A diferencia de los arrays, que únicamente almacenan claves y valores, los objetos también almacenan acciones que se pueden realizar sobre esos datos.</p>
+				<p>Es un tipo de datos compuesto avanzado.</p>
+				<p>A diferencia de los <code>arrays</code>, que únicamente almacenan claves y valores, los objetos también almacenan acciones que se pueden realizar sobre esos datos.</p>
 				<p>Por ejemplo, podemos tener un tipo de objeto llamado "Vehículo", donde uno de sus valores almacene la velocidad. Podría tener una acción que mostrara la velocidad actual del vehículo.</p>
 			</section>
 

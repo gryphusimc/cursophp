@@ -31,11 +31,22 @@
 			border-collapse: collapse;
 			width: 100%;
 			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
 		}
 		table td {
-			padding: 0.2em !important;
+			padding: 0em !important;
 			border: 1px solid white !important;
 			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
 		}
 	</style>
 </head>
@@ -154,14 +165,14 @@ $frase_integer = (int) $frase; // 0
 				<h2>Variables predefinidas</h2>
 				<p>PHP incorpora un gran número de variables predefinidas (creadas automáticamente). Éstas son las principales (de tipo array, contienen muchos valores):</p>
 				<ul>
-					<li>$_SERVER - Variables del entorno de ejecución</li>
-					<li>$_GET - Variables recibidas por HTTP GET</li>
-					<li>$_POST - Variables recibidas por HTTP POST</li>
-					<li>$_FILES - Variables con ficheros cargados por HTTP</li>
-					<li>$_REQUEST - Combina $_GET, $_POST y $_FILES</li>
-					<li>$_COOKIE - Variables de las cookies HTTP</li>
-					<li>$_SESSION - Variables de sesión PHP</li>
-					<li>$_ENV - Variables de entorno</li>
+					<li><code>$_SERVER</code> - Variables del entorno de ejecución</li>
+					<li><code>$_GET</code> - Variables recibidas por HTTP GET</li>
+					<li><code>$_POST</code> - Variables recibidas por HTTP POST</li>
+					<li><code>$_FILES</code> - Variables con ficheros cargados por HTTP</li>
+					<li><code>$_REQUEST</code> - Combina $_GET, $_POST y $_FILES</li>
+					<li><code>$_COOKIE</code> - Variables de las cookies HTTP</li>
+					<li><code>$_SESSION</code> - Variables de sesión PHP</li>
+					<li><code>$_ENV</code> - Variables de entorno</li>
 				</ul>
 			</section>
 
@@ -175,7 +186,7 @@ echo $_SERVER['HTTP_USER_AGENT'];
 // Muestra la IP del cliente
 echo $_SERVER['REMOTE_ADDR'];
 				</code></pre>
-				<p><br />Más adelante veremos formularios, cookies y sesiones, y utilizaremos $_POST, $_GET, $_FILES, $_COOKIE y $_SESSION.</p>
+				<p><br />Más adelante veremos formularios, cookies y sesiones, y utilizaremos <code>$_POST</code>, <code>$_GET</code>, <code>$_FILES</code>, <code>$_COOKIE</code> y <code>$_SESSION</code>.</p>
 			</section>
 
 			<section>
@@ -218,8 +229,8 @@ echo __LINE__; // Muestra 4
 				<p>Fin apartado de variables</p>
 				<ul>
 					<li>Qué es y para qué sirve una variable</li>
-					<li>Tipos escalares: string, integer, float y boolean</li>
-					<li>Otros tipos: array, object, resource y null</li>
+					<li>Tipos escalares: <code>string</code>, <code>integer</code>, <code>float</code> y <code>boolean</code></li>
+					<li>Otros tipos: <code>array</code>, <code>object</code>, <code>resource</code> y <code>null</code></li>
 					<li>Conversión entre tipos</li>
 					<li>Variables predefinidas</li>
 					<li>Constantes</li>

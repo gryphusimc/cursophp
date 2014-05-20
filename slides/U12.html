@@ -39,6 +39,15 @@
 			border: 1px solid white !important;
 			text-align: center !important;
 		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
 	</style>
 </head>
 <body>
@@ -64,7 +73,7 @@
 				<h2>Ejemplos</h2>
 				<ul>
 					<li>Mostrar los números del 1 al 100</li>
-					<li>Recorrer los elementos de un array</li>
+					<li>Recorrer los elementos de un <code>array</code></li>
 					<li>Escribir los múltiplos de 7 hasta el número 1000</li>
 				</ul>
 			</section>
@@ -72,10 +81,10 @@
 			<section>
 				<h2>Tipos</h2>
 				<ul>
-					<li>while - Se ejecuta <em>mientras</em> se cumpla la condición. 0 o más repeticiones.</li>
-					<li>do .. while - Se ejecuta <em>mientras</em> se cumpla la condición. 1 o más repeticiones.</li>
-					<li>for - Se suele utilizar para hacer repeticiones de un número determinado de veces.</li>
-					<li>foreach - Lo usamos para recorrer arrays.</li>
+					<li><code>while</code> - Se ejecuta <em>mientras</em> se cumpla la condición. 0 o más repeticiones.</li>
+					<li><code>do .. while</code> - Se ejecuta <em>mientras</em> se cumpla la condición. 1 o más repeticiones.</li>
+					<li><code>for</code> - Se suele utilizar para hacer repeticiones de un número determinado de veces.</li>
+					<li><code>foreach</code> - Lo usamos para recorrer <code>arrays</code>.</li>
 				</ul>
 			</section>
 
@@ -101,7 +110,7 @@ echo "FIN: ".$numero;
 
 			<section>
 				<h2>do while</h2>
-				<p>Es igual que el while, solo que en lugar de comprobar y luego ejecutar, lo hace al revés: ejecuta y luego comprueba. Debido a eso, realiza como mínimo una repetición</p>
+				<p>Es igual que el <code>while</code>, solo que en lugar de comprobar y luego ejecutar, lo hace al revés: ejecuta y luego comprueba. Debido a eso, realiza como mínimo una repetición</p>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
 do {
 	// código que se repite
@@ -139,7 +148,7 @@ do {
 
 			<section>
 				<h2>for</h2>
-				<p>Es menos intuitivo de todos. No permite hacer nada que no podamos hacer con while y do..while, pero muchas veces es más cómodo.</p>
+				<p>Es menos intuitivo de todos. No permite hacer nada que no podamos hacer con <code>while</code> y <code>do..while</code>, pero muchas veces es más cómodo.</p>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
 for(inicializacion; condición; cambio) {
 	// Código que se repite
@@ -151,7 +160,7 @@ for( $i=1 ; $i &lt;= 500; $i++ ) {
 	echo "No volveré a dejarme los deberes sin hacer\n";
 }
 				</code></pre>
-				<p><strong>Nota: </strong>$i es un contador. Son variables que usamos para contar números.</p>
+				<p><strong>Nota: </strong><code>$i</code> es un <em>contador</em>. Son variables que usamos para contar números.</p>
 			</section>
 
 			<section>
@@ -226,7 +235,7 @@ do {
 	echo $i." ";
 } while(--$i);
 				</code></pre>
-				<table>
+				<table style="font-size:10px;">
 					<thead>
 						<tr>
 							<td>$i</td>
@@ -327,12 +336,12 @@ do {
 				<p>Los bucles son estructuras de control que repiten el código hasta que se cumple una determinada condición</p>
 				<p>Bucles disponibles:</p>
 				<ul>
-					<li>while</li>
-					<li>do..while</li>
-					<li>for</li>
-					<li>foreach</li>
+					<li><code>while</code></li>
+					<li><code>do..while</code></li>
+					<li><code>for</code></li>
+					<li><code>foreach</code></li>
 				</ul>
-				<p class="fragment"><br />Y además: break y continue</p>
+				<p class="fragment"><br />Y además: <code>break</code> y <code>continue</code>.</p>
 			</section>
 		</div>
 	</div>

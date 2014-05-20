@@ -1,0 +1,9 @@
+body { margin: 0; }
+
+nav#menu { background-color: red; border-bottom: 1px solid black; }
+
+header h1 { color: #555555; }
+
+body > * { width: 960px; }
+
+li.ultimo { text-decoration: underline; }

@@ -26,6 +26,29 @@
 	<!--[if lt IE 9]>
 	<script src="lib/js/html5shiv.js"></script>
 	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+	</style>
 </head>
 <body>
 	<div class="reveal">
@@ -66,7 +89,7 @@
 				<div class="fragment">
 					<p><br />El nombre sigue algunas reglas:</p>
 					<ul>
-						<li>Diferencia minúsculas y mayúsculas. $foo es distinto a $FOO.</li>
+						<li>Diferencia minúsculas y mayúsculas. <code>$foo</code> es distinto a <code>$FOO</code>.</li>
 						<li>Puede contener letras, números o guiones bajos</li>
 						<li>Pero debe comenzar por una letra o por un guión bajo.</li>
 					</ul>
@@ -100,22 +123,22 @@ echo $nombre; // Escribe el valor que tuviera la variable $nombre: Hugo
 					<ul>
 						<li>Tenemos cuatro tipos escalares:
 							<ul>
-								<li><strong>string</strong>: cadena de texto.</li>
-								<li><strong>integer</strong>: número entero.</li>
-								<li><strong>float</strong>: double, número real.</li>
-								<li><strong>boolean</strong>: booleano, lógico, verdadero-falso.</li>
+								<li><code>string</code>: cadena de texto.</li>
+								<li><code>integer</code>: número entero.</li>
+								<li><code>float</code>: double, número real.</li>
+								<li><code>boolean</code>: booleano, lógico, verdadero-falso.</li>
 							</ul>
 						</li>
 						<li>Dos tipos compuestos:
 							<ul>
-								<li><strong>array</strong>: matriz, arreglo.</li>
-								<li><strong>object</strong>: objeto</li>
+								<li><code>array</code>: matriz, arreglo.</li>
+								<li><code>object</code>: objeto</li>
 							</ul>
 						</li>
 						<li>Y otros tipos:
 							<ul>
-								<li><strong>resource</strong>: recurso</li>
-								<li><strong>NULL</strong>: valor nulo</li>
+								<li><code>resource</code>: recurso</li>
+								<li><code>NULL</code>: valor nulo</li>
 							</ul>
 						</li>
 					</ul>
@@ -154,12 +177,12 @@ $nombre = "Luis";
 $saludo = "Hola $nombre!"; // Hola Luis!
 						</code></pre>
 					</li>
-					<li>Insertar caracteres escapados, como \n (cambio de línea) o \t (carácter tabulador).
+					<li>Insertar caracteres escapados, como <code>\n</code> (cambio de línea, retorno de carro) o <code>\t</code> (carácter tabulador).
 						<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
 $nombre = "Luis";
 $saludo = "Hola " . $nombre . "!\n"; // Hola Luis!\n
 						</code></pre>
-						<p>Para <strong>concatenar</strong> dos textos usamos el operador '.' (punto):</p>
+						<p>Para <strong>concatenar</strong> dos textos usamos el operador '<code>.</code>' (punto):</p>
 					</li>
 				</ul>
 			</section>
@@ -169,10 +192,10 @@ $saludo = "Hola " . $nombre . "!\n"; // Hola Luis!\n
 				<p>Este tipo de variable permite almacenar un valor numérico sin decimales. Nunca hay que poner separador de miles.</p>
 				<p>Podemos usar operadores matemáticos:</p>
 				<ul>
-					<li>+ : Para la suma</li>
-					<li>- : Para la resta</li>
-					<li>* : Para la multiplicación</li>
-					<li>/ : Para la división</li>
+					<li><code>+</code> : Para la suma</li>
+					<li><code>-</code> : Para la resta</li>
+					<li><code>*</code> : Para la multiplicación</li>
+					<li><code>/</code> : Para la división</li>
 				</ul>
 				<p><br />Ejemplos:</p>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
@@ -185,7 +208,7 @@ $media = ($numero1 + $numero2 + $numero3) / 3; // La media es 4
 
 			<section>
 				<h2>Float</h2>
-				<p>Este tipo de variable permite almacenar valores numéricos con decimales. Para separar decimales se utiliza el carácter '.'</p>
+				<p>Este tipo de variable permite almacenar valores numéricos con decimales. Para separar decimales se utiliza el carácter '<code>.</code>'</p>
 				<p><br />Ejemplo:</p>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
 $PI = 3.1415; // Valor de PI (Float)
@@ -198,7 +221,7 @@ $area = $PI * $radio * $radio; // Área del círculo
 
 			<section>
 				<h2>Boolean</h2>
-				<p>El tipo boolean es el más simple, y únicamente acepta dos valores: TRUE o FALSE</p>
+				<p>El tipo boolean es el más simple, y únicamente acepta dos valores: <code>TRUE</code> o <code>FALSE</code>.</p>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
 // Supongamos que hoy es martes
 $ayer_fue_lunes = TRUE;
@@ -212,7 +235,7 @@ $ayer_fue_jueves = FALSE;
 				<ul>
 					<li>Qué es y para qué sirve una variable.</li>
 					<li>Cómo son las variables en PHP y qué tipos hay.</li>
-					<li>Cómo utilizar los tipos escalares: string, integer, float y boolean.</li>
+					<li>Cómo utilizar los tipos escalares: <code>string</code>, <code>integer</code>, <code>float</code> y <code>boolean</code>.</li>
 				</ul>
 			</section>
 		</div>

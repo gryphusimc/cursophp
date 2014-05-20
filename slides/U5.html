@@ -26,6 +26,29 @@
 	<!--[if lt IE 9]>
 	<script src="lib/js/html5shiv.js"></script>
 	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+	</style>
 </head>
 <body>
 	<div class="reveal">
@@ -51,10 +74,10 @@
 
 			<section>
 				<h2>Ficheros PHP</h2>
-				<p>Deben tener la extensión .php (en minúsculas)</p>
-				<p><br />Nombre predeterminado: index.php</p>
+				<p>Deben tener la extensión <code>.php</code> (en minúsculas)</p>
+				<p><br />Nombre predeterminado: <code>index.php</code></p>
 				<p><br />
-					Si en el directorio raíz existe index.php, estas dos URL son equivalentes: 
+					Si en el directorio raíz existe <code>index.php</code>, estas dos URL son equivalentes: 
 					<ul>
 						<li><code>http://example.com/</code></li>
 						<li><code>http://example.com/index.php</code></li>
@@ -107,9 +130,9 @@
 			<section>
 				<h2>Separación de instrucciones</h2>
 				<p>Una instrucción es la unidad mínima de funcionamiento en un lenguaje de programación</p>
-				<p>Puede ser, por ejemplo, realizar una operación matemática o utilizar el comando 'echo'.</p>
-				<p>Siempre irán separadas por el caracter punto y coma ";".</p>
-				<p>Para no olvidarnos, siempre pondremos un ";" al final de cada instrucción.</p>
+				<p>Puede ser, por ejemplo, realizar una operación matemática o utilizar el comando '<code>echo</code>'.</p>
+				<p>Siempre irán separadas por el caracter punto y coma "<code>;</code>".</p>
+				<p>Para no olvidarnos, siempre pondremos un "<code>;</code>" al final de cada instrucción.</p>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
 echo "1";
 echo "2";

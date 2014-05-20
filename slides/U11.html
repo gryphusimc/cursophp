@@ -31,11 +31,22 @@
 			border-collapse: collapse;
 			width: 100%;
 			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
 		}
 		table td {
-			padding: 0.2em !important;
+			padding: 0em !important;
 			border: 1px solid white !important;
 			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
 		}
 	</style>
 </head>
@@ -85,7 +96,7 @@ if ($es_mayor_de_edad) {
 
 			<section>
 				<h2>Añadir condiciones a la sentencia if</h2>
-				<p>No es necesario que guardemos el valor de la condición en una variable. La mayoría de las veces ubicaremos la propia comprobación dentro de la sentencia if</p>
+				<p>No es necesario que guardemos el valor de la condición en una variable. La mayoría de las veces ubicaremos la propia comprobación dentro de la sentencia <code>if</code></p>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
 $edad = 21;
 define('EDAD_VOTAR', 18); // Constante, no varía
@@ -133,7 +144,7 @@ if ($edad >= EDAD_VOTAR) {
 
 			<section>
 				<h2>elseif</h2>
-				<p>Quizás queramos realizar alguna comprobación previa antes de llegar a else.</p>
+				<p>Quizás queramos realizar alguna comprobación previa antes de llegar a <code>else</code>.</p>
 				<p>El agua tiene 3 estados: sólido, líquido y gaseoso. Entre 0ºC y 100ºC está líquido. Por encima de 100ºC está gaseoso. Y por debajo de 0ºC está sólido.</p>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
 $temperatura = 29;
@@ -174,7 +185,7 @@ if ($altitud >= 80) {
 
 			<section>
 				<h2>Switch</h2>
-				<p>Supongamos una serie de comparaciones else/elseif/else en la que solo utilizamos el operador de igualdad, por ejemplo:</p>
+				<p>Supongamos una serie de comparaciones <code>else</code>/<code>elseif</code>/<code>else</code> en la que solo utilizamos el operador de igualdad, por ejemplo:</p>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
 $color = "red"; // Ponemos el nombre de un color en inglés
 
@@ -188,7 +199,7 @@ if ($color == "red") {
 	echo "No conozco ese color\n";
 }
 				</code></pre>
-				<p>En este caso (todas las comparaciones son de igualdad) podremos utilizar una sintaxis alternativa utilizando switch (siguiente diapositiva)</p>
+				<p>En este caso (todas las comparaciones son de igualdad) podremos utilizar una sintaxis alternativa utilizando <code>switch</code> (siguiente diapositiva)</p>
 			</section>
 
 			<section>
@@ -217,7 +228,7 @@ switch ($color) {
 
 			<section>
 				<h2>Sintaxis alternativa</h2>
-				<p>Algunas estructuras de control permiten una sintaxis alternativa, por ejemplo if, else y elseif</p>
+				<p>Algunas estructuras de control permiten una sintaxis alternativa, por ejemplo <code>if</code>, <code>else</code> y <code>elseif</code>:</p>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
 if ($edad >= 18) {
 	echo "Puedes votar\n";
@@ -259,10 +270,10 @@ endif;
 				<p>Hemos visto:</p>
 				<ul>
 					<li>Qué es una estructura de control.</li>
-					<li>if</li>
-					<li>elseif</li>
-					<li>else</li>
-					<li>switch</li>
+					<li><code>if</code></li>
+					<li><code>elseif</code></li>
+					<li><code>else</code></li>
+					<li><code>switch</code></li>
 					<li>sintaxis alternativa</li>
 				</ul>
 			</section>
