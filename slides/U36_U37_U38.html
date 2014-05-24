@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>Curso de PHP - Apache</title>
+	<title>Curso de PHP - En práctica</title>
 
-	<meta name="description" content="PHP - Apache">
+	<meta name="description" content="PHP - En práctica">
 	<meta name="author" content="Jesús Ruiz-Ayúcar">
 
 	<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -48,94 +48,6 @@
 		sup {
 			font-size: 0.5em !important;
 		}
-
-		#DIV_1 {
-			text-align: left;
-		    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 0px 1px inset;
-		    color: rgb(115, 115, 115);
-		    letter-spacing: -1px;
-		    text-decoration: none solid rgb(115, 115, 115);
-		    word-spacing: -2px;
-		    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
-		    border: 0px none rgb(217, 217, 217);
-		    border-radius: 0 0 2px 2px;
-		    font: normal normal normal 16px/24px 'Source Code Pro', monospace;
-		    font-size: 20px;
-		    outline: rgb(115, 115, 115) none 0px;
-		    padding: 12px;
-		    margin: 5px 0;
-		}/*#DIV_1*/
-
-		#SPAN_2, #SPAN_7 {
-		    color: rgb(102, 153, 51);
-		    letter-spacing: -1px;
-		    text-decoration: none solid rgb(102, 153, 51);
-		    word-spacing: -2px;
-		    border: 0px none rgb(102, 153, 51);
-		    border-radius: 0 0 0 0;
-		    outline: rgb(102, 153, 51) none 0px;
-		}/*#SPAN_2*/
-
-		#A_3 {
-		    color: rgb(102, 153, 51);
-		    letter-spacing: -1px;
-		    text-decoration: none solid rgb(102, 153, 51);
-		    word-spacing: -2px;
-		    border-top: 0px none rgb(102, 153, 51);
-		    border-right: 0px none rgb(102, 153, 51);
-		    border-bottom: 1px solid rgb(102, 153, 51);
-		    border-left: 0px none rgb(102, 153, 51);
-		    outline: rgb(102, 153, 51) none 0px;
-		}/*#A_3*/
-
-		#SPAN_3, #SPAN_5 {
-		    color: rgb(115, 115, 115);
-		    letter-spacing: -1px;
-		    text-decoration: none solid rgb(115, 115, 115);
-		    word-spacing: -2px;
-		    border: 0px none rgb(115, 115, 115);
-		    border-radius: 0 0 0 0;
-		    outline: rgb(115, 115, 115) none 0px;
-		}/*#SPAN_3, #SPAN_5*/
-
-		#SPAN_4, #SPAN_6 {
-		    color: rgb(115, 115, 115);
-		    letter-spacing: -1px;
-		    text-decoration: none solid rgb(115, 115, 115);
-		    word-spacing: -2px;
-		    border: 0px none rgb(115, 115, 115);
-		    outline: rgb(115, 115, 115) none 0px;
-		}/*#SPAN_4, #SPAN_6*/
-
-		#STRONG_4 {
-		    color: rgb(51, 102, 153);
-		    letter-spacing: -1px;
-		    text-decoration: none solid rgb(51, 102, 153);
-		    word-spacing: -2px;
-		    border: 0px none rgb(51, 102, 153);
-		    border-radius: 0 0 0 0;
-		    outline: rgb(51, 102, 153) none 0px;
-		}/*#STRONG_4*/
-
-		#STRONG_5 {
-		    color: rgb(51, 102, 153);
-		    letter-spacing: -1px;
-		    text-decoration: none solid rgb(51, 102, 153);
-		    word-spacing: -2px;
-		    border: 0px none rgb(51, 102, 153);
-		    outline: rgb(51, 102, 153) none 0px;
-		}/*#STRONG_5*/
-
-		#CODE_8 {
-		    color: rgb(51, 102, 153);
-		    letter-spacing: -1px;
-		    text-decoration: none solid rgb(51, 102, 153);
-		    word-spacing: -2px;
-		    border: 0px none rgb(51, 102, 153);
-		    outline: rgb(51, 102, 153) none 0px;
-		}/*#CODE_8*/
-
-
 	</style>
 </head>
 <body>
@@ -143,16 +55,35 @@
 		<div class="slides">
 			<section>
 				<h1>Curso de PHP</h1>
-				<h3>Apache</h3>
+				<h3>En práctica</h3>
 				<p>
 					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
 				</p>
 			</section>
 
 			<section>
-				<h2>Servidor web Apache</h2>
+				<h2>Actividad 1</h2>
+				<p>Escribe las siguientes funciones:</p>
+				<ol>
+					<li>Función que incremente en 1 un número.</li>
+					<li>Función que calcule la potencia de un número respecto a otro.</li>
+					<li>Función que calcule el factorial de un número.</li>
+					<li>Función que compruebe si el valor proporcionado es un número y de qué tipo es.</li>
+				</ol>
+			</section>
+
+			<section>
+				<h2>Actividad 2</h2>
+				<p>Tenemos dos variables compuestas (arrays). Cada una de ellas representa un punto en coordenadas cartesianas de dos dimensiones. En la clave 'x' tienen el valor de su coordenada horizontal (abscisas), mientras que en la clave 'y' tienen el valor de su coordenada vertical (ordenadas). Crea una función que calcule la distancia entre dos puntos.</p>
+				<p>Para calcular la distancia entre dos puntos, usa el teorema de pitágoras:</p>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+hipotenusa^2 = cateto_1^2 + cateto_2^2
 				</code></pre>
+			</section>
+
+			<section>
+				<h2>Actividad 3</h2>
+				<p>Crea una función que reciba como primer parámetro una matriz MxN (array con M elementos de tipo array con N elementos). Además recibe dos parámetros más, por referencia: max_columna y max_fila. La función debe calcular qué fila y qué columna contienen más veces el valor 0, y guardar el valor en las variables max_fila y max_columna respectivamente. Devuelve true, salvo que no se haya encontrado ningún 0.</p>
 			</section>
 		</div>
 	</div>

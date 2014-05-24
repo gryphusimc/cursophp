@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>Curso de PHP - Funciones avanzadas de texto</title>
+	<title>Curso de PHP - Funciones del sistema</title>
 
-	<meta name="description" content="PHP - Funciones avanzadas de texto">
+	<meta name="description" content="PHP - Funciones del sistema">
 	<meta name="author" content="Jesús Ruiz-Ayúcar">
 
 	<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -30,7 +30,7 @@
 		table {
 			border-collapse: collapse;
 			width: 100%;
-			font-size: 0.7em !important; 
+			font-size: 0.5em !important; 
 			line-height: 1.8em !important;
 
 		}
@@ -39,15 +39,6 @@
 			border: 1px solid white !important;
 			text-align: center !important;
 		}
-		table th {
-			text-align: center !important;
-		}
-		code {
-			color: orange;
-		}
-		sup {
-			font-size: 0.5em !important;
-		}
 	</style>
 </head>
 <body>
@@ -55,255 +46,137 @@
 		<div class="slides">
 			<section>
 				<h1>Curso de PHP</h1>
-				<h3>Funciones avanzadas de texto</h3>
+				<h3>Funciones del sistema</h3>
 				<p>
 					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
 				</p>
 			</section>
 
 			<section>
-				<h2>Resumen de Strings</h2>
-				<p>Es un tipo de dato escalar que almacena cadenas de texto.</p>
-				<p>Hemos visto dos formas de crearlos:</p>
+				<h2>¿Qué es una función?</h2>
 				<ul>
-					<li>Con comillas simples</li>
-					<li>Con comillas dobles</li>
+					<li>Una "herramienta" que hace algo por nosotros.</li>
+					<li>A veces reciben parámetros (valores).</li>
+					<li>A veces retornan valores.</li>
 				</ul>
-				<p>Y hemos visto tres operadores para usar con strings:</p>
+				<p><br />Por ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$resultado = nombre_funcion($parametro1, $parametro2);
+				</code></pre>
+				<p><br />Ya hemos usado una función:</p>
+				<p><code style="color:orange;">phpversion()</code>, para conocer la versión de PHP que utilizamos.</p>
+			</section>
+
+			<section>
+				<h2>Componentes de una función</h2>
+				<p>Para utilizar una función necesitamos conocer tres componentes:</p>
 				<ul>
-					<li><code>=</code> Para asignar un valor</li>
-					<li><code>.</code> Para concatenar dos strings</li>
-					<li><code>.=</code> Para añadir texto a un string existente</li>
-				</ul>
-				<p>Vamos a ver un par de conceptos más sobre Strings antes de continuar...</p>
-			</section>
-
-			<section>
-				<h2>Heredoc</h2>
-				<p>Además de con comillas simples y dobles, hay más formas de declarar un string:</p>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-&lt;?php
-$foo = "Valor";
-
-$str = &lt;&lt;&lt;ETIQUETA
-Contenido del String $foo
-ETIQUETA;
-
-// Desde PHP 5.3
-$str = &lt;&lt;&lt;"ETIQUETA"
-Contenido del String $foo
-ETIQUETA;
-				</code></pre>
-				<p>Produce:</p>
-<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-Contenido del String Valor
-</code></pre>
-			</section>
-
-			<section>
-				<h2>Nowdoc</h2>
-				<p>Desde PHP 5.3. No procesa las variables que introduzcamos:</p>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-&lt;?php
-$foo = "Valor";
-
-// Con comillas simples:
-$str = &lt;&lt;&lt;'ETIQUETA'
-Contenido del String $foo
-ETIQUETA;
-				</code></pre>
-				<p>Produce:</p>
-<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-Contenido del String $foo
-</code></pre>
-			</section>
-
-			<section>
-				<h2>Curly Syntax</h2>
-				<p>Observa el siguiente ejemplo:</p>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$foo = "Valor";
-$fooes = "Otro valor";
-
-$str = "Este string contiene $fooes.";
-				</code></pre>
-				<p>Produce:</p>
-<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-Este string contiene Otro valor.
-</code></pre>
-				<p>¿Y si quisiéramos el contenio de $foo seguido de 'es'?</p>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$str1 = "Este string contiene ${foo}es.";
-$str2 = "Este string contiene {$foo}es.";
-$str3 = "Este string contiene ".$foo."es.";
-				</code></pre>
-				<p>Produce:</p>
-<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-Este string contiene Valores.
-</code></pre>
-			</section>
-
-			<section>
-				<h2>Juegos de caracteres</h2>
-				<h3>ASCII</h3>
-				<p>American Standard Code for Information Interchange</p>
-				<p>Utiliza 7 bits (128 valores) y representa el alfabeto latino.</p>
-				<h3>ISO-8859-1</h3>
-				<p>Utiliza 8 bits (256 valores). Los 128 primeros son los mismo de ASCII. Los restantes son los diacríticos (letras acentuadas, ñ, ç).
-				<h3>ISO-8859-15</h3>
-				<p>Como ISO-8859-1, pero sustituye algunos caracteres poco usados por otros, como el símbolo del €</p>
-			</section>
-
-			<section>
-				<h2>chr()</h2>
-				<p>Función que devuelve el carácter ASCII del número proporcionado.</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">chr</span><span style="color:#003369;"> </span>( <span style="color:#881350;">int</span> <span style="color:#825900;">$ascii</span> )</div><br />
-				<h2>ord()</h2>
-				<p>Función que devuelve el número ASCII del carácter proporcionado.</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">int</span> <span style="color:#661aa9;">ord</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$string</span> )</div>
-			</section>
-
-			<section>
-				<h2>Cómo es un string</h2>
-				<p>Podemos acceder a sus elementos como si de un array se tratara:</p>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$texto = "abcde";
-echo $texto[1]; // Muestra 'b'
-				</code></pre>
-				<p>¿Es entonces un array?</p>
-				<p>No, es un tipo de dato primitivo. Pero a nivel interno sí: se trata de un array de Bytes.</p>
-				<p>1 byte = 8 bits =&gt; 2<sup>8</sup> valores = 256 valores posibles.</p>
-				<p>Es un array de caracteres ISO-8859-1</p>
-			</section>
-
-			<section>
-				<h2>UTF-8</h2>
-				<h3>Un juego de caracteres para dominarlos a todos</h3>
-				<p>Alfabetos: latino, griego, cirílico, copto, armenio, hebreo, árabe...</p>
-				<p>A diferencia de ASCII o ISO-8859-1, es de <strong>tamaño variable</strong>.</p>
-				<p>Los primeros 128 caracteres corresponden con ASCII.</p>
-				<p>Estándar <em>de facto</em> en Internet.</p>
-				<p>De forma predeterminada, los strings de PHP son arrays de 1 byte (como ISO-8859-1), pero podemos usar UTF-8. Recuerda:</p>
-				<ul>
-					<li>Los ficheros fuente debes editarlos como UTF-8.</li>
-					<li>Las bases de datos deben estar en UTF-8.</li>
-					<li>La etiqueta meta charset de HTML debe indicar UTF-8.</li>
-					<li>Debes usar funciones PHP de string para multibyte.</li>
+					<li>Nombre de la función</li>
+					<li>Tipo de dato que genera</li>
+					<li>Lista de parámetros que recibe</li>
 				</ul>
 			</section>
-
 			<section>
-				<h2>utf8_encode()</h2>
-				<p>Convierte una cadena ISO-8859-1 a UTF-8</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">utf8_encode</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$data</span> )</div>
-				<br />
-				<h2>utf8_decode()</h2>
-				<p>Convierte una caena UTF-8 a ISO-8859-1</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">utf8_decode</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$data</span> )</div>
-				<p>Nota: La cadena en UTF-8 solo debe contener caracteres presentes en ISO-8859-1.</p>
-			</section>
-
-			<section>
-				<h2>mb_convert_encoding()</h2>
-				<p>Convierte entre numerosos juegos de caracteres. Mucho más flexible que <code>utf8_[en|de]code</code>.</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">mb_convert_encoding</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$str</span> , <span style="color:#881350;">string</span> <span style="color:#825900;">$to_encoding</span> [, mixed <span style="color:#825900;">$from_encoding</span> = <span style="color:#661aa9;">mb_internal_encoding</span>() ] )</div>
-				<p><code>utf8_encode</code> funciona desde ISO-8859-1, pero no desde ISO-8859-15. Es preferible <code>mb_convert_encoding</code>:</p>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-// De ISO-8859-15 (Euro) a UTF-8
-$precio = "5€"
-$str2 = mb_convert_encoding($precio, "UTF-8");
-				</code></pre>
-			</section>
-
-			<section>
-				<h2>Funciones de Strings multibytes</h2>
-				<p>Muchas de las funciones que hemos visto tienen su versión multibyte:</p>
+				<h3>Ejemplo</h3>
+				<p>Supón una función llamada suma, que recibe dos enteros y genera (devuelve) otro entero:</p>
 				<ul>
-					<li><code>mb_strlen()</code></li>
-					<li><code>mb_strpos()</code></li>
-					<li><code>mb_substr()</code></li>
-					<li><code>mb_strtolower()</code></li>
-					<li><code>mb_strtoupper()</code></li>
+					<li class="fragment">Nombre: suma</li>
+					<li class="fragment">Tipo de dato: numérico</li>
+					<li class="fragment">Parámetros: $numero1 y $numero2, ambos de tipo integer</li>
 				</ul>
 			</section>
-
 			<section>
-				<h2>hash</h2>
-				<p>Una función hash es aquella que, a partir de unos datos de entrada arbitrarios, genera un resultado de tamaño fijo, normalmente en forma de texto.</p>
-				<table>
-					<thead>
-						<tr>
-							<th>Dato de entrada</th>
-							<th>Hash</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>A</td>
-							<td style="text-align: left !important;">MD5: <code>7fc56270e7a70fa81a5935b72eacbe29</code><br />
-							SHA1: <code>6dcd4ce23d88e2ee9568ba546c007c63d9131c1b</code></td>
-						</tr>
-						<tr>
-							<td>a</td>
-							<td style="text-align: left !important;">MD5: <code>0cc175b9c0f1b6a831c399e269772661</code><br />
-							SHA1: <code>86f7e437faa5a7fce15d1ddcb9eaeaea377667b8</code></td>
-						</tr>
-						<tr>
-							<td>Un texto cualquiera</td>
-							<td style="text-align: left !important;">
-								MD5: <code>6004e71dbadae6c81253f54cbef4ba30</code><br />
-								SHA1: <code>0a9e6d37e9b91399cc604da1d0633e5df0f4b488</code>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<p><br />Útil para: guardar firmas de ficheros o contraseñas</p>
+				<h2>Funciones de PHP</h2>
+				<p>PHP incorpora un gran número de funciones a nuestra disposición para ayudarnos con nuestras aplicaciones.</p>
+				<p>Por ejemplo, incluye funciones:</p>
+				<ul>
+					<li class="fragment">Matemáticas</li>
+					<li class="fragment">Para manejo de ficheros</li>
+					<li class="fragment">Para manejo de imágenes</li>
+					<li class="fragment">De bases de datos</li>
+					<li class="fragment">De arrays</li>
+					<li class="fragment">De strings</li>
+					<li class="fragment">¡Y muchas más!</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Documentación de funciones</h2>
+				<p>Recordando: las funciones las describimos con 3 componentes: (1) nombre, (2) tipo de dato que devuelve y (3) parámetros.</p>
+				<p>Vamos a ver cómo leer la documentación de funciones de PHP:</p>
+				<div class="fragment">
+					<p><br />Siguiendo con el ejemplo de la función suma, la describimos así:</p>
+					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+	integer suma(integer $numero1, integer $numero2)
+					</code></pre>
+					<p>Solo con eso ya sabríamos cómo usar la función:</p>
+					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+	$valor = suma(15, 201);
+					</code></pre>
+				</div>
 			</section>
 
 			<section>
-				<h2>Funciones hash</h2>
-				<h3>md5()</h3>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.7em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">md5</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$str</span> [, <span style="color:#881350;">bool</span> <span style="color:#825900;">$raw_output</span> = <span style="color:#881350;">false</span> ] )</div><br />
-				<h3>sha1()</h3>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.7em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">sha1</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$str</span> [, <span style="color:#881350;">bool</span> <span style="color:#825900;">$raw_output</span> = <span style="color:#881350;">false</span> ] )</div>
-			</section>
-
-			<section>
-				<h2>implode()</h2>
-				<h3>Unir elementos de un array en un texto</h3>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">implode</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$glue</span> , <span style="color:#881350;">array</span> <span style="color:#825900;">$pieces</span> )</div>
+				<h2>Pseudotipos documentando funciones</h2>
+				<p>Hay funciones que permiten parámetros de varios tipos. Por ejemplo, la función suma podría aceptar también variables Float</p>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$dias = array("L", "M", "X", "J", "V", "S", "D");
-echo implode("#", $dias); // Muestra "L#M#X#J#V#S#D"
+$valor = suma(15.1, 202.09);
+				</code></pre>
+				<p>Para facilitar la documentación, se recurre a pseudotipos:</p>
+				<ul>
+					<li><code style="color:orange;">number</code> - Indica que la variable puede ser Integer o Float</li>
+					<li><code style="color:orange;">mixed</code> - Indica que la variable puede ser de varios tipos (no necesariamente todos)</li>
+				</ul>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+number suma(number $numero1, number $numero2)
 				</code></pre>
 			</section>
 
 			<section>
-				<h2>explode()</h2>
-				<h3>Extrae en un array los elementos de un texto</h3>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">array</span> <span style="color:#661aa9;">explode</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$delimiter</span> , <span style="color:#881350;">string</span> <span style="color:#825900;">$string</span> [, <span style="color:#881350;">int</span> <span style="color:#825900;">$limit</span> ] )</div><br />
-				<p>La inversa de <code>implode()</code>.</p>
+				<h2>Parámetros opcionales</h2>
+				<p>Hay funciones cuyos parámetros son opcionales.</p>
+				<p>Por ejemplo, volviendo con la función suma(), supongamos que podemos pasarle opcionalmente 2 o 3 números:</p>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$dias= "L#M#X#J#V#S#D";
-$dias_array = explode("#", $dias);
-// $dias_array es un array con 7 elementos: "L", "M", "X", "J", "V", "S" y "D"
+$valor1 = suma(15, 202, 12);
+$valor2 = suma(15, 202);
 				</code></pre>
+				<p>En este caso, el parámetro opcional iría entre corchetes:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+number suma(number $numero1, number $numero2 [, number $numero3])
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Parámetros ilimitados</h2>
+				<p>Igualmente, hay funciones cuyo número total de parámetros es indeterminado.</p>
+				<p>Por ejemplo, la función suma() podría aceptar tantos valores como le proporcionemos:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$valor = suma(15, 202, 12, -5, -105, 1009, 5, 99);
+				</code></pre>
+				<p>Los parámetros obligatorios (los dos primeros al menos) irían como hasta ahora. El resto de parámetros opcionales los nombraríamos con '...' (tres puntos):
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+number suma(number $numero1, number $numero2 [, number $...])
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Ejemplo</h3>
+				<p>Ya conocemos la función <code style="color:orange">phpversion()</code>. Vamos a ver cómo es en la documentación de PHP:</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto; font-family:monospace; font-size:0.6em; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">phpversion</span><span style="color:#003369;"> </span>([ <span style="color:#881350;">string</span> <span style="color:#825900;">$extension</span> ] )</div>
+				<div class="fragment">
+					<p><br />Vemos esta información:</p>
+					<ul>
+						<li>Nombre: phpversion</li>
+						<li>Valor devuelto: string</li>
+						<li>Parámetros: un string opcional</li>
+					</ul>
+				</div>
 			</section>
 
 			<section>
 				<h2>Resumen</h2>
-				<p>Terminamos con las funciones de strings</p>
-				<p>Hemos visto:</p>
-				<ul>
-					<li>Funciones básicas.</li>
-					<li>Funciones de HTML.</li>
-					<li>Nuevas formas de declarar strings: heredoc y nowdoc</li>
-					<li>Curly syntax.</li>
-					<li>Cómo es un string internamente.</li>
-					<li>Juegos de caracteres y UTF-8.</li>
-					<li>Funciones hash.</li>
-					<li><code>implode()</code> y <code>explode()</code>.</li>
-				</ul>
+				<p class="fragment">Hemos aprendido qué es una función</p>
+				<p class="fragment">Sabemos que PHP incorpora numerosas funciones predeterminadas</p>
+				<p class="fragment">Cómo leer la documentación de PHP para entender una función</p>
 			</section>
 		</div>
 	</div>

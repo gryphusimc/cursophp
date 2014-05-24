@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>Curso de PHP - En práctica</title>
+	<title>Curso de PHP - Funciones de arrays I</title>
 
-	<meta name="description" content="PHP - En práctica">
+	<meta name="description" content="PHP - Funciones de arrays I">
 	<meta name="author" content="Jesús Ruiz-Ayúcar">
 
 	<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,35 +55,222 @@
 		<div class="slides">
 			<section>
 				<h1>Curso de PHP</h1>
-				<h3>En práctica</h3>
+				<h3>Funciones de arrays I</h3>
 				<p>
 					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
 				</p>
 			</section>
 
 			<section>
-				<h2>Actividad 1</h2>
-				<p>Escribe las siguientes funciones:</p>
-				<ol>
-					<li>Función que incremente en 1 un número.</li>
-					<li>Función que calcule la potencia de un número respecto a otro.</li>
-					<li>Función que calcule el factorial de un número.</li>
-					<li>Función que compruebe si el valor proporcionado es un número y de qué tipo es.</li>
-				</ol>
-			</section>
-
-			<section>
-				<h2>Actividad 2</h2>
-				<p>Tenemos dos variables compuestas (arrays). Cada una de ellas representa un punto en coordenadas cartesianas de dos dimensiones. En la clave 'x' tienen el valor de su coordenada horizontal (abscisas), mientras que en la clave 'y' tienen el valor de su coordenada vertical (ordenadas). Crea una función que calcule la distancia entre dos puntos.</p>
-				<p>Para calcular la distancia entre dos puntos, usa el teorema de pitágoras:</p>
+				<h2>is_array()</h2>
+				<h3>Averiguar si estamos ante un array</h3>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">bool</span> <span style="color:#661aa9;">is_array</span><span style="color:#003369;"> </span>( mixed <span style="color:#825900;">$var</span> )</div><br />
+				<p>Ejemplos</p>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-hipotenusa^2 = cateto_1^2 + cateto_2^2
+$var1 = array(1,2,3,5,7,11,13,17);
+$var2 = "¿Array de letras?"; // echo $var2[1]; muestra 'A'
+$var3 = array('uno' => 1, 'dos' => 2, 'tres' => 3);
+
+is_array($var1); // TRUE
+is_array($var2); // FALSE
+is_array($var3); // TRUE
 				</code></pre>
 			</section>
 
 			<section>
-				<h2>Actividad 3</h2>
-				<p>Crea una función que reciba como primer parámetro una matriz MxN (array con M elementos de tipo array con N elementos). Además recibe dos parámetros más, por referencia: max_columna y max_fila. La función debe calcular qué fila y qué columna contienen más veces el valor 0, y guardar el valor en las variables max_fila y max_columna respectivamente. Devuelve true, salvo que no se haya encontrado ningún 0.</p>
+				<h2>Contar elementos</h2>
+				<h3>count()</h3>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">int</span> <span style="color:#661aa9;">count</span><span style="color:#003369;"> </span>( mixed <span style="color:#825900;">$var</span> [, <span style="color:#881350;">int</span> <span style="color:#825900;">$mode</span> = COUNT_NORMAL ] )</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$var1 = array(1,2,3,5,7,11,13,17);
+$var2 = "¿Array de letras?"; // echo $var2[1]; muestra 'A'
+$var3 = array('uno' => 1, 'dos' => 2, 'tres' => 3);
+
+echo count($var1); // Muestra 8
+echo count($var2); // Muestra 1 (no es un array)
+echo count($var3); // Muestra 3
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Visualizar un array</h2>
+				<h3>print_r() y var_dump()</h3>
+				<p>Muestran un array de forma legible por humanos. <code>var_dump()</code> muestra además información acerca de los tipos de datos.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$var = array('uno' => 1, 'dos' => 2, 'tres' => 3);
+print_r($var);
+				</code></pre>
+				<p>Muestra:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+Array
+(
+    [uno] => 1
+    [dos] => 2
+    [tres] => 3
+)
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Iniciar un array</h2>
+				<h3>Array indexado:</h3>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$x = array(5,12,15);
+
+// Desde PHP 5.4:
+$x = [5,12,15];
+				</code></pre>
+
+				<h3>Array asociativo:</h3>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$x = array('xml' => 'eXtensible Markup Language');
+
+// Desde PHP 5.4:
+$x = ['xml' => 'eXtensible Markup Language'];
+				</code></pre>
+				<p>Pregunta de nota. ¿Cuántos elementos tiene este array?</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$x = ['1' => 'A', 1 => 'B', 'C', 2 => 'D'];
+echo count($x);
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>range()</h3>
+				<p>Función que <em>rellena</em> un array con un rango de números.</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">array</span> <span style="color:#661aa9;">range</span><span style="color:#003369;"> </span>( mixed <span style="color:#825900;">$start</span> , mixed <span style="color:#825900;">$end</span> [, number <span style="color:#825900;">$step</span> = <span style="color:#0000ff;">1</span> ] )</div><br />
+				<p>Ejemplos:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$array = range(0,10); // array(0,1,2,3,4,5,6,7,8,9,10)
+$array = range(0,10,2); // array(0,2,4,6,8,10)
+$array = range(10,0,-1); // array(10,9,8,7,6,5,4,3,2,1,0)
+
+// for($i=0; $i&lt;=500; $i++) {
+foreach(range(0,500) as $i) {
+	echo "Iteración $i\n";
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Añadiendo un elemento</h2>
+				<p>Podemos añadir un único elemento a un array ya existente</p>
+				<h3>Array indexado</h3>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$x[] = 6
+				</code></pre>
+				<h3>Array asociativo</h3>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$x['html'] = 'Hypertext Markup Language';
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>array_push()</h3>
+				<p>Añade un elemento al final del array</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">int</span> <span style="color:#661aa9;">array_push</span><span style="color:#003369;"> </span>( <span style="color:#881350;">array</span> &amp;<span style="color:#825900;">$array</span> , mixed <span style="color:#825900;">$var</span> [, mixed $... ] )</div>
+				<p>El entero que devuelve es el número total de elementos del array</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$var1 = array('L','M','X','J','V','S');
+echo array_push($var1, 'D'); // Muestra un 7
+// Genera array("L","M","X","J","V","S","D")
+
+// Es equivalente a $var1[] = "D", solo que nos da el total de elementos
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>array_unshift()</h3>
+				<p>Añade un elemento al comienzo del array</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">int</span> <span style="color:#661aa9;">array_unshift</span><span style="color:#003369;"> </span>( <span style="color:#881350;">array</span> &amp;<span style="color:#825900;">$array</span> , mixed <span style="color:#825900;">$value1</span> [, mixed $... ] )</div>
+				<p>El entero que devuelve es el número total de elementos del array</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$var1 = array('L','M','X','J','V','S');
+echo array_unshift($var1, 'D'); // Muestra un 7
+// Genera array("D","L","M","X","J","V","S")
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Añadir muchos elementos</h2>
+				<h3>array_merge()</h3>
+				<p>Combina dos o más arrays</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">array</span> <span style="color:#661aa9;">array_merge</span><span style="color:#003369;"> </span>( <span style="color:#881350;">array</span> <span style="color:#825900;">$array1</span> [, <span style="color:#881350;">array</span> $... ] )</div>
+				<p>Ejemplos:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$arr1 = array("L","M","X");
+$arr2 = array("J","V","S","D");
+
+$arr3 = array("Juan" => 18, "Luis" => 40, "Laura" => 29, "Ángela" => 21);
+$arr4 = array("Felipe" => 33, "Laura" => 25, "Pedro" => 36);
+
+$arr5 = array_merge($arr1, $arr2); // "L","M","X","J","V","S","D"
+$arr6 = array_merge($arr3, $arr4);
+
+echo $arr6["Laura"]; // Solo se guarda el último valor: 25
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Operador +</h3>
+				<p>Combina dos arrays. Pero prevalecen las claves del primero.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$arr1 = array("L","M","X");
+$arr2 = array("J","V","S","D");
+
+$arr3 = array("Juan" => 18, "Luis" => 40, "Laura" => 29, "Ángela" => 21);
+$arr4 = array("Felipe" => 33, "Laura" => 25, "Pedro" => 36);
+
+$arr5 = $arr1 + $arr2; // "L","M","X","J","V","S","D"
+$arr6 = $arr3 + $arr4;
+
+echo $arr6["Laura"]; // Se guarda el primer valor: 29
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Eliminar un elemento</h2>
+				<h3>array_pop()</h3>
+				<p>Retorna y elimina el último elemento del array</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; ">mixed <span style="color:#661aa9;">array_pop</span><span style="color:#003369;"> </span>( <span style="color:#881350;">array</span> &amp;<span style="color:#825900;">$array</span> )</div>
+			</section>
+
+			<section>
+				<h3>array_shift()</h3>
+				<p>Retorna y elimina el primer elemento del array</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; ">mixed <span style="color:#661aa9;">array_shift</span><span style="color:#003369;"> </span>( <span style="color:#881350;">array</span> &amp;<span style="color:#825900;">$array</span> )</div>
+			</section>
+
+			<section>
+				<h2>Pilas</h2>
+				<p>Estructura de datos que representa una pila (stack), una lista LIFO (Last In First Out - Último en Entrar Primero en Salir).</p>
+				<p>Como la pila de platos sucios.</p>
+				<img src="assets/U20/Data_stack.svg" style="background-color: white;" />
+				<p>En PHP lo implementamos con un elemento de tipo <code>array</code> y las funciones <code>array_push()</code> y <code>array_pop()</code></p>
+			</section>
+
+			<section>
+				<h2>Colas</h2>
+				<p>Estructura de datos que representa una cola (queue), una lista FIFO (First In First Out - Primero en Entrar Primero en Salir).</p>
+				<p>Como la cola del banco.</p>
+				<img src="assets/U20/Data_Queue.svg" style="background-color: white;" />
+				<p>En PHP lo implementamos con un elemento de tipo <code>array</code> y las funciones <code>array_push()</code> y <code>array_shift()</code></p>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<p>Conceptos aprendidos:</p>
+				<ul>
+					<li class="fragment">Cómo averiguar si estamos ante un array: <code>is_array()</code></li>
+					<li class="fragment">Podemos contar sus elementos: <code>count()</code></li>
+					<li class="fragment">Visualizamos sus datos: <code>var_dump()</code> y <code>print_r()</code></li>
+					<li class="fragment">Creamos arrays indexados, asociativos o mediante <code>range()</code>
+					<li class="fragment">Añadimos un elemento mediante <code>[]</code>, accediendo a la clave, con <code>array_push()</code> y <code>array_unshift()</code></li>
+					<li class="fragment">Añadimos muchos elementos con el operador <code>+</code> o con <code>array_merge()</code></li>
+					<li class="fragment">Eliminamos elementos con <code>array_pop()</code> y <code>array_shift</code></li>
+					<li class="fragment">Cómo definir dos estructuras de datos: pilas y colas.</li>
+
+				</ul>
 			</section>
 		</div>
 	</div>

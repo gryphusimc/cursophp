@@ -337,7 +337,7 @@ if ($mysqli) {
 $res = mysqli_query($mysqli, "SELECT * FROM usuarios");
 
 foreach ($usuarios = mysqli_fetch_all($res, MYSQL_ASSOC) as $usuario) {
-	echo "Nombre del usuario ".$usuario['id']." = ".$usuario['nombre']."\n";
+	echo "Nombre del usuario ".$usuario['id']." = ".$usuario['nombre']."&lt;br /&gt;";
 }
 
 mysqli_close($mysqli);
@@ -362,9 +362,10 @@ if ($mysqli) {
 }
 
 $res = mysqli_query($mysqli, "SELECT * FROM usuarios WHERE id = 1");
+$usuario = mysqli_fetch_array($res);
 
 if (mysqli_num_rows($res)) {
-	echo "Nombre del usuario ".$res['id'].": ".$res['nombre']."\n";
+	echo "Nombre del usuario ".$usuario['id'].": ".$usuario['nombre']."&lt;br /&gt;";
 }
 
 mysqli_close($mysqli);
@@ -389,7 +390,7 @@ if ($mysqli) {
 }
 
 $SQL = "SELECT * FROM USUARIOS "
-     . "WHERE id = " . mysqli_real_escape_string($msqyli, $_GET['id']);
+     . "WHERE id = " . mysqli_real_escape_string($mysqli, $_GET['id']);
 
 $res = mysqli_query($mysqli, $SQL);
 
@@ -413,9 +414,9 @@ if ($mysqli) {
 }
 
 $SQL = "INSERT INTO USUARIOS(nombre, email, password) VALUES ("
-     . "'" . mysqli_real_escape_string($msqyli, $_GET['nombre']) . "',"
-     . "'" . mysqli_real_escape_string($msqyli, $_GET['email']) . "',"
-     . "SHA1('" . mysqli_real_escape_string($msqyli, $_GET['password']) . "'))";
+     . "'" . mysqli_real_escape_string($mysqli, $_GET['nombre']) . "',"
+     . "'" . mysqli_real_escape_string($mysqli, $_GET['email']) . "',"
+     . "SHA1('" . mysqli_real_escape_string($mysqli, $_GET['password']) . "'))";
 
 $res = mysqli_query($mysqli, $SQL);
 echo "El #ID del usuario es ".mysqli_insert_id($mysqli);
@@ -440,12 +441,12 @@ if ($mysqli) {
 	die ("Error al conectar a la base de datos: ".mysqli_connect_error());
 }
 
-$SQL = "UPDATE USUARIOS(nombre, email, password) SET "
-     . "email = '' ""
+$SQL = "UPDATE USUARIOS SET "
+     . "email = '' "
      . "WHERE nombre ='Juan'";
 
 $res = mysqli_query($mysqli, $SQL);
-echo "Se han actualizados ".mysqli_affected_rows($mysqli)." usuarios";
+echo "Se han actualizado ".mysqli_affected_rows($mysqli)." usuarios";
 
 // Resto del código
 				</code></pre>

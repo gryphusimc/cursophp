@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Alojamientos web</title>
+
+	<meta name="description" content="PHP - Alojamientos web">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code, strong {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+
+		#DIV_1 {
+			text-align: left;
+		    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 0px 1px inset;
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+		    border: 0px none rgb(217, 217, 217);
+		    border-radius: 0 0 2px 2px;
+		    font: normal normal normal 16px/24px 'Source Code Pro', monospace;
+		    font-size: 20px;
+		    outline: rgb(115, 115, 115) none 0px;
+		    padding: 12px;
+		    margin: 5px 0;
+		}/*#DIV_1*/
+
+		#SPAN_2, #SPAN_7 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border: 0px none rgb(102, 153, 51);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#SPAN_2*/
+
+		#A_3 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border-top: 0px none rgb(102, 153, 51);
+		    border-right: 0px none rgb(102, 153, 51);
+		    border-bottom: 1px solid rgb(102, 153, 51);
+		    border-left: 0px none rgb(102, 153, 51);
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#A_3*/
+
+		#SPAN_3, #SPAN_5 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_3, #SPAN_5*/
+
+		#SPAN_4, #SPAN_6 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_4, #SPAN_6*/
+
+		#STRONG_4 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_4*/
+
+		#STRONG_5 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_5*/
+
+		#CODE_8 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#CODE_8*/
+
+
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Alojamientos web</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Compañías</h2>
+				<p>Para que una web esté operativa en cualquier momento, debe estar instalada en un servidor web <strong>operativo las 24 horas</strong>.</p>
+				<p>Además, debe tener una alta velocidad de <strong>subida de datos</strong>, que garantice picos en los que <em>muchos</em> usuarios accedan simultaneamente a la web.</p>
+				<p>Para ofrecer calidad de conexión (entre otras muchas ventajas), surgen las compañías de <em>hosting</em>.</p>
+			</section>
+
+			<section>
+				<h2>En qué fijarnos</h2>
+				<ul>
+					<li><strong>Soporte de PHP</strong> — Una versión de PHP reciente suele ser una buena señal. ¿Permite adaptar <code>php.ini</code>?</li>
+					<li><strong>Bases de datos</strong> — Seguramente necesitemos MySQL o MariaDB. Quizás MongoDB.</li>
+					<li><strong>Acceso</strong> — ¿Permite SSH? ¿O solamente FTP?</li>
+					<li><strong>Espacio</strong> — Para datos, bases de datos y correos.</li>
+					<li><strong>Tráfico</strong> — ¿Ilimitado o limitado?</li>
+					<li><strong>Dominios</strong> — ¿Permite un dominio o varios?</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Tipos de alojamientos</h2>
+				<p>Existen muchos planes distintos y diferentes. Los más populares (por orden de más barato a más caro) son los siguientes:</p>
+				<ul>
+					<li>
+						<p><strong>Alojamiento compartido</strong> — Compartes máquina (CPU, RAM, disco) con otros dominios, normalmente cientos.</p>
+						<ul>
+							<li><strong>De un dominio</strong> — solo puedes alojar un dominio.</li>
+							<li><strong>Multidominio</strong> — puedes alojar muchos dominios.</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Servidor virtual</strong> — Dispones de una máquina virtual. Puedes hacer con ella lo que quieras. Comparte máquina física con otros servidores virtuales.
+					</li>
+					<li>
+						<strong>Servidor dedicado</strong> — Dispones de una máquina física solamente para ti.
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Acceso FTP y SFTP</h2>
+				<p>Necesitamos poder enviar los ficheros entre nuestro equipo y el servidor (para <em>instalar</em> la web). Existen para ello varios protocolos:</p>
+				<ul>
+					<li><code>FTP</code> lo utilizamos para transferir ficheros a un servidor remoto. Todo el tráfico viaja sin cifrar, por lo que es poco seguro.</li>
+					<li><code>FTPS</code> es una actualización de FTP para hacerlo seguro.</li>
+					<li><code>SFTP</code> protocolo similar, con el tráfico cifrado mediante <code>SSH</code>.</li>
+				</ul>
+				<p><br />Para usarlo, necesitaremos un cliente <em><code>FTP</code></em> (suelen englobar <code>FTP</code>, <code>FTPS</code> y <code>SFTP</code>). Existen muchos. De hecho hay editores de código que incluyen acceso remoto mediante FTP para <em>editar en remoto</em>. Un cliente muy sencillo es el famoso <a href="https://filezilla-project.org/">Filezilla</a>.</p>
+			</section>
+
+			<section>
+				<h2>Acceso SSH</h2>
+				<p>Una característica muy interesante a la hora de contratar un alojamiento es el acceso mediante <code>SSH</code>.</p>
+				<p>Si te sientes cómodo trabajando con la consola, <em>necesitarás</em> <code>SSH</code>. Permite iniciar sesión en un servidor remoto mediante la consola. Puedes navegar por directorios, comprimir y descomprimir copias de seguridad, buscar cadenas de texto, etc.</p>
+			</section>
+
+			<section>
+				<h2>Dominios</h2>
+				<p>Los servidores web, como Apache, crean un <em>host virtual</em> para alojar dominos (o subdominios). Cuando queramos crear una página, necesitaremos uno, para poder identificarla. Las propias compañías de <em>hosting</em> también venden dominios. Puedes tener un dominio contratado con una compañía y el alojamiento con otra. Pero si es tu primera vez, es recomendable hacerlo todo en la misma empresa. De esa forma no tienes que preocuparte por nada; simplemente funciona.</p>
+			</section>
+
+			<section>
+				<h2>/etc/hosts</h2>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+				</code></pre>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

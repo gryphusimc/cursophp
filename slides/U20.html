@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>Curso de PHP - Funciones de arrays I</title>
+	<title>Curso de PHP - Funciones numéricas</title>
 
-	<meta name="description" content="PHP - Funciones de arrays I">
+	<meta name="description" content="PHP - Funciones numéricas">
 	<meta name="author" content="Jesús Ruiz-Ayúcar">
 
 	<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -30,7 +30,7 @@
 		table {
 			border-collapse: collapse;
 			width: 100%;
-			font-size: 0.7em !important; 
+			font-size: 0.5em !important; 
 			line-height: 1.8em !important;
 
 		}
@@ -39,14 +39,8 @@
 			border: 1px solid white !important;
 			text-align: center !important;
 		}
-		table th {
-			text-align: center !important;
-		}
 		code {
 			color: orange;
-		}
-		sup {
-			font-size: 0.5em !important;
 		}
 	</style>
 </head>
@@ -55,221 +49,780 @@
 		<div class="slides">
 			<section>
 				<h1>Curso de PHP</h1>
-				<h3>Funciones de arrays I</h3>
+				<h3>Funciones numéricas</h3>
 				<p>
 					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
 				</p>
 			</section>
 
 			<section>
-				<h2>is_array()</h2>
-				<h3>Averiguar si estamos ante un array</h3>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">bool</span> <span style="color:#661aa9;">is_array</span><span style="color:#003369;"> </span>( mixed <span style="color:#825900;">$var</span> )</div><br />
-				<p>Ejemplos</p>
+				<h2>Averiguar si es un número</h2>
+				<p>Dada la naturaleza dinámica de PHP, no podemos garantizar que una variable va a tener el tipo de dato que deseamos.</p>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$var1 = array(1,2,3,5,7,11,13,17);
-$var2 = "¿Array de letras?"; // echo $var2[1]; muestra 'A'
-$var3 = array('uno' => 1, 'dos' => 2, 'tres' => 3);
+$num1 = "#12"; // comienza con '#', luego se convierte a 0
+$num2 = 10;
+echo suma($num1, $num2); // ¡A suma() le llega un string!
+				</code></pre>
+				<p>Tenemos 3 funciones:</p>
+				<ol>
+					<li><code>is_numeric()</code></li>
+					<li><code>is_int()</code>, <code>is_integer()</code> o <code>is_long()</code></li>
+					<li><code>is_float()</code>, <code>is_double()</code> o <code>is_real()</code></li>
+				</ol>
+			</section>
 
-is_array($var1); // TRUE
-is_array($var2); // FALSE
-is_array($var3); // TRUE
+			<section>
+				<h2>is_numeric()</h2>
+				<p>Comprueba si una variable es un número o un string numérico.</p>
+				<p>Resumen:</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">bool</span> <span style="color:#661aa9;">is_numeric</span><span style="color:#003369;"> </span>( mixed <span style="color:#825900;">$var</span> )</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+is_numeric(12); // TRUE
+is_numeric(1.13); // TRUE
+is_numeric(112,3); // FALSE y Warning
+is_numeric("61"); // TRUE
+is_numeric("#61"); // FALSE
+is_numeric("doce"); // FALSE
 				</code></pre>
 			</section>
 
 			<section>
-				<h2>Contar elementos</h2>
-				<h3>count()</h3>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">int</span> <span style="color:#661aa9;">count</span><span style="color:#003369;"> </span>( mixed <span style="color:#825900;">$var</span> [, <span style="color:#881350;">int</span> <span style="color:#825900;">$mode</span> = COUNT_NORMAL ] )</div>
+				<h2>is_int()</h2>
+				<p>Comprueba si una variable es un número entero.</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">bool</span> <span style="color:#661aa9;">is_int</span><span style="color:#003369;"> </span>( mixed <span style="color:#825900;">$var</span> )</div>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$var1 = array(1,2,3,5,7,11,13,17);
-$var2 = "¿Array de letras?"; // echo $var2[1]; muestra 'A'
-$var3 = array('uno' => 1, 'dos' => 2, 'tres' => 3);
+is_int(12); // TRUE
+is_int(1.13); // FALSE
+is_int(112,3); // FALSE y Warning
+is_int("61"); // FALSE
+				</code></pre>
+				<p><code>is_integer()</code> e <code>is_long()</code> son equivalentes.</p>
+			</section>
 
-echo count($var1); // Muestra 8
-echo count($var2); // Muestra 1 (no es un array)
-echo count($var3); // Muestra 3
+			<section>
+				<h2>is_float()</h2>
+				<p>Comprueba si una variable es un número real</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">bool</span> <span style="color:#661aa9;">is_float</span><span style="color:#003369;"> </span>( mixed <span style="color:#825900;">$var</span> )</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+is_float(12); // FALSE
+is_float(1.13); // TRUE
+is_float(112,3); // FALSE y Warning
+is_float("61.3"); // FALSE
+				</code></pre>
+				<p><code>is_double()</code> e <code>is_real()</code> son equivalentes.</p>
+			</section>
+
+			<section>
+				<h2>Números binarios</h2>
+				<p>Nuestro sistemas numéricos son en base diez (porque tenemos 10 dedos). Pero los ordenadores internamente funcionan en base 2, y por tanto solo utilizan 1 o 0.</p>
+				<p>Equivalencias:</p>
+				<table style="float: left; width: 30%; margin-right: 1em;">
+					<tr>
+						<td>Base 10</td>
+						<td>Base 2</td>
+					</tr>
+					<tr>
+						<td>0</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>10</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>11</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>100</td>
+					</tr>
+					<tr>
+						<td>5</td>
+						<td>101</td>
+					</tr>
+					<tr>
+						<td>6</td>
+						<td>110</td>
+					</tr>
+					<tr>
+						<td>7</td>
+						<td>111</td>
+					</tr>
+					<tr>
+						<td>8</td>
+						<td>1000</td>
+					</tr>
+				</table>
+				<table style="float: left; width: 30%; margin-right: 1em;">
+					<tr>
+						<td>Base 10</td>
+						<td>Base 2</td>
+					</tr>
+					<tr>
+						<td>9</td>
+						<td>1001</td>
+					</tr>
+					<tr>
+						<td>10</td>
+						<td>1010</td>
+					</tr>
+					<tr>
+						<td>11</td>
+						<td>1011</td>
+					</tr>
+					<tr>
+						<td>12</td>
+						<td>1100</td>
+					</tr>
+					<tr>
+						<td>13</td>
+						<td>1101</td>
+					</tr>
+					<tr>
+						<td>14</td>
+						<td>1110</td>
+					</tr>
+					<tr>
+						<td>15</td>
+						<td>1111</td>
+					</tr>
+					<tr>
+						<td>16</td>
+						<td>10000</td>
+					</tr>
+					<tr>
+						<td>17</td>
+						<td>10001</td>
+					</tr>
+				</table>
+				<table style="float: left; width: 30%; margin-right: 1em;">
+					<tr>
+						<td>Base 10</td>
+						<td>Base 2</td>
+					</tr>
+					<tr>
+						<td>18</td>
+						<td>10010</td>
+					</tr>
+					<tr>
+						<td>19</td>
+						<td>10011</td>
+					</tr>
+					<tr>
+						<td>20</td>
+						<td>10100</td>
+					</tr>
+					<tr>
+						<td>21</td>
+						<td>10101</td>
+					</tr>
+					<tr>
+						<td>22</td>
+						<td>10110</td>
+					</tr>
+					<tr>
+						<td>23</td>
+						<td>10111</td>
+					</tr>
+					<tr>
+						<td>24</td>
+						<td>11000</td>
+					</tr>
+					<tr>
+						<td>25</td>
+						<td>11001</td>
+					</tr>
+					<tr>
+						<td>26</td>
+						<td>11010</td>
+					</tr>
+				</table>
+			</section>
+
+			<section>
+				<h2>decbin()</h2>
+				<p>Función que convierte de decimal a binario.</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">decbin</span><span style="color:#003369;"> </span>( <span style="color:#881350;">int</span> <span style="color:#825900;">$number</span> )</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+echo decbin(12); // Muestra 1100
+echo decbin(20000); // Muestra 100111000100000
 				</code></pre>
 			</section>
 
 			<section>
-				<h2>Visualizar un array</h2>
-				<h3>print_r() y var_dump()</h3>
-				<p>Muestran un array de forma legible por humanos. <code>var_dump()</code> muestra además información acerca de los tipos de datos.</p>
+				<h2>bindec()</h2>
+				<p>Función que convierte de binario a decimal.</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; ">number <span style="color:#661aa9;">bindec</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$binary_string</span> )</div>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$var = array('uno' => 1, 'dos' => 2, 'tres' => 3);
-print_r($var);
-				</code></pre>
-				<p>Muestra:</p>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-Array
-(
-    [uno] => 1
-    [dos] => 2
-    [tres] => 3
-)
+echo bindec("1100"); // Muestra 12
+echo bindec("100111000100000"); // Muestra 20000
 				</code></pre>
 			</section>
 
 			<section>
-				<h2>Iniciar un array</h2>
-				<h3>Array indexado:</h3>
+				<h2>Números en octal</h2>
+				<p>Al igual que hay números en base 10 y en base 2, también hay otras bases usadas frecuentemente, como la base octal (base 8)</p>
+				<table style="float: left; width: 30%; margin-right: 1em;">
+					<tr>
+						<td>Base 10</td>
+						<td>Base 2</td>
+						<td>Base 8</td>
+					</tr>
+					<tr>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>10</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>11</td>
+						<td>3</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>100</td>
+						<td>4</td>
+					</tr>
+					<tr>
+						<td>5</td>
+						<td>101</td>
+						<td>5</td>
+					</tr>
+					<tr>
+						<td>6</td>
+						<td>110</td>
+						<td>6</td>
+					</tr>
+					<tr>
+						<td>7</td>
+						<td>111</td>
+						<td>7</td>
+					</tr>
+					<tr>
+						<td>8</td>
+						<td>1000</td>
+						<td>10</td>
+					</tr>
+				</table>
+				<table style="float: left; width: 30%; margin-right: 1em;">
+					<tr>
+						<td>Base 10</td>
+						<td>Base 2</td>
+						<td>Base 8</td>
+					</tr>
+					<tr>
+						<td>9</td>
+						<td>1001</td>
+						<td>11</td>
+					</tr>
+					<tr>
+						<td>10</td>
+						<td>1010</td>
+						<td>12</td>
+					</tr>
+					<tr>
+						<td>11</td>
+						<td>1011</td>
+						<td>13</td>
+					</tr>
+					<tr>
+						<td>12</td>
+						<td>1100</td>
+						<td>14</td>
+					</tr>
+					<tr>
+						<td>13</td>
+						<td>1101</td>
+						<td>15</td>
+					</tr>
+					<tr>
+						<td>14</td>
+						<td>1110</td>
+						<td>16</td>
+					</tr>
+					<tr>
+						<td>15</td>
+						<td>1111</td>
+						<td>17</td>
+					</tr>
+					<tr>
+						<td>16</td>
+						<td>10000</td>
+						<td>20</td>
+					</tr>
+					<tr>
+						<td>17</td>
+						<td>10001</td>
+						<td>21</td>
+					</tr>
+				</table>
+				<table style="float: left; width: 30%; margin-right: 1em;">
+					<tr>
+						<td>Base 10</td>
+						<td>Base 2</td>
+						<td>Base 8</td>
+					</tr>
+					<tr>
+						<td>18</td>
+						<td>10010</td>
+						<td>22</td>
+					</tr>
+					<tr>
+						<td>19</td>
+						<td>10011</td>
+						<td>23</td>
+					</tr>
+					<tr>
+						<td>20</td>
+						<td>10100</td>
+						<td>24</td>
+					</tr>
+					<tr>
+						<td>21</td>
+						<td>10101</td>
+						<td>25</td>
+					</tr>
+					<tr>
+						<td>22</td>
+						<td>10110</td>
+						<td>26</td>
+					</tr>
+					<tr>
+						<td>23</td>
+						<td>10111</td>
+						<td>27</td>
+					</tr>
+					<tr>
+						<td>24</td>
+						<td>11000</td>
+						<td>30</td>
+					</tr>
+					<tr>
+						<td>25</td>
+						<td>11001</td>
+						<td>31</td>
+					</tr>
+					<tr>
+						<td>26</td>
+						<td>11010</td>
+						<td>32</td>
+					</tr>
+				</table>
+				<p>Podemos usar números en base 8 precediendo al valor con un 0</p>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$x = array(5,12,15);
-
-// Desde PHP 5.4:
-$x = [5,12,15];
-				</code></pre>
-
-				<h3>Array asociativo:</h3>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$x = array('xml' => 'eXtensible Markup Language');
-
-// Desde PHP 5.4:
-$x = ['xml' => 'eXtensible Markup Language'];
-				</code></pre>
-				<p>Pregunta de nota. ¿Cuántos elementos tiene este array?</p>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$x = ['1' => 'A', 1 => 'B', 'C', 2 => 'D'];
-echo count($x);
+					if (12 == 014) { echo "Iguales"; } else { echo "diferentes"; }
 				</code></pre>
 			</section>
 
 			<section>
-				<h3>range()</h3>
-				<p>Función que <em>rellena</em> un array con un rango de números.</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">array</span> <span style="color:#661aa9;">range</span><span style="color:#003369;"> </span>( mixed <span style="color:#825900;">$start</span> , mixed <span style="color:#825900;">$end</span> [, number <span style="color:#825900;">$step</span> = <span style="color:#0000ff;">1</span> ] )</div><br />
-				<p>Ejemplos:</p>
+				<h2>decoct()</h2>
+				<p>Convierte un valor entero a un string con su representación octal.</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">decoct</span><span style="color:#003369;"> </span>( <span style="color:#881350;">int</span> <span style="color:#825900;">$number</span> )</div>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$array = range(0,10); // array(0,1,2,3,4,5,6,7,8,9,10)
-$array = range(0,10,2); // array(0,2,4,6,8,10)
-$array = range(10,0,-1); // array(10,9,8,7,6,5,4,3,2,1,0)
+$numero1 = 12; // Asigna 12
+$numero2 = 014; // Asigna 12
+echo decoct($numero1); // Muestra "14"
+echo decoct($numero2); // Muestra "14"
+				</code></pre>
+			</section>
 
-// for($i=0; $i&lt;=500; $i++) {
-foreach(range(0,500) as $i) {
-	echo "Iteración $i\n";
+			<section>
+				<h2>octdec()</h2>
+				<p>Convierte un string con un valor octal a un entero decimal.</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; ">number <span style="color:#661aa9;">octdec</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$octal_string</span> )</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+octdec("8"); // Devuelve un 8 entero
+octdec("14"); // Devuelve un 12 entero
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Números hexadecimales</h2>
+				<p>Son en base 16 (el total de valores que pueden contener 4 bits):</p>
+				<table style="float: left; width: 30%; margin-right: 1em;">
+					<tr>
+						<td>Base 10</td>
+						<td>Base 2</td>
+						<td>Base 8</td>
+						<td>Base 16</td>
+					</tr>
+					<tr>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>10</td>
+						<td>2</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>11</td>
+						<td>3</td>
+						<td>3</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>100</td>
+						<td>4</td>
+						<td>4</td>
+					</tr>
+					<tr>
+						<td>5</td>
+						<td>101</td>
+						<td>5</td>
+						<td>5</td>
+					</tr>
+					<tr>
+						<td>6</td>
+						<td>110</td>
+						<td>6</td>
+						<td>6</td>
+					</tr>
+					<tr>
+						<td>7</td>
+						<td>111</td>
+						<td>7</td>
+						<td>7</td>
+					</tr>
+					<tr>
+						<td>8</td>
+						<td>1000</td>
+						<td>10</td>
+						<td>8</td>
+					</tr>
+				</table>
+				<table style="float: left; width: 30%; margin-right: 1em;">
+					<tr>
+						<td>Base 10</td>
+						<td>Base 2</td>
+						<td>Base 8</td>
+						<td>Base 16</td>
+					</tr>
+					<tr>
+						<td>9</td>
+						<td>1001</td>
+						<td>11</td>
+						<td>9</td>
+					</tr>
+					<tr>
+						<td>10</td>
+						<td>1010</td>
+						<td>12</td>
+						<td>A</td>
+					</tr>
+					<tr>
+						<td>11</td>
+						<td>1011</td>
+						<td>13</td>
+						<td>B</td>
+					</tr>
+					<tr>
+						<td>12</td>
+						<td>1100</td>
+						<td>14</td>
+						<td>C</td>
+					</tr>
+					<tr>
+						<td>13</td>
+						<td>1101</td>
+						<td>15</td>
+						<td>D</td>
+					</tr>
+					<tr>
+						<td>14</td>
+						<td>1110</td>
+						<td>16</td>
+						<td>E</td>
+					</tr>
+					<tr>
+						<td>15</td>
+						<td>1111</td>
+						<td>17</td>
+						<td>F</td>
+					</tr>
+					<tr>
+						<td>16</td>
+						<td>10000</td>
+						<td>20</td>
+						<td>10</td>
+					</tr>
+					<tr>
+						<td>17</td>
+						<td>10001</td>
+						<td>21</td>
+						<td>11</td>
+					</tr>
+				</table>
+				<table style="float: left; width: 30%; margin-right: 1em;">
+					<tr>
+						<td>Base 10</td>
+						<td>Base 2</td>
+						<td>Base 8</td>
+						<td>Base 16</td>
+					</tr>
+					<tr>
+						<td>18</td>
+						<td>10010</td>
+						<td>22</td>
+						<td>12</td>
+					</tr>
+					<tr>
+						<td>19</td>
+						<td>10011</td>
+						<td>23</td>
+						<td>13</td>
+					</tr>
+					<tr>
+						<td>20</td>
+						<td>10100</td>
+						<td>24</td>
+						<td>14</td>
+					</tr>
+					<tr>
+						<td>21</td>
+						<td>10101</td>
+						<td>25</td>
+						<td>15</td>
+					</tr>
+					<tr>
+						<td>22</td>
+						<td>10110</td>
+						<td>26</td>
+						<td>16</td>
+					</tr>
+					<tr>
+						<td>23</td>
+						<td>10111</td>
+						<td>27</td>
+						<td>17</td>
+					</tr>
+					<tr>
+						<td>24</td>
+						<td>11000</td>
+						<td>30</td>
+						<td>18</td>
+					</tr>
+					<tr>
+						<td>25</td>
+						<td>11001</td>
+						<td>31</td>
+						<td>19</td>
+					</tr>
+					<tr>
+						<td>26</td>
+						<td>11010</td>
+						<td>32</td>
+						<td>1A</td>
+					</tr>
+				</table>
+				<p style="clear:both;">Se usan para indicar colores en CSS. PHP los permite de manera interna precediendo el valor con 0x</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$numero1 = 0x10; // 16
+$numero2 = 0xAAA; // 2730
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>dechex()</h2>
+				<p>Convierte un valor entero a un string en hexadecimal</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">dechex</span><span style="color:#003369;"> </span>( <span style="color:#881350;">int</span> <span style="color:#825900;">$number</span> )</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+echo dechex(15); // Muestra "A";
+echo dechex(9);  // Muestra "9";
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>hexdec()</h2>
+				<p>Convierte una representación hexadecimal a su valor decimal</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; ">number <span style="color:#661aa9;">hexdec</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$hex_string</span> )</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+echo hexdec("FFFFFF"); // Muestra 16777215
+echo hexdec("10"); // Muestra "16"
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Precisión de los números</h2>
+				<p>Una variable de tipo integer de PHP no puede contener un valor arbitrariamente grande. Su valor viene limitado por la plataforma sobre la que funciona.<br /><br /></p>
+				<h3>Precisión según plataforma</h3>
+				<table style="font-size: 0.8em !important;">
+					<thead>
+						<tr>
+							<td>Plataformas de 32 bits</td>
+							<td>Plataformas de 64 bits</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2147483647</td>
+							<td>9223372036854775807</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>Si se sobrepasan esos valores, se convierten a Float.</p>
+				<p>En dichos casos es recomendable recurrir a las funciones BC Math o GMP.</p>
+			</section>
+
+			<section>
+				<h2>base_convert()</h2>
+				<p>Convierte un número entre dos bases</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">base_convert</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$number</span> , <span style="color:#881350;">int</span> <span style="color:#825900;">$frombase</span> , <span style="color:#881350;">int</span> <span style="color:#825900;">$tobase</span> )</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+echo base_convert("11", 2, 10); // Muestra un 3
+echo base_convert("10", 10, 16); // Muestra un A
+echo base_convert("22", 7, 6); // Muestra un 24
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>floor()</h2>
+				<p>Redondea a la baja un número real</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">float</span> <span style="color:#661aa9;">floor</span><span style="color:#003369;"> </span>( <span style="color:#881350;">float</span> <span style="color:#825900;">$value</span> )</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+echo floor(2); // Muestra 2
+echo floor(2.5); // Muestra 2
+echo floor(2.3); // Muestra 2
+echo floor(2.9); // Muestra 2
+				</code></pre>
+				<p>Es equivalente a <code>(int) $value</code>.</p>
+			</section>
+
+			<section>
+				<h2>ceil()</h2>
+				<p>Redondea al alza un número real</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">float</span> <span style="color:#661aa9;">ceil</span><span style="color:#003369;"> </span>( <span style="color:#881350;">float</span> <span style="color:#825900;">$value</span> )</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+echo ceil(2); // Muestra 2
+echo ceil(2.5); // Muestra 3
+echo ceil(2.3); // Muestra 3
+echo ceil(2.9); // Muestra 3
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>round()</h2>
+				<p>Redondea al entero más próximo</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">float</span> <span style="color:#661aa9;">ceil</span><span style="color:#003369;"> </span>( <span style="color:#881350;">float</span> <span style="color:#825900;">$value</span> )</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+echo round(2); // Muestra 2
+echo round(2.3); // Muestra 2
+echo round(2.5); // Muestra 3
+echo round(2.9); // Muestra 3
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>rand()</h2>
+				<p>Genera un número pseudoaleatorio</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">int</span> <span style="color:#661aa9;">rand</span><span style="color:#003369;"> </span>( <span style="color:#881350;">int</span> <span style="color:#825900;">$min</span> , <span style="color:#881350;">int</span> <span style="color:#825900;">$max</span> )</div>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+echo rand(0, 10); // Genera un número aleatorio entre 0 y 10
+echo rand(0, 60); // Genera un número al azar entre 0 y 60
+				</code></pre>
+				<p>Restablece el generador de números aleatorios</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; ">void <span style="color:#661aa9;">srand</span><span style="color:#003369;"> </span>([ <span style="color:#881350;">int</span> <span style="color:#825900;">$seed</span> ] )</div>
+				<p>Devuelve el rango máximo de números aleatorios</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">int</span> <span style="color:#661aa9;">getrandmax</span><span style="color:#003369;"> </span>( void )</div>
+			</section>
+
+			<section>
+				<h2>pi()</h2>
+				<p>Devuelve el número Pi</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">float</span> <span style="color:#661aa9;">pi</span><span style="color:#003369;"> </span>( void )</div>
+				<p>En su lugar se podría utilizar la constante predefinida <code>M_PI</code></p>
+			</section>
+
+			<section>
+				<h2>pow()</h2>
+				<p>Elevar un número a la potencia indicada</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; ">number <span style="color:#661aa9;">pow</span><span style="color:#003369;"> </span>( number <span style="color:#825900;">$base</span> , number <span style="color:#825900;">$exp</span> )</div>
+				<p>Para elevar 2 a la 8 (2^8) podemos:
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+// Opción 1
+echo 2*2*2*2*2*2*2*2; // Poco práctico
+
+// Opción 2
+$num = 1;
+for ($i=0; $i&lt; 8; $i++) {
+	$num *= 2;
 }
+echo $num; // Muy engorroso
+
+// Opción 3
+echo pow(2, 8);
 				</code></pre>
+				<blockquote>Desde PHP 5.6 puedes poner <code>2**8</code> para 2<sup style="font-size:14px; position: relative; top:-5px;">8</sup>.</blockquote>
 			</section>
 
 			<section>
-				<h2>Añadiendo un elemento</h2>
-				<p>Podemos añadir un único elemento a un array ya existente</p>
-				<h3>Array indexado</h3>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$x[] = 6
-				</code></pre>
-				<h3>Array asociativo</h3>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$x['html'] = 'Hypertext Markup Language';
-				</code></pre>
+				<h2>sqrt()</h2>
+				<p>Calcula la raíz cuadrada del número indicado</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">float</span> <span style="color:#661aa9;">sqrt</span><span style="color:#003369;"> </span>( <span style="color:#881350;">float</span> <span style="color:#825900;">$arg</span> )</div>
 			</section>
 
 			<section>
-				<h3>array_push()</h3>
-				<p>Añade un elemento al final del array</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">int</span> <span style="color:#661aa9;">array_push</span><span style="color:#003369;"> </span>( <span style="color:#881350;">array</span> &amp;<span style="color:#825900;">$array</span> , mixed <span style="color:#825900;">$var</span> [, mixed $... ] )</div>
-				<p>El entero que devuelve es el número total de elementos del array</p>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$var1 = array('L','M','X','J','V','S');
-echo array_push($var1, 'D'); // Muestra un 7
-// Genera array("L","M","X","J","V","S","D")
-
-// Es equivalente a $var1[] = "D", solo que nos da el total de elementos
-				</code></pre>
+				<h2>Funciones trigonométricas</h2>
+				<ul>
+					<li><code>cos()</code> y <code>cosh()</code> - Coseno y coseno hiperbólico</li>
+					<li><code>sin()</code> y <code>sinh()</code> - Seno y seno hiperbólico</li>
+					<li><code>tan()</code> y <code>tanh()</code> - Tangente y tangente hiperbólica</li>
+					<li><code>acos()</code> y <code>acosh()</code> - Arcocoseno y arcocoseno hiperbólico</li>
+					<li><code>asin()</code> y <code>asinh()</code> - Arcoseno y arcoseno hiperbólico</li>
+					<li><code>atan()</code> y <code>atanh()</code> - Arcotangente y arcotangente hiperbólica</li>
+					<li><code>deg2rad()</code> - Grados a radianes</li>
+					<li><code>rad2deg()</code> - Radianes a grados</li>
+				</ul>
 			</section>
 
 			<section>
-				<h3>array_unshift()</h3>
-				<p>Añade un elemento al comienzo del array</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">int</span> <span style="color:#661aa9;">array_unshift</span><span style="color:#003369;"> </span>( <span style="color:#881350;">array</span> &amp;<span style="color:#825900;">$array</span> , mixed <span style="color:#825900;">$value1</span> [, mixed $... ] )</div>
-				<p>El entero que devuelve es el número total de elementos del array</p>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$var1 = array('L','M','X','J','V','S');
-echo array_unshift($var1, 'D'); // Muestra un 7
-// Genera array("D","L","M","X","J","V","S")
-				</code></pre>
-			</section>
-
-			<section>
-				<h2>Añadir muchos elementos</h2>
-				<h3>array_merge()</h3>
-				<p>Combina dos o más arrays</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">array</span> <span style="color:#661aa9;">array_merge</span><span style="color:#003369;"> </span>( <span style="color:#881350;">array</span> <span style="color:#825900;">$array1</span> [, <span style="color:#881350;">array</span> $... ] )</div>
-				<p>Ejemplos:</p>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$arr1 = array("L","M","X");
-$arr2 = array("J","V","S","D");
-
-$arr3 = array("Juan" => 18, "Luis" => 40, "Laura" => 29, "Ángela" => 21);
-$arr4 = array("Felipe" => 33, "Laura" => 25, "Pedro" => 36);
-
-$arr5 = array_merge($arr1, $arr2); // "L","M","X","J","V","S","D"
-$arr6 = array_merge($arr3, $arr4);
-
-echo $arr6["Laura"]; // Solo se guarda el último valor: 25
-				</code></pre>
-			</section>
-
-			<section>
-				<h3>Operador +</h3>
-				<p>Combina dos arrays. Pero prevalecen las claves del primero.</p>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$arr1 = array("L","M","X");
-$arr2 = array("J","V","S","D");
-
-$arr3 = array("Juan" => 18, "Luis" => 40, "Laura" => 29, "Ángela" => 21);
-$arr4 = array("Felipe" => 33, "Laura" => 25, "Pedro" => 36);
-
-$arr5 = $arr1 + $arr2; // "L","M","X","J","V","S","D"
-$arr6 = $arr3 + $arr4;
-
-echo $arr6["Laura"]; // Se guarda el primer valor: 29
-				</code></pre>
-			</section>
-
-			<section>
-				<h2>Eliminar un elemento</h2>
-				<h3>array_pop()</h3>
-				<p>Retorna y elimina el último elemento del array</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; ">mixed <span style="color:#661aa9;">array_pop</span><span style="color:#003369;"> </span>( <span style="color:#881350;">array</span> &amp;<span style="color:#825900;">$array</span> )</div>
-			</section>
-
-			<section>
-				<h3>array_shift()</h3>
-				<p>Retorna y elimina el primer elemento del array</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; ">mixed <span style="color:#661aa9;">array_shift</span><span style="color:#003369;"> </span>( <span style="color:#881350;">array</span> &amp;<span style="color:#825900;">$array</span> )</div>
-			</section>
-
-			<section>
-				<h2>Pilas</h2>
-				<p>Estructura de datos que representa una pila (stack), una lista LIFO (Last In First Out - Último en Entrar Primero en Salir).</p>
-				<p>Como la pila de platos sucios.</p>
-				<img src="assets/U20/Data_stack.svg" style="background-color: white;" />
-				<p>En PHP lo implementamos con un elemento de tipo <code>array</code> y las funciones <code>array_push()</code> y <code>array_pop()</code></p>
-			</section>
-
-			<section>
-				<h2>Colas</h2>
-				<p>Estructura de datos que representa una cola (queue), una lista FIFO (First In First Out - Primero en Entrar Primero en Salir).</p>
-				<p>Como la cola del banco.</p>
-				<img src="assets/U20/Data_Queue.svg" style="background-color: white;" />
-				<p>En PHP lo implementamos con un elemento de tipo <code>array</code> y las funciones <code>array_push()</code> y <code>array_shift()</code></p>
+				<h2>Otras funciones</h2>
+				<ul>
+					<li><code>abs()</code> - Valor absoluto de un número</li>
+					<li><code>min()</code> - Valor mínimo de una lista o de un array</li>
+					<li><code>max()</code> - Valor máximo de una lista o de un array</li>
+					<li><code>log()</code> - Logaritmo neperiano</li>
+				</ul>
 			</section>
 
 			<section>
 				<h2>Resumen</h2>
-				<p>Conceptos aprendidos:</p>
+				<p>Hemos visto:</p>
 				<ul>
-					<li class="fragment">Cómo averiguar si estamos ante un array: <code>is_array()</code></li>
-					<li class="fragment">Podemos contar sus elementos: <code>count()</code></li>
-					<li class="fragment">Visualizamos sus datos: <code>var_dump()</code> y <code>print_r()</code></li>
-					<li class="fragment">Creamos arrays indexados, asociativos o mediante <code>range()</code>
-					<li class="fragment">Añadimos un elemento mediante <code>[]</code>, accediendo a la clave, con <code>array_push()</code> y <code>array_unshift()</code></li>
-					<li class="fragment">Añadimos muchos elementos con el operador <code>+</code> o con <code>array_merge()</code></li>
-					<li class="fragment">Eliminamos elementos con <code>array_pop()</code> y <code>array_shift</code></li>
-					<li class="fragment">Cómo definir dos estructuras de datos: pilas y colas.</li>
-
+					<li>Cómo averiguar si estamos ante un número.</li>
+					<li>Cómo convertir entre bases.</li>
+					<li>Existen funciones para cifras grandes.</li>
+					<li>Funciones de redondeo.</li>
+					<li>Números aleatorios.</li>
+					<li>Número PI como función o constante.</li>
+					<li>Potecias y raíces cuadradas.</li>
+					<li>Funciones trigonométrica.</li>
+					<li>Y más.</li>
 				</ul>
 			</section>
 		</div>

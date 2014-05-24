@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Apache</title>
+
+	<meta name="description" content="PHP - Apache">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+
+		#DIV_1 {
+			text-align: left;
+		    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 0px 1px inset;
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+		    border: 0px none rgb(217, 217, 217);
+		    border-radius: 0 0 2px 2px;
+		    font: normal normal normal 16px/24px 'Source Code Pro', monospace;
+		    font-size: 20px;
+		    outline: rgb(115, 115, 115) none 0px;
+		    padding: 12px;
+		    margin: 5px 0;
+		}/*#DIV_1*/
+
+		#SPAN_2, #SPAN_7 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border: 0px none rgb(102, 153, 51);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#SPAN_2*/
+
+		#A_3 {
+		    color: rgb(102, 153, 51);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(102, 153, 51);
+		    word-spacing: -2px;
+		    border-top: 0px none rgb(102, 153, 51);
+		    border-right: 0px none rgb(102, 153, 51);
+		    border-bottom: 1px solid rgb(102, 153, 51);
+		    border-left: 0px none rgb(102, 153, 51);
+		    outline: rgb(102, 153, 51) none 0px;
+		}/*#A_3*/
+
+		#SPAN_3, #SPAN_5 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_3, #SPAN_5*/
+
+		#SPAN_4, #SPAN_6 {
+		    color: rgb(115, 115, 115);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(115, 115, 115);
+		    word-spacing: -2px;
+		    border: 0px none rgb(115, 115, 115);
+		    outline: rgb(115, 115, 115) none 0px;
+		}/*#SPAN_4, #SPAN_6*/
+
+		#STRONG_4 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    border-radius: 0 0 0 0;
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_4*/
+
+		#STRONG_5 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#STRONG_5*/
+
+		#CODE_8 {
+		    color: rgb(51, 102, 153);
+		    letter-spacing: -1px;
+		    text-decoration: none solid rgb(51, 102, 153);
+		    word-spacing: -2px;
+		    border: 0px none rgb(51, 102, 153);
+		    outline: rgb(51, 102, 153) none 0px;
+		}/*#CODE_8*/
+
+
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Apache</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Servidores web</h2>
+				<p>Existen muchos servidores de páginas web. Son los encargados de esperar peticiones y de responder a éstas.</p>
+				<p>Hemos utilizado un servidor muy sencillo: el <strong>servidor interno de PHP</strong>. Pero este servidor está pensado solo como entorno de desarrollo.</p>
+				<p>Para entornos más complejos, de pruebas y de producción, necesitaremos otro servidor más adecuado.</p>
+			</section>
+
+			<section>
+				<h2>Características de servidores web</h2>
+				<ul>
+					<li>Sirven ficheros estáticos y dinámicos.</li>
+					<li>Soporte para SSL/TLS.</li>
+					<li>Hosts virtuales.</li>
+					<li>Compresión.</li>
+					<li>Sistema de logs.</li>
+					<li>Control de accesos.</li>
+					<li>Reescritura de URL.</li>
+					<li>Balanceo de carga.</li>
+					<li>FastCGI (<em>Common Gateway Interface</em>).</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Servidor web Apache</h2>
+				<p>El más popular es, sin duda, <code>Apache</code>. Aunque su uso se está viendo reducido con la llegada de servidores ligeros como <code>nginx</code> o <code>lighttpd</code>. Hay páginas que utilizan los dos; Apache para contenido dinámico (PHP) y otro para contenido estático (imágenes, CSS, JavaScript).</p>
+				<p>Apache soporta un gran número de extensiones
+			</section>
+
+			<section>
+				<h2>Por qué Apache</h2>
+				<p>Fue el servidor que hizo crecer a Internet. Al ser tan popular, existe muchísima documentación y extensiones para ampliarlo. Además, es el que incorporan la mayoría de empresas de alojamiento web en los planes Linux (en Windows se suele utilizar IIS, el servidor de Microsoft).</p>
+			</section>
+
+			<section>
+				<h2>PHP y Apache</h2>
+				<p>PHP contiene funciones específicas para trabajar con el servidor web Apache. Por ejemplo:</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">string</span> <span id="SPAN_3"><strong id="STRONG_4">apache_get_version</strong></span> ( <span id="SPAN_5">void</span> )
+				</div>
+				<p>Nos devuelve la versión de Apache sobre la que estamos trabajando.</p><p>Mientras que:</p>
+				<div id="DIV_1">
+					 <span id="SPAN_2">array</span> <span id="SPAN_3"><strong id="STRONG_4">apache_get_modules</strong></span> ( <span id="SPAN_5">void</span> )
+				</div>
+				<p>Nos indica qué modulos tenemos disponibles en nuestra instalación de Apache.</p>
+			</section>
+
+			<section>
+				<h2>.htaccess</h2>
+				<p>Desde Apache se puede establecer la configuración global del servidor. Pero también configuraciones por hosts virtuales (dominios). Y, además, permite que el usuario aplique configuraciones a nivel de directorio. Esto último se realiza añadiendo el fichero <code>.htaccess</code> a la carpeta que se desea que se aplique la configuración.</p>
+				<p>Esta configuración a su vez, y de manera predeterminada, afectará a todas sus subcarpetas.</p>
+			</section>
+
+			<section>
+				<h2>Control de acceso</h2>
+				<p>Podemos proteger una carpeta directamente desde HTTP, sin necesidad de cookies ni sesiones. En el fichero <code>.htaccess</code> ponemos lo siguiente:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+AuthUserFile /ruta/absoluta/al/fichero/.htpasswd
+AuthName Mensaje_de_autenticación
+AuthType Basic
+
+require valid-user
+</code></pre>
+				<p>Para conocer la ruta absoluta podemos añadir este código PHP a un fichero en la misma carpeta:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;?php die($_SERVER["DOCUMENT_ROOT"]);
+</code></pre>
+				<p>¿Y cuál es el fichero <code>.htpasswd</code>?</p>
+			</section>
+
+			<section>
+				<h3>.htpasswd</h3>
+				<p>Es el fichero que contiene la lista de usuarios y contraseñas codificadas.</p>
+				<p>Debe estar en una ruta inaccesible mediante navegación web.</p>
+				<p>El formato ya lo conocemos: una línea por usuario. Y para cada usuario, se pone el nombre y la contraseña codificada, y separados por <code>:</code>. Por ejemplo:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+usuario:$apr1$svGZNl0h$W.fukM5TAByk4.5iwI5dI0
+</code></pre>
+				<p>Podemos generar las contraseñas de varias formas. Por ejemplo, usando un servicio web, o desde la consola (si tenemos Apache):</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+htpasswd -nb usuario password
+</code></pre>
+			</section>
+
+			<section>
+				<h2>Reescritura de URL</h2>
+				<p>Permite que URLs que enlazan a rutas que no existan sean gestionadas por un determinado archivo. Este archivo podría recibir la ruta <em>inexistente</em> en un parámetro <code>GET</code>, o consultando <code>$_SERVER['REQUEST_URI']</code>.</p>
+				<p>Por ejemplo, podemos tener esta URL:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+http://www.mipagina.com/noticias/nueva-version-de-php
+				</code></pre>
+				<p>E indicar que, si la URL no existe, la atienda el fichero <code>index.php</code>.</p>
+				<p>De esta forma:</p>
+				<ul>
+					<li>Tenemos URLs más amigables.</li>
+					<li>Las URL son semánticas: mejora el posicionamiento.</li>
+					<li>Una URL diferente para cada recurso</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Reescritura en Apache</h3>
+				<p>En Apache se utiliza el módulo <code>mod_rewrite</code>. Prueba a añadir este código al fichero <code>.htaccess</code>, crea un fichero <code>index.php</code> y carga cualquier URL que no exista:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;IfModule mod_rewrite.c&gt;
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+&lt;/IfModule&gt;
+</code></pre>
+				<p>Copia este código al fichero <code>index.php</code> y accede a una URL que no exista:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+&lt;pre&gt;
+&lt;?php
+print_r($_SERVER['REQUEST_URI']);
+?&gt;
+&lt;/pre&gt;
+</pre>
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<p>Breve introducción a los servidores web de producción, así como las características habituales.</p>
+				<p>Presentación del servidor web Apache.</p>
+				<p>PHP y Apache.</p>
+				<p>Qué es el fichero <code>.htaccess</code>.</p>
+				<p>Control de acceso, con <code>.htpasswd</code>.</p>
+				<p>Reescritura de URL, con <code>mod_rewrite</code>.</p>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

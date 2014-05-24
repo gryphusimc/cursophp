@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>Curso de PHP - Alojamientos web</title>
+	<title>Curso de PHP - En práctica</title>
 
-	<meta name="description" content="PHP - Alojamientos web">
+	<meta name="description" content="PHP - En práctica">
 	<meta name="author" content="Jesús Ruiz-Ayúcar">
 
 	<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -48,94 +48,6 @@
 		sup {
 			font-size: 0.5em !important;
 		}
-
-		#DIV_1 {
-			text-align: left;
-		    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 0px 1px inset;
-		    color: rgb(115, 115, 115);
-		    letter-spacing: -1px;
-		    text-decoration: none solid rgb(115, 115, 115);
-		    word-spacing: -2px;
-		    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
-		    border: 0px none rgb(217, 217, 217);
-		    border-radius: 0 0 2px 2px;
-		    font: normal normal normal 16px/24px 'Source Code Pro', monospace;
-		    font-size: 20px;
-		    outline: rgb(115, 115, 115) none 0px;
-		    padding: 12px;
-		    margin: 5px 0;
-		}/*#DIV_1*/
-
-		#SPAN_2, #SPAN_7 {
-		    color: rgb(102, 153, 51);
-		    letter-spacing: -1px;
-		    text-decoration: none solid rgb(102, 153, 51);
-		    word-spacing: -2px;
-		    border: 0px none rgb(102, 153, 51);
-		    border-radius: 0 0 0 0;
-		    outline: rgb(102, 153, 51) none 0px;
-		}/*#SPAN_2*/
-
-		#A_3 {
-		    color: rgb(102, 153, 51);
-		    letter-spacing: -1px;
-		    text-decoration: none solid rgb(102, 153, 51);
-		    word-spacing: -2px;
-		    border-top: 0px none rgb(102, 153, 51);
-		    border-right: 0px none rgb(102, 153, 51);
-		    border-bottom: 1px solid rgb(102, 153, 51);
-		    border-left: 0px none rgb(102, 153, 51);
-		    outline: rgb(102, 153, 51) none 0px;
-		}/*#A_3*/
-
-		#SPAN_3, #SPAN_5 {
-		    color: rgb(115, 115, 115);
-		    letter-spacing: -1px;
-		    text-decoration: none solid rgb(115, 115, 115);
-		    word-spacing: -2px;
-		    border: 0px none rgb(115, 115, 115);
-		    border-radius: 0 0 0 0;
-		    outline: rgb(115, 115, 115) none 0px;
-		}/*#SPAN_3, #SPAN_5*/
-
-		#SPAN_4, #SPAN_6 {
-		    color: rgb(115, 115, 115);
-		    letter-spacing: -1px;
-		    text-decoration: none solid rgb(115, 115, 115);
-		    word-spacing: -2px;
-		    border: 0px none rgb(115, 115, 115);
-		    outline: rgb(115, 115, 115) none 0px;
-		}/*#SPAN_4, #SPAN_6*/
-
-		#STRONG_4 {
-		    color: rgb(51, 102, 153);
-		    letter-spacing: -1px;
-		    text-decoration: none solid rgb(51, 102, 153);
-		    word-spacing: -2px;
-		    border: 0px none rgb(51, 102, 153);
-		    border-radius: 0 0 0 0;
-		    outline: rgb(51, 102, 153) none 0px;
-		}/*#STRONG_4*/
-
-		#STRONG_5 {
-		    color: rgb(51, 102, 153);
-		    letter-spacing: -1px;
-		    text-decoration: none solid rgb(51, 102, 153);
-		    word-spacing: -2px;
-		    border: 0px none rgb(51, 102, 153);
-		    outline: rgb(51, 102, 153) none 0px;
-		}/*#STRONG_5*/
-
-		#CODE_8 {
-		    color: rgb(51, 102, 153);
-		    letter-spacing: -1px;
-		    text-decoration: none solid rgb(51, 102, 153);
-		    word-spacing: -2px;
-		    border: 0px none rgb(51, 102, 153);
-		    outline: rgb(51, 102, 153) none 0px;
-		}/*#CODE_8*/
-
-
 	</style>
 </head>
 <body>
@@ -143,16 +55,60 @@
 		<div class="slides">
 			<section>
 				<h1>Curso de PHP</h1>
-				<h3>Alojamientos web</h3>
+				<h3>En práctica</h3>
 				<p>
 					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
 				</p>
 			</section>
 
 			<section>
-				<h2>Servidor web Apache</h2>
+				<h2>Actividad 1</h2>
+				<p>Los arrays son <em>listas</em> de valores. Estos valores pueden ser, a su vez, arrays. Supón el siguiente:</p>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$usuarios = array(
+	1 => array('nombre' => 'Juan', 'nacimiento' => '06/10/1988'),
+	2 => array('nombre' => 'Laura', 'nacimiento' => '16/12/1993'),
+	3 => array('nombre' => 'Daniel', 'nacimiento' => '22/09/1970'),
+	4 => array('nombre' => 'Hugo', 'nacimiento' => '01/09/1982'),
+	5 => array('nombre' => 'Elisa', 'nacimiento' => '27/02/1974'),
+);
 				</code></pre>
+				<p>Crea una aplicación que muestre el nombre de los mayores de 25 años.</p>
+			</section>
+
+			<section>
+				<h2>Actividad 2</h2>
+				<p>Tenemos que programar una máquina dispensadora de refrescos. Calcula el cambio óptimo (usando el menor número de billetes/monedas posible).</p>
+				<p>Pasos:</p>
+				<ol>
+					<li>Crea dos variables. Una con el del precio del producto y otra con la moneda/billete con que pagan.</li>
+					<li>Crea un array con todas las monedas/billetes que existen.</li>
+					<li>Calcula el cambio.</li>
+					<li>Calcula la mayor moneda/billete con la que puedes dar cambio.</li>
+					<li>Resta al cambio el valor obtenido en el paso 4.</li>
+					<li>Vuelve al paso 4, hasta que el cambio sea inferior que la menor de las monedas.</li>
+				</ol>
+			</section>
+
+			<section>
+				<h2>Actividad 3</h2>
+				<p>En la actividad 2 no hemos tenido en cuenta un problema: ¿qué hacemos si nos falta alguna moneda? Actualiza el programa de manera que devuelva el cambio óptimo con las monedas disponibles. Si no fuera posible dar el cambio, mostrar un mensaje.</p>
+			</section>
+
+			<section>
+				<h2>Actividad 4</h2>
+				<p>Queremos hacer una aplicación multiplataforma que analice fechas que están en este formato de strftime:<br />«<code>%d del %m del %Y</code>». Averigua cómo hacerlo.</p>
+				<ul>
+					<li><code>%d</code> - día del mes con dos dígitos</li>
+					<li><code>%m</code> - mes del año con dos dígitos</li>
+					<li><code>%Y</code> - año con cuatro dígitos</li>
+				</ul>
+				<p><br />¿Funcionaría tu solución con este formato de la función date?<br />«<code>j \d\e\l n \d\e\l Y</code>».
+				<ul>
+					<li><code>j</code> - día del mes con uno o dos dígitos</li>
+					<li><code>n</code> - mes del año con uno o dos dígitos</li>
+					<li><code>Y</code> - Año con cuatro dígitos</li>
+				</ul>
 			</section>
 		</div>
 	</div>

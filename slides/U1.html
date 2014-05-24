@@ -26,6 +26,29 @@
 	<!--[if lt IE 9]>
 	<script src="lib/js/html5shiv.js"></script>
 	<![endif]-->
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 0.7em !important; 
+			line-height: 1.8em !important;
+
+		}
+		table td {
+			padding: 0em !important;
+			border: 1px solid white !important;
+			text-align: center !important;
+		}
+		table th {
+			text-align: center !important;
+		}
+		code {
+			color: orange;
+		}
+		sup {
+			font-size: 0.5em !important;
+		}
+	</style>
 </head>
 <body>
 	<div class="reveal">
@@ -40,11 +63,11 @@
 
 			<section>
 				<h2>Componentes de una página web</h2>
-				<p>Vamos a recordar cómo se forma una página web</p>
+				<p>Vamos a repasar rápidamente de qué se compone un documento web</p>
 				<ul>
-					<li class="fragment">HTML<span class="fragment">: Contenido</span></li>
-					<li class="fragment">CSS <span class="fragment">: Aspecto</span></li>
-					<li class="fragment">JavaScript <span class="fragment">: Comportamiento</span></li>
+					<li class="fragment"><code>HTML</code><span class="fragment">: Contenido</span></li>
+					<li class="fragment"><code>CSS</code><span class="fragment">: Aspecto</span></li>
+					<li class="fragment"><code>JavaScript</code><span class="fragment">: Comportamiento</span></li>
 					<li class="fragment">Recursos: Imágenes, fuentes, vídeos, etc.</li>
 				</ul>
 			</section>
@@ -53,11 +76,11 @@
 				<h2>HTML</h2>
 				<h3>Características</h3>
 				<ul>
-					<li class="fragment">Hypertext Markup Language</li>
+					<li class="fragment"><code>HyperText Markup Language</code></li>
 					<li class="fragment">Lenguaje de marcado (etiquetas o elementos)</li>
 					<li class="fragment">Define la estructura del contenido</li>
-					<li class="fragment">No define cómo se debe ver el contenido (CSS)</li>
-					<li class="fragment">Sintáxis tipo árbol, compuesto de elementos HTML</li>
+					<li class="fragment">No define cómo se debe ver el contenido (<code>CSS</code>)</li>
+					<li class="fragment">Sintáxis tipo árbol, compuesto de elementos <code>HTML</code></li>
 				</ul>
 			</section>
 
@@ -66,7 +89,7 @@
 				<h3>Elementos HTML</h3>
 				<ul>
 					<li class="fragment">Componente mínimo</li>
-					<li class="fragment">Define un tipo de contenido: p, a, img, h1</li>
+					<li class="fragment">Define un tipo de contenido: <code>p</code>, <code>a</code>, <code>img</code>, <code>h1</code></li>
 					<li class="fragment">Pueden contener texto u otros elementos HTML</li>
 					<li class="fragment">Pueden tener atributos</li>
 				</ul>
@@ -140,7 +163,7 @@ li.ultimo { text-decoration: underline; }
 				</ul>
 
 				<h3 class="fragment" style="margin-top: 1em;">DOM</h3>
-				<p class="fragment">Es un modelo que utiliza el navegador para representar el documento HTML que se está visualizando. JavaScript trabaja con el DOM para leer y modificar el documento.</p>
+				<p class="fragment">Es un modelo que utiliza el navegador para representar el documento HTML que se está visualizando. JavaScript trabaja con el <code>DOM</code> para leer y modificar el documento.</p>
 			</section>
 
 			<section>

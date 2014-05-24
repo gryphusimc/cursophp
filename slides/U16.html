@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>Curso de PHP - Funciones numéricas</title>
+	<title>Curso de PHP - Dividir en ficheros</title>
 
-	<meta name="description" content="PHP - Funciones numéricas">
+	<meta name="description" content="PHP - Dividir en ficheros">
 	<meta name="author" content="Jesús Ruiz-Ayúcar">
 
 	<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -39,9 +39,6 @@
 			border: 1px solid white !important;
 			text-align: center !important;
 		}
-		code {
-			color: orange;
-		}
 	</style>
 </head>
 <body>
@@ -49,780 +46,142 @@
 		<div class="slides">
 			<section>
 				<h1>Curso de PHP</h1>
-				<h3>Funciones numéricas</h3>
+				<h3>Dividir en ficheros</h3>
 				<p>
 					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
 				</p>
 			</section>
 
 			<section>
-				<h2>Averiguar si es un número</h2>
-				<p>Dada la naturaleza dinámica de PHP, no podemos garantizar que una variable va a tener el tipo de dato que deseamos.</p>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$num1 = "#12"; // comienza con '#', luego se convierte a 0
-$num2 = 10;
-echo suma($num1, $num2); // ¡A suma() le llega un string!
-				</code></pre>
-				<p>Tenemos 3 funciones:</p>
-				<ol>
-					<li><code>is_numeric()</code></li>
-					<li><code>is_int()</code>, <code>is_integer()</code> o <code>is_long()</code></li>
-					<li><code>is_float()</code>, <code>is_double()</code> o <code>is_real()</code></li>
-				</ol>
+				<h2>Problemática</h2>
+				<p>El código crece: se hace inmantenible<br /><br /></p>
+
+				<div class="fragment">
+					<h3>Solución</h3>
+					<p>Dividimos el código en ficheros.<br /><br /></p>
+				</div>
+
+				<div class="fragment">
+					<h3>Ventajas:</h3>
+					<ul>
+						<li>Código más mantenible</li>
+						<li>Pueden trabajar varios desarrolladores en paralelo</li>
+						<li>Facilitamos reutilizar código</li>
+					</ul>
+				</div>
 			</section>
 
 			<section>
-				<h2>is_numeric()</h2>
-				<p>Comprueba si una variable es un número o un string numérico.</p>
-				<p>Resumen:</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">bool</span> <span style="color:#661aa9;">is_numeric</span><span style="color:#003369;"> </span>( mixed <span style="color:#825900;">$var</span> )</div>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-is_numeric(12); // TRUE
-is_numeric(1.13); // TRUE
-is_numeric(112,3); // FALSE y Warning
-is_numeric("61"); // TRUE
-is_numeric("#61"); // FALSE
-is_numeric("doce"); // FALSE
-				</code></pre>
-			</section>
-
-			<section>
-				<h2>is_int()</h2>
-				<p>Comprueba si una variable es un número entero.</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">bool</span> <span style="color:#661aa9;">is_int</span><span style="color:#003369;"> </span>( mixed <span style="color:#825900;">$var</span> )</div>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-is_int(12); // TRUE
-is_int(1.13); // FALSE
-is_int(112,3); // FALSE y Warning
-is_int("61"); // FALSE
-				</code></pre>
-				<p><code>is_integer()</code> e <code>is_long()</code> son equivalentes.</p>
-			</section>
-
-			<section>
-				<h2>is_float()</h2>
-				<p>Comprueba si una variable es un número real</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">bool</span> <span style="color:#661aa9;">is_float</span><span style="color:#003369;"> </span>( mixed <span style="color:#825900;">$var</span> )</div>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-is_float(12); // FALSE
-is_float(1.13); // TRUE
-is_float(112,3); // FALSE y Warning
-is_float("61.3"); // FALSE
-				</code></pre>
-				<p><code>is_double()</code> e <code>is_real()</code> son equivalentes.</p>
-			</section>
-
-			<section>
-				<h2>Números binarios</h2>
-				<p>Nuestro sistemas numéricos son en base diez (porque tenemos 10 dedos). Pero los ordenadores internamente funcionan en base 2, y por tanto solo utilizan 1 o 0.</p>
-				<p>Equivalencias:</p>
-				<table style="float: left; width: 30%; margin-right: 1em;">
-					<tr>
-						<td>Base 10</td>
-						<td>Base 2</td>
-					</tr>
-					<tr>
-						<td>0</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>10</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>11</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>100</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>101</td>
-					</tr>
-					<tr>
-						<td>6</td>
-						<td>110</td>
-					</tr>
-					<tr>
-						<td>7</td>
-						<td>111</td>
-					</tr>
-					<tr>
-						<td>8</td>
-						<td>1000</td>
-					</tr>
-				</table>
-				<table style="float: left; width: 30%; margin-right: 1em;">
-					<tr>
-						<td>Base 10</td>
-						<td>Base 2</td>
-					</tr>
-					<tr>
-						<td>9</td>
-						<td>1001</td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td>1010</td>
-					</tr>
-					<tr>
-						<td>11</td>
-						<td>1011</td>
-					</tr>
-					<tr>
-						<td>12</td>
-						<td>1100</td>
-					</tr>
-					<tr>
-						<td>13</td>
-						<td>1101</td>
-					</tr>
-					<tr>
-						<td>14</td>
-						<td>1110</td>
-					</tr>
-					<tr>
-						<td>15</td>
-						<td>1111</td>
-					</tr>
-					<tr>
-						<td>16</td>
-						<td>10000</td>
-					</tr>
-					<tr>
-						<td>17</td>
-						<td>10001</td>
-					</tr>
-				</table>
-				<table style="float: left; width: 30%; margin-right: 1em;">
-					<tr>
-						<td>Base 10</td>
-						<td>Base 2</td>
-					</tr>
-					<tr>
-						<td>18</td>
-						<td>10010</td>
-					</tr>
-					<tr>
-						<td>19</td>
-						<td>10011</td>
-					</tr>
-					<tr>
-						<td>20</td>
-						<td>10100</td>
-					</tr>
-					<tr>
-						<td>21</td>
-						<td>10101</td>
-					</tr>
-					<tr>
-						<td>22</td>
-						<td>10110</td>
-					</tr>
-					<tr>
-						<td>23</td>
-						<td>10111</td>
-					</tr>
-					<tr>
-						<td>24</td>
-						<td>11000</td>
-					</tr>
-					<tr>
-						<td>25</td>
-						<td>11001</td>
-					</tr>
-					<tr>
-						<td>26</td>
-						<td>11010</td>
-					</tr>
-				</table>
-			</section>
-
-			<section>
-				<h2>decbin()</h2>
-				<p>Función que convierte de decimal a binario.</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">decbin</span><span style="color:#003369;"> </span>( <span style="color:#881350;">int</span> <span style="color:#825900;">$number</span> )</div>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-echo decbin(12); // Muestra 1100
-echo decbin(20000); // Muestra 100111000100000
-				</code></pre>
-			</section>
-
-			<section>
-				<h2>bindec()</h2>
-				<p>Función que convierte de binario a decimal.</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; ">number <span style="color:#661aa9;">bindec</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$binary_string</span> )</div>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-echo bindec("1100"); // Muestra 12
-echo bindec("100111000100000"); // Muestra 20000
-				</code></pre>
-			</section>
-
-			<section>
-				<h2>Números en octal</h2>
-				<p>Al igual que hay números en base 10 y en base 2, también hay otras bases usadas frecuentemente, como la base octal (base 8)</p>
-				<table style="float: left; width: 30%; margin-right: 1em;">
-					<tr>
-						<td>Base 10</td>
-						<td>Base 2</td>
-						<td>Base 8</td>
-					</tr>
-					<tr>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>10</td>
-						<td>2</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>11</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>100</td>
-						<td>4</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>101</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>6</td>
-						<td>110</td>
-						<td>6</td>
-					</tr>
-					<tr>
-						<td>7</td>
-						<td>111</td>
-						<td>7</td>
-					</tr>
-					<tr>
-						<td>8</td>
-						<td>1000</td>
-						<td>10</td>
-					</tr>
-				</table>
-				<table style="float: left; width: 30%; margin-right: 1em;">
-					<tr>
-						<td>Base 10</td>
-						<td>Base 2</td>
-						<td>Base 8</td>
-					</tr>
-					<tr>
-						<td>9</td>
-						<td>1001</td>
-						<td>11</td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td>1010</td>
-						<td>12</td>
-					</tr>
-					<tr>
-						<td>11</td>
-						<td>1011</td>
-						<td>13</td>
-					</tr>
-					<tr>
-						<td>12</td>
-						<td>1100</td>
-						<td>14</td>
-					</tr>
-					<tr>
-						<td>13</td>
-						<td>1101</td>
-						<td>15</td>
-					</tr>
-					<tr>
-						<td>14</td>
-						<td>1110</td>
-						<td>16</td>
-					</tr>
-					<tr>
-						<td>15</td>
-						<td>1111</td>
-						<td>17</td>
-					</tr>
-					<tr>
-						<td>16</td>
-						<td>10000</td>
-						<td>20</td>
-					</tr>
-					<tr>
-						<td>17</td>
-						<td>10001</td>
-						<td>21</td>
-					</tr>
-				</table>
-				<table style="float: left; width: 30%; margin-right: 1em;">
-					<tr>
-						<td>Base 10</td>
-						<td>Base 2</td>
-						<td>Base 8</td>
-					</tr>
-					<tr>
-						<td>18</td>
-						<td>10010</td>
-						<td>22</td>
-					</tr>
-					<tr>
-						<td>19</td>
-						<td>10011</td>
-						<td>23</td>
-					</tr>
-					<tr>
-						<td>20</td>
-						<td>10100</td>
-						<td>24</td>
-					</tr>
-					<tr>
-						<td>21</td>
-						<td>10101</td>
-						<td>25</td>
-					</tr>
-					<tr>
-						<td>22</td>
-						<td>10110</td>
-						<td>26</td>
-					</tr>
-					<tr>
-						<td>23</td>
-						<td>10111</td>
-						<td>27</td>
-					</tr>
-					<tr>
-						<td>24</td>
-						<td>11000</td>
-						<td>30</td>
-					</tr>
-					<tr>
-						<td>25</td>
-						<td>11001</td>
-						<td>31</td>
-					</tr>
-					<tr>
-						<td>26</td>
-						<td>11010</td>
-						<td>32</td>
-					</tr>
-				</table>
-				<p>Podemos usar números en base 8 precediendo al valor con un 0</p>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-					if (12 == 014) { echo "Iguales"; } else { echo "diferentes"; }
-				</code></pre>
-			</section>
-
-			<section>
-				<h2>decoct()</h2>
-				<p>Convierte un valor entero a un string con su representación octal.</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">decoct</span><span style="color:#003369;"> </span>( <span style="color:#881350;">int</span> <span style="color:#825900;">$number</span> )</div>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$numero1 = 12; // Asigna 12
-$numero2 = 014; // Asigna 12
-echo decoct($numero1); // Muestra "14"
-echo decoct($numero2); // Muestra "14"
-				</code></pre>
-			</section>
-
-			<section>
-				<h2>octdec()</h2>
-				<p>Convierte un string con un valor octal a un entero decimal.</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; ">number <span style="color:#661aa9;">octdec</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$octal_string</span> )</div>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-octdec("8"); // Devuelve un 8 entero
-octdec("14"); // Devuelve un 12 entero
-				</code></pre>
-			</section>
-
-			<section>
-				<h2>Números hexadecimales</h2>
-				<p>Son en base 16 (el total de valores que pueden contener 4 bits):</p>
-				<table style="float: left; width: 30%; margin-right: 1em;">
-					<tr>
-						<td>Base 10</td>
-						<td>Base 2</td>
-						<td>Base 8</td>
-						<td>Base 16</td>
-					</tr>
-					<tr>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>10</td>
-						<td>2</td>
-						<td>2</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>11</td>
-						<td>3</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>100</td>
-						<td>4</td>
-						<td>4</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>101</td>
-						<td>5</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>6</td>
-						<td>110</td>
-						<td>6</td>
-						<td>6</td>
-					</tr>
-					<tr>
-						<td>7</td>
-						<td>111</td>
-						<td>7</td>
-						<td>7</td>
-					</tr>
-					<tr>
-						<td>8</td>
-						<td>1000</td>
-						<td>10</td>
-						<td>8</td>
-					</tr>
-				</table>
-				<table style="float: left; width: 30%; margin-right: 1em;">
-					<tr>
-						<td>Base 10</td>
-						<td>Base 2</td>
-						<td>Base 8</td>
-						<td>Base 16</td>
-					</tr>
-					<tr>
-						<td>9</td>
-						<td>1001</td>
-						<td>11</td>
-						<td>9</td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td>1010</td>
-						<td>12</td>
-						<td>A</td>
-					</tr>
-					<tr>
-						<td>11</td>
-						<td>1011</td>
-						<td>13</td>
-						<td>B</td>
-					</tr>
-					<tr>
-						<td>12</td>
-						<td>1100</td>
-						<td>14</td>
-						<td>C</td>
-					</tr>
-					<tr>
-						<td>13</td>
-						<td>1101</td>
-						<td>15</td>
-						<td>D</td>
-					</tr>
-					<tr>
-						<td>14</td>
-						<td>1110</td>
-						<td>16</td>
-						<td>E</td>
-					</tr>
-					<tr>
-						<td>15</td>
-						<td>1111</td>
-						<td>17</td>
-						<td>F</td>
-					</tr>
-					<tr>
-						<td>16</td>
-						<td>10000</td>
-						<td>20</td>
-						<td>10</td>
-					</tr>
-					<tr>
-						<td>17</td>
-						<td>10001</td>
-						<td>21</td>
-						<td>11</td>
-					</tr>
-				</table>
-				<table style="float: left; width: 30%; margin-right: 1em;">
-					<tr>
-						<td>Base 10</td>
-						<td>Base 2</td>
-						<td>Base 8</td>
-						<td>Base 16</td>
-					</tr>
-					<tr>
-						<td>18</td>
-						<td>10010</td>
-						<td>22</td>
-						<td>12</td>
-					</tr>
-					<tr>
-						<td>19</td>
-						<td>10011</td>
-						<td>23</td>
-						<td>13</td>
-					</tr>
-					<tr>
-						<td>20</td>
-						<td>10100</td>
-						<td>24</td>
-						<td>14</td>
-					</tr>
-					<tr>
-						<td>21</td>
-						<td>10101</td>
-						<td>25</td>
-						<td>15</td>
-					</tr>
-					<tr>
-						<td>22</td>
-						<td>10110</td>
-						<td>26</td>
-						<td>16</td>
-					</tr>
-					<tr>
-						<td>23</td>
-						<td>10111</td>
-						<td>27</td>
-						<td>17</td>
-					</tr>
-					<tr>
-						<td>24</td>
-						<td>11000</td>
-						<td>30</td>
-						<td>18</td>
-					</tr>
-					<tr>
-						<td>25</td>
-						<td>11001</td>
-						<td>31</td>
-						<td>19</td>
-					</tr>
-					<tr>
-						<td>26</td>
-						<td>11010</td>
-						<td>32</td>
-						<td>1A</td>
-					</tr>
-				</table>
-				<p style="clear:both;">Se usan para indicar colores en CSS. PHP los permite de manera interna precediendo el valor con 0x</p>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$numero1 = 0x10; // 16
-$numero2 = 0xAAA; // 2730
-				</code></pre>
-			</section>
-
-			<section>
-				<h2>dechex()</h2>
-				<p>Convierte un valor entero a un string en hexadecimal</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">dechex</span><span style="color:#003369;"> </span>( <span style="color:#881350;">int</span> <span style="color:#825900;">$number</span> )</div>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-echo dechex(15); // Muestra "A";
-echo dechex(9);  // Muestra "9";
-				</code></pre>
-			</section>
-
-			<section>
-				<h2>hexdec()</h2>
-				<p>Convierte una representación hexadecimal a su valor decimal</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; ">number <span style="color:#661aa9;">hexdec</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$hex_string</span> )</div>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-echo hexdec("FFFFFF"); // Muestra 16777215
-echo hexdec("10"); // Muestra "16"
-				</code></pre>
-			</section>
-
-			<section>
-				<h2>Precisión de los números</h2>
-				<p>Una variable de tipo integer de PHP no puede contener un valor arbitrariamente grande. Su valor viene limitado por la plataforma sobre la que funciona.<br /><br /></p>
-				<h3>Precisión según plataforma</h3>
-				<table style="font-size: 0.8em !important;">
-					<thead>
-						<tr>
-							<td>Plataformas de 32 bits</td>
-							<td>Plataformas de 64 bits</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>2147483647</td>
-							<td>9223372036854775807</td>
-						</tr>
-					</tbody>
-				</table>
-				<p>Si se sobrepasan esos valores, se convierten a Float.</p>
-				<p>En dichos casos es recomendable recurrir a las funciones BC Math o GMP.</p>
-			</section>
-
-			<section>
-				<h2>base_convert()</h2>
-				<p>Convierte un número entre dos bases</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">base_convert</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$number</span> , <span style="color:#881350;">int</span> <span style="color:#825900;">$frombase</span> , <span style="color:#881350;">int</span> <span style="color:#825900;">$tobase</span> )</div>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-echo base_convert("11", 2, 10); // Muestra un 3
-echo base_convert("10", 10, 16); // Muestra un A
-echo base_convert("22", 7, 6); // Muestra un 24
-				</code></pre>
-			</section>
-
-			<section>
-				<h2>floor()</h2>
-				<p>Redondea a la baja un número real</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">float</span> <span style="color:#661aa9;">floor</span><span style="color:#003369;"> </span>( <span style="color:#881350;">float</span> <span style="color:#825900;">$value</span> )</div>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-echo floor(2); // Muestra 2
-echo floor(2.5); // Muestra 2
-echo floor(2.3); // Muestra 2
-echo floor(2.9); // Muestra 2
-				</code></pre>
-				<p>Es equivalente a <code>(int) $value</code>.</p>
-			</section>
-
-			<section>
-				<h2>ceil()</h2>
-				<p>Redondea al alza un número real</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">float</span> <span style="color:#661aa9;">ceil</span><span style="color:#003369;"> </span>( <span style="color:#881350;">float</span> <span style="color:#825900;">$value</span> )</div>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-echo ceil(2); // Muestra 2
-echo ceil(2.5); // Muestra 3
-echo ceil(2.3); // Muestra 3
-echo ceil(2.9); // Muestra 3
-				</code></pre>
-			</section>
-
-			<section>
-				<h2>round()</h2>
-				<p>Redondea al entero más próximo</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">float</span> <span style="color:#661aa9;">ceil</span><span style="color:#003369;"> </span>( <span style="color:#881350;">float</span> <span style="color:#825900;">$value</span> )</div>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-echo round(2); // Muestra 2
-echo round(2.3); // Muestra 2
-echo round(2.5); // Muestra 3
-echo round(2.9); // Muestra 3
-				</code></pre>
-			</section>
-
-			<section>
-				<h2>rand()</h2>
-				<p>Genera un número pseudoaleatorio</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">int</span> <span style="color:#661aa9;">rand</span><span style="color:#003369;"> </span>( <span style="color:#881350;">int</span> <span style="color:#825900;">$min</span> , <span style="color:#881350;">int</span> <span style="color:#825900;">$max</span> )</div>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-echo rand(0, 10); // Genera un número aleatorio entre 0 y 10
-echo rand(0, 60); // Genera un número al azar entre 0 y 60
-				</code></pre>
-				<p>Restablece el generador de números aleatorios</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; ">void <span style="color:#661aa9;">srand</span><span style="color:#003369;"> </span>([ <span style="color:#881350;">int</span> <span style="color:#825900;">$seed</span> ] )</div>
-				<p>Devuelve el rango máximo de números aleatorios</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">int</span> <span style="color:#661aa9;">getrandmax</span><span style="color:#003369;"> </span>( void )</div>
-			</section>
-
-			<section>
-				<h2>pi()</h2>
-				<p>Devuelve el número Pi</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">float</span> <span style="color:#661aa9;">pi</span><span style="color:#003369;"> </span>( void )</div>
-				<p>En su lugar se podría utilizar la constante predefinida <code>M_PI</code></p>
-			</section>
-
-			<section>
-				<h2>pow()</h2>
-				<p>Elevar un número a la potencia indicada</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; ">number <span style="color:#661aa9;">pow</span><span style="color:#003369;"> </span>( number <span style="color:#825900;">$base</span> , number <span style="color:#825900;">$exp</span> )</div>
-				<p>Para elevar 2 a la 8 (2^8) podemos:
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-// Opción 1
-echo 2*2*2*2*2*2*2*2; // Poco práctico
-
-// Opción 2
-$num = 1;
-for ($i=0; $i&lt; 8; $i++) {
-	$num *= 2;
-}
-echo $num; // Muy engorroso
-
-// Opción 3
-echo pow(2, 8);
-				</code></pre>
-				<blockquote>Desde PHP 5.6 puedes poner <code>2**8</code> para 2<sup style="font-size:14px; position: relative; top:-5px;">8</sup>.</blockquote>
-			</section>
-
-			<section>
-				<h2>sqrt()</h2>
-				<p>Calcula la raíz cuadrada del número indicado</p>
-				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">float</span> <span style="color:#661aa9;">sqrt</span><span style="color:#003369;"> </span>( <span style="color:#881350;">float</span> <span style="color:#825900;">$arg</span> )</div>
-			</section>
-
-			<section>
-				<h2>Funciones trigonométricas</h2>
+				<h2>require e include</h2>
+				<p>Estas dos sentencias <strong>incluyen</strong> y <strong>evalúan</strong> el fichero indicado</p>
+				<br />
+				<h3>Diferencias</h3>
 				<ul>
-					<li><code>cos()</code> y <code>cosh()</code> - Coseno y coseno hiperbólico</li>
-					<li><code>sin()</code> y <code>sinh()</code> - Seno y seno hiperbólico</li>
-					<li><code>tan()</code> y <code>tanh()</code> - Tangente y tangente hiperbólica</li>
-					<li><code>acos()</code> y <code>acosh()</code> - Arcocoseno y arcocoseno hiperbólico</li>
-					<li><code>asin()</code> y <code>asinh()</code> - Arcoseno y arcoseno hiperbólico</li>
-					<li><code>atan()</code> y <code>atanh()</code> - Arcotangente y arcotangente hiperbólica</li>
-					<li><code>deg2rad()</code> - Grados a radianes</li>
-					<li><code>rad2deg()</code> - Radianes a grados</li>
+					<li><code style="color:orange;">require</code> - Si el fichero no existe, se produce un error que detiene la ejecución</li>
+					<li><code style="color:orange;">include</code> - Si el fichero no existe, se muestra un aviso y continúa la ejecución</li>
 				</ul>
 			</section>
 
 			<section>
-				<h2>Otras funciones</h2>
+				<h3>Ejemplo</h3>
+				foo.php
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+echo 'hola ';
+				</code></pre>
+
+				bar.php
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+include 'foo.php'; // muestra 'hola '
+require 'foo.php'; // muestra 'hola '
+include 'bee.php'; // muestra una alerta (warning), porque no existe
+require 'bee.php'; // muestra un error fatal, porque no existe, y se detiene
+echo 'fin'; // este código no llega a ejecutarse
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>require_once e include_once</h2>
+				<p>Son equivalentes a <code style="color:orange;">require</code> y a <code style="color:orange;">include</code>, salvo que únicamente incluyen y evalúan el fichero una única vez.</p>
+			</section>
+
+			<section>
+				<h3>Ejemplo</h3>
+				foo.php
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+echo 'hola ';
+				</code></pre>
+
+				bar.php
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+include_once 'foo.php'; // muestra 'hola '
+require_once 'foo.php'; // no muestra nada (ya había sido incluído antes)
+include_once 'bee.php'; // muestra una alerta (warning), porque no existe
+require_once 'bee.php'; // muestra un error fatal, porque no existe, y se detiene
+echo 'fin'; // este código no llega a ejecutarse
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Qué ficheros se pueden incluír</h2>
 				<ul>
-					<li><code>abs()</code> - Valor absoluto de un número</li>
-					<li><code>min()</code> - Valor mínimo de una lista o de un array</li>
-					<li><code>max()</code> - Valor máximo de una lista o de un array</li>
-					<li><code>log()</code> - Logaritmo neperiano</li>
+					<li>
+						<strong>Ruta absoluta</strong> - Indicando su ruta desde el raíz:
+						<ul>
+							<li><code style="color:orange;">/</code> en Linux y Mac.</li>
+							<li><code style="color:orange;">C:\</code> (o cualquier otra unidad) en Windows.</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Ruta relativa</strong> - A partir de los directorios de <code style="color:orange;">include_path</code>
+						<ul>
+							<li><code style="color:orange;">.</code> Denota el directorio del fichero en ejecución</li>
+							<li><code style="color:orange;">..</code> Denota el directorio superior</li>
+						</ul>
+					</li>
+				</ul>
+				<p><br />Supongamos que este código pertenece al fichero /home/usuario/public/foo.php:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+include 'bar.php'; // Relativa: /home/usuario/public/bar.php
+include './bar.php'; // Relativa: /home/usuario/public/bar.php
+include 'ruta/foo.php'; // Relativa: /home/usuario/public/ruta/foo.php
+include '../bar.php'; // Relativa: /home/usuario/bar.php
+include '/var/www/bar.php'; // Absoluta: /var/www/bar.php
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>include_path</h2>
+				<p>Es una directiva de PHP que enumera la lista de directorios en los que buscarán ficheros los constructores <code style="color:orange;">include</code>, <code style="color:orange;">include_once</code>, <code style="color:orange;">require</code> o <code style="color:orange;">require_once</code> (además de las funciones de manejo de ficheros). Esta lista de directorios se separan mediante el carácter ':' (dos puntos).</p>
+				<p>Ejemplo UNIX:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+include_path=".:/php/includes"
+				</code></pre>
+				<p>Ejemplo Windows:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+include_path=".:c:\php\includes"
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>php.ini</h2>
+				<p>Con todas las instalaciones de PHP tenemos un fichero <code style="color:orange;">php.ini</code>. Contiene la configuración del entorno de ejecución de PHP, y cada ajuste se realiza modificando su directiva correspondiente.</p>
+				<p>Algunas directivas:</p>
+				<ul>
+					<li><code style="color:orange;">include_path</code> - Lista de directorios donde se buscar ficheros.</li>
+					<li><code style="color:orange;">max_execution_time</code> - Límite de segundos de ejecución.</li>
+					<li><code style="color:orange;">upload_max_filesize</code> - Tamaño máximo aceptado en ficheros cargados.</li>
+					<li><code style="color:orange;">error_reporting</code> - Indica qué errores se notificarán.</li>
 				</ul>
 			</section>
 
 			<section>
 				<h2>Resumen</h2>
-				<p>Hemos visto:</p>
+				<p>Hemos aprendido:</p>
 				<ul>
-					<li>Cómo averiguar si estamos ante un número.</li>
-					<li>Cómo convertir entre bases.</li>
-					<li>Existen funciones para cifras grandes.</li>
-					<li>Funciones de redondeo.</li>
-					<li>Números aleatorios.</li>
-					<li>Número PI como función o constante.</li>
-					<li>Potecias y raíces cuadradas.</li>
-					<li>Funciones trigonométrica.</li>
-					<li>Y más.</li>
+					<li>Ventajas de dividir el código en ficheros.</li>
+					<li>De qué opciones disponemos para incluirlos.</li>
+					<li>Qué directivas nos afectan: <code style="color:orange;">include_path</code></li>
+					<li>Cómo se configura PHP: <code style="color:orange;">php.ini</code></li>
 				</ul>
 			</section>
 		</div>

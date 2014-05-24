@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>Curso de PHP - En práctica</title>
+	<title>Curso de PHP - Funciones de texto HTML y URL</title>
 
-	<meta name="description" content="PHP - En práctica">
+	<meta name="description" content="PHP - Funciones de texto HTML y URL">
 	<meta name="author" content="Jesús Ruiz-Ayúcar">
 
 	<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -30,7 +30,7 @@
 		table {
 			border-collapse: collapse;
 			width: 100%;
-			font-size: 0.7em !important; 
+			font-size: 0.5em !important; 
 			line-height: 1.8em !important;
 
 		}
@@ -39,14 +39,15 @@
 			border: 1px solid white !important;
 			text-align: center !important;
 		}
-		table th {
-			text-align: center !important;
-		}
 		code {
 			color: orange;
 		}
 		sup {
 			font-size: 0.5em !important;
+		}
+
+		table.symbols {
+			font-size: 1em !important;
 		}
 	</style>
 </head>
@@ -55,59 +56,192 @@
 		<div class="slides">
 			<section>
 				<h1>Curso de PHP</h1>
-				<h3>En práctica</h3>
+				<h3>Funciones de texto HTML y URL</h3>
 				<p>
 					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
 				</p>
 			</section>
 
 			<section>
-				<h2>Actividad 1</h2>
-				<p>Los arrays son <em>listas</em> de valores. Estos valores pueden ser, a su vez, arrays. Supón el siguiente:</p>
+				<h2>PHP y HTML</h2>
+				<p><strong>Recordemos</strong>: PHP se puede utilizar en muchos contextos.</p>
+				<p>Pero aquél donde más éxito tiene es en HTML.</p>
+				<p>Por esa razón el propio lenguaje contiene un gran número de funciones de strings pensadas para HTML.</p>				
+			</section>
+
+			<section>
+				<h2>nl2br()</h2>
+				<p>Si en HTML ponemos un cambio de línea (<code>\n</code>) esto no supone una nueva línea en el código. Para ello debemos usar <code>&lt;br /&gt;</code>
+				<p><code>nl2br()</code> convierte todos los caracteres <code>\n</code> en <code>&lt;br /&gt;</code></p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.7em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">nl2br</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$string</span> [, <span style="color:#881350;">bool</span> <span style="color:#825900;">$is_xhtml</span> = <span style="color:#881350;">true</span> ] )</div>
+			</section>
+
+			<section>
+				<h2>Entidades HTML</h2>
+				<p>Comenzamos el curso asumiendo conocimientos de HTML.</p>
+				<p>¿Cómo podemos mostrar el símbolo '<code>&lt;</code>' (menor que) en HTML?</p>
+				<p>Escribiendo su entidad HTML: <code>&amp;lt;</code></p>
+				<p>Algunos ejemplos:</p>
+				
+				<table class="symbols">
+					<thead>
+						<tr>
+							<th>Símbolo</th>
+							<th>Entidad HTML</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>&lt;</code></td>
+							<td><code>&amp;lt;</code></td>
+						</tr>
+						<tr>
+							<td><code>&gt;</code></td>
+							<td><code>&amp;gt;</code></td>
+						</tr>
+						<tr>
+							<td><code>&amp;</code></td>
+							<td><code>&amp;amp;</code></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section>
+				<h2>Seguridad en HTML</h2>
+				<p>Recuerda: desconfía siempre de aquello que provenga de fuera.</p>
+				<p>Supón que un usuario se registra usando este nombre:</p>
+				<p><code>&lt;a href="http://a.cz/virus.php"&gt;Click aquí&lt;/a&gt;</code></p>
+				<p>Cada vez que mostráramos su nombre, pondríamos un vínculo a una página con un virus (simplificando mucho).</p>
+				<p>¿Cómo lo solucionamos?</p>
+			</section>
+
+			<section>
+				<h2>htmlspecialchars()</h2>
+				<p>Convierte caracteres especiales (<code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code> y <code>&quot;</code>) a sus entidades HTML</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">htmlspecialchars</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$string</span> [, <span style="color:#881350;">int</span> <span style="color:#825900;">$flags</span> = ENT_COMPAT | ENT_HTML401 [, <span style="color:#881350;">string</span> <span style="color:#825900;">$encoding</span> = <span style="color:#eb7300;">'UTF-8'</span> [, <span style="color:#881350;">bool</span> <span style="color:#825900;">$double_encode</span> = <span style="color:#881350;">true</span> ]]] )</div>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
-$usuarios = array(
-	1 => array('nombre' => 'Juan', 'nacimiento' => '06/10/1988'),
-	2 => array('nombre' => 'Laura', 'nacimiento' => '16/12/1993'),
-	3 => array('nombre' => 'Daniel', 'nacimiento' => '22/09/1970'),
-	4 => array('nombre' => 'Hugo', 'nacimiento' => '01/09/1982'),
-	5 => array('nombre' => 'Elisa', 'nacimiento' => '27/02/1974'),
+$nombre = '&lt;a href="http://a.cz/virus.php"&gt;Click aquí&lt;/a&gt;';
+
+echo $nombre;
+// &lt;a href="http://a.cz/virus.php"&gt;Click aquí&lt;/a&gt;
+
+echo htmlspecialchars($nombre);
+// &amp;lt;a href=&amp;quot;http://a.cz/virus.php&amp;quot;&amp;gt;Click aquí&amp;lt;/a&amp;gt;
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>htmlentities()</h2>
+				<p>Convierte todos los caracteres (posibles) a sus entidades HTML corresdientes.</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">htmlentities</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$string</span> [, <span style="color:#881350;">int</span> <span style="color:#825900;">$flags</span> = ENT_COMPAT | ENT_HTML401 [, <span style="color:#881350;">string</span> <span style="color:#825900;">$encoding</span> = <span style="color:#eb7300;">'UTF-8'</span> [, <span style="color:#881350;">bool</span> <span style="color:#825900;">$double_encode</span> = <span style="color:#881350;">true</span> ]]] )</div>
+				<p>Esta función no convierte solo los caracteres especiales, sino todos aquellos que tengan alguna entidad HTML.</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$precio = "El precio será de 1000€";
+
+echo htmlspecialchars($precio);
+// El precio será de 1000€
+
+echo htmlentities($precio);
+// El precio ser&amp;aacute; de 1000&amp;euro;
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>htmlspecialchars_decode()</h2>
+				<p>Inversa de <code>htmlspecialchars()</code></p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#003369;">htmlspecialchars_decode </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$string</span> [, <span style="color:#881350;">int</span> <span style="color:#825900;">$flags</span> = ENT_COMPAT | ENT_HTML401 ] )</div><br />
+
+				<h2>html_entity_decode()</h2>
+				<p>Inversa de <code>htmlentities()</code></p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">html_entity_decode</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$string</span> [, <span style="color:#881350;">int</span> <span style="color:#825900;">$flags</span> = ENT_COMPAT | ENT_HTML401 [, <span style="color:#881350;">string</span> <span style="color:#825900;">$encoding</span> = <span style="color:#eb7300;">'UTF-8'</span> ]] )</div>
+			</section>
+
+			<section>
+				<h2>wordwrap()</h2>
+				<p>Separar en líneas. <span class="fragment">¡También útil fuera de HTML!</span></p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.6em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">wordwrap</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$str</span> [, <span style="color:#881350;">int</span> <span style="color:#825900;">$width</span> = <span style="color:#0000ff;">75</span> [, <span style="color:#881350;">string</span> <span style="color:#825900;">$break</span> = <span style="color:#eb7300;">&quot;\n&quot;</span> [, <span style="color:#881350;">bool</span> <span style="color:#825900;">$cut</span> = <span style="color:#881350;">false</span> ]]] )</div><br />
+				<p>Ejemplo</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$texto = "El veloz murciélago hindú comía feliz cardillo y kiwi";
+$nuevotexto = wordwrap($texto, 20, "&lt;br /&gt;\n");
+
+echo $nuevotexto;
+				</code></pre>
+				<p>El ejemplo de arriba produce:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+El veloz murciélago&lt;br /&gt;
+hindú comía feliz&lt;br /&gt;
+cardillo y kiwi
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>parse_url()</h2>
+				<h3>Analizar y extraer los campos de una URL</h3>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.7em; font-family:monospace; ">mixed <span style="color:#661aa9;">parse_url</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$url</span> [, <span style="color:#881350;">int</span> <span style="color:#825900;">$component</span> = -<span style="color:#0000ff;">1</span> ] )</div><br />
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$url = "http://www.ejemplo.com:8080/pagina.php?parametro1=valor1#apartado";
+$partes = parse_url($url);
+				</code></pre>
+				<p>Genera el siguiente array:</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+array(
+	"scheme"    => "http",
+	"host"      => "www.ejemplo.com",
+	"port"      => 8080,
+	"path"      => "/pagina.php",
+	"query"     => "parametro1=valor1",
+	"fragment"  => "apartado"
 );
 				</code></pre>
-				<p>Crea una aplicación que muestre el nombre de los mayores de 25 años.</p>
 			</section>
 
 			<section>
-				<h2>Actividad 2</h2>
-				<p>Tenemos que programar una máquina dispensadora de refrescos. Calcula el cambio óptimo (usando el menor número de billetes/monedas posible).</p>
-				<p>Pasos:</p>
-				<ol>
-					<li>Crea dos variables. Una con el del precio del producto y otra con la moneda/billete con que pagan.</li>
-					<li>Crea un array con todas las monedas/billetes que existen.</li>
-					<li>Calcula el cambio.</li>
-					<li>Calcula la mayor moneda/billete con la que puedes dar cambio.</li>
-					<li>Resta al cambio el valor obtenido en el paso 4.</li>
-					<li>Vuelve al paso 4, hasta que el cambio sea inferior que la menor de las monedas.</li>
-				</ol>
+				<h2>Codificación de URL</h2>
+				<p>Cuando proporcionamos un dato que formará parte de URL debemos codificarlo a su juego de caracteres.</p>
+				<p>Por ejemplo, la URL de la entrada de la «Unión Europea» en la Wikipedia es así:</p>
+				<p><code>http://es.wikipedia.org/wiki/Uni%C3%B3n%20Europea</code></p>
+				<p>Y se convierte a:</p>
+				<p><code>http://es.wikipedia.org/wiki/Unión Europea</code></p>
 			</section>
 
 			<section>
-				<h2>Actividad 3</h2>
-				<p>En la actividad 2 no hemos tenido en cuenta un problema: ¿qué hacemos si nos falta alguna moneda? Actualiza el programa de manera que devuelva el cambio óptimo con las monedas disponibles. Si no fuera posible dar el cambio, mostrar un mensaje.</p>
+				<h2>urlencode()</h2>
+				<p>Prepara un texto para adjuntarlo a una URL.</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">urlencode</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$str</span> )</div><br />
+				<h2>urldecode()</h2>
+				<p>Decodificar un texto de una URL.</p>
+				<div style="text-align:left;color:#000000; background-color:#ffffff; border:solid black 1px; padding:0.5em 1em 0.5em 1em; overflow:auto;font-size:0.8em; font-family:monospace; "><span style="color:#881350;">string</span> <span style="color:#661aa9;">urldecode</span><span style="color:#003369;"> </span>( <span style="color:#881350;">string</span> <span style="color:#825900;">$str</span> )</div>
+				<p>Ejemplo</p>
+				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+$url = "http://es.wikipedia.org/wiki/Uni%C3%B3n%20Europea";
+echo urldecode($url);
+// Muestra "http://es.wikipedia.org/wiki/Unión Europea"
+				</code></pre>
+
 			</section>
 
 			<section>
-				<h2>Actividad 4</h2>
-				<p>Queremos hacer una aplicación multiplataforma que analice fechas que están en este formato de strftime:<br />«<code>%d del %m del %Y</code>». Averigua cómo hacerlo.</p>
+				<h2>Resumen</h2>
 				<ul>
-					<li><code>%d</code> - día del mes con dos dígitos</li>
-					<li><code>%m</code> - mes del año con dos dígitos</li>
-					<li><code>%Y</code> - año con cuatro dígitos</li>
-				</ul>
-				<p><br />¿Funcionaría tu solución con este formato de la función date?<br />«<code>j \d\e\l n \d\e\l Y</code>».
-				<ul>
-					<li><code>j</code> - día del mes con uno o dos dígitos</li>
-					<li><code>n</code> - mes del año con uno o dos dígitos</li>
-					<li><code>Y</code> - Año con cuatro dígitos</li>
+					<li>Funciones HTML:
+						<ul>
+							<li><code>nl2br()</code></li>
+							<li>Entidades HTML</li>
+							<li><code>htmlspecialchars()</code></li>
+							<li><code>htmlentities()</code></li>
+							<li><code>htmlspecialchars_decode()</code> y <code>html_entity_decode()</code></li>
+							<li><code>wordwrap()</code></li>
+						</ul>
+					</li>
+					<li>Funciones de URL:
+						<ul>
+							<li><code>parse_url()</code></li>
+							<li>Codificación URL</li>
+							<li><code>urlencode()</code> y <code>urldecode()</code></li>
+						</ul>
+					</li>
 				</ul>
 			</section>
 		</div>
