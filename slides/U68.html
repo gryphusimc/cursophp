@@ -151,7 +151,7 @@
 
 			<section>
 				<h2>Compañías</h2>
-				<p>Para que una web esté operativa en cualquier momento, debe estar instalada en un servidor web <strong>operativo las 24 horas</strong>.</p>
+				<p>Para que una web esté disponible en cualquier momento, debe estar instalada en un servidor web <strong>operativo las 24 horas</strong>.</p>
 				<p>Además, debe tener una alta velocidad de <strong>subida de datos</strong>, que garantice picos en los que <em>muchos</em> usuarios accedan simultaneamente a la web.</p>
 				<p>Para ofrecer calidad de conexión (entre otras muchas ventajas), surgen las compañías de <em>hosting</em>.</p>
 			</section>
@@ -190,7 +190,7 @@
 
 			<section>
 				<h2>Acceso FTP y SFTP</h2>
-				<p>Necesitamos poder enviar los ficheros entre nuestro equipo y el servidor (para <em>instalar</em> la web). Existen para ello varios protocolos:</p>
+				<p>Necesitamos poder enviar los ficheros entre nuestro equipo y el servidor (para <em>instalar</em> la web). Existen varios protocolos:</p>
 				<ul>
 					<li><code>FTP</code> lo utilizamos para transferir ficheros a un servidor remoto. Todo el tráfico viaja sin cifrar, por lo que es poco seguro.</li>
 					<li><code>FTPS</code> es una actualización de FTP para hacerlo seguro.</li>
@@ -207,12 +207,26 @@
 
 			<section>
 				<h2>Dominios</h2>
-				<p>Los servidores web, como Apache, crean un <em>host virtual</em> para alojar dominos (o subdominios). Cuando queramos crear una página, necesitaremos uno, para poder identificarla. Las propias compañías de <em>hosting</em> también venden dominios. Puedes tener un dominio contratado con una compañía y el alojamiento con otra. Pero si es tu primera vez, es recomendable hacerlo todo en la misma empresa. De esa forma no tienes que preocuparte por nada; simplemente funciona.</p>
+				<p>Los servidores web, como Apache, crean un <em>host virtual</em> para alojar dominos (o subdominios). Cuando queramos crear una página, necesitaremos uno para poder identificarla. Las propias compañías de <em>hosting</em> también venden dominios. Puedes tener un dominio contratado con una compañía y el alojamiento con otra. Pero si es tu primera vez, es recomendable hacerlo todo en la misma empresa. De esa forma no tienes que preocuparte por nada; simplemente funciona.</p>
+			</section>
+
+			<section>
+				<h2>Mapeo local de dominios</h2>
+				<p>Un nombre de dominio está <em>vinculado</em> a una dirección IP, normalmente la del servidor web. Esta información puede tardar <em>bastante tiempo</em> (unas 24-48 horas) en hacerse efectiva desde que se registra o actualiza un dominio.</p>
+				<p>Para poder continuar trabajando, podremos <em>forzar</em> el que en <strong>nuestro equipo</strong> un determinado dominio apunte a la IP que nosotros indiquemos.</p>
+				<p>También nos es útil este <em>forzado</em> si estamos trabajando en una web local y queremos acceder a ella usando su nombre de dominio. Vincularíamos ese nombre de dominio a la IP local: <code>127.0.0.1</code>.</p>
 			</section>
 
 			<section>
 				<h2>/etc/hosts</h2>
+				<p>Para mapear (enlazar) localmente (en nuestro equipo) un dominio, debemos editar el fichero <code>/etc/hosts</code>. Es necesario editarlo con permisos de Administrador, tanto en Windows, como en Linux/Mac.</p>
+				<p>En Linux/Mac está en <code>/etc/hosts</code>. En Windows está en <code>C:\Windows\System32\drivers\etc\hosts</code>.
+				<p>Y tiene esta estructura:</p>
 				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; text-align: left;">
+#IP dominio
+127.0.0.1        localhost
+173.194.34.152   google.es
+
 				</code></pre>
 			</section>
 		</div>

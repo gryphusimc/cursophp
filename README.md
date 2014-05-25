@@ -3,17 +3,19 @@ Bienvenido al curso de introducción a la programación profesional en PHP.
 
 > ### ¿Es necesario otro curso más? ¿Qué tiene éste de diferente?
 
-Existen muchos cursos para aprender PHP junto con otras tecnologías web. Pero en éste nos vamos a centrar en una única cosa: **solamente vamos a aprender PHP**, y nos vamos a centrar en que lo aprendas **bien**. Créeme, es la mejor manera. Si en un mismo curso mezcláramos conceptos de HTML, JavaScript o SQL, no lograríamos que de verdad aprendieras PHP. Es mejor ir **paso a paso**.
+Existen muchos cursos para aprender PHP junto con otras tecnologías web. Pero en éste nos vamos a centrar en una única cosa: **solamente vamos a aprender PHP**, y nos vamos a asegurarnos de que lo aprendas **bien**. Créeme, es la mejor manera. Si en un mismo curso mezcláramos conceptos de HTML, JavaScript o SQL, no lograríamos que de verdad aprendieras PHP. Es mejor ir **paso a paso**.
 
-Eso no significa que nos olvidemos de lo demás. ¿Ya sabes trabajar con bases de datos? ¡Fenomenal! Hay una unidad en el apéndice que trata sobre **cómo conectar PHP con MySQL**.
+Eso no significa que nos olvidemos de lo demás. ¿Ya sabes trabajar con bases de datos? ¡Fenomenal! Hay una unidad en el apéndice que trata sobre **cómo conectar PHP con MySQL**. [Puedes verla en YouTube](http://youtu.be/bVAr1fNFFWY).
 
 Vamos a aprender también a integrar tus páginas PHP con el **servidor web Apache**.
 
-Y también veremos **cómo trabajar con las compañías de alojamiento de páginas web**, qué es en lo que te debes fijar, cómo registrar un dominio, vincularlo a tu alojamiento, conectar por FTP, actualizar el fichero hosts.
+Y también veremos **cómo trabajar con las compañías de alojamiento de páginas web**: qué es en lo que te debes fijar, cómo registrar un dominio, vincularlo a tu alojamiento, conectar por FTP, actualizar el fichero hosts.
 
 Además, es el único curso que está preparado para la última versión de PHP: La 5.6. 
 
-Por supuesto, tienes a tu disposición mucho material: todas las **presentaciones** las puedes descargar de la **página GitHub del curso**; con **ejercicios** pensados para que tú mismo los resuelvas; con muchísimos **ejemplos** que tienes a tu disposición para descargar; y con **exámenes** para que pongas tus conocimientos a prueba.
+Solamente utilizaremos software libre y/o gratuito. ¡No necesitarás adquirir licencias de paquetes como Dreamweaver! De hecho, ¿sabías que los programadores no solemos trabajar con ese tipo de entornos de desarrollo visuales?
+
+Por supuesto, tienes a tu disposición mucho material: todas las **presentaciones** las puedes descargar de la **[página GitHub del curso](https://github.com/gnoma/cursophp)**; con **ejercicios** pensados para que tú mismo los resuelvas; con más de **200 ejemplos** que tienes a tu disposición para descargar; y con **10 exámenes** para que pongas tus conocimientos a prueba.
 
 > ### ¿Pero es este curso para mí?
 
@@ -23,11 +25,11 @@ Este curso está dirigido a todos aquellos que:
 * tengan alguna noción de programación y deseen aprender PHP.
 * ya sepan algo de PHP pero busquen sentar las bases.
 
-Solamente asumiremos que sabes un poco de HTML. ¡Muy poco! Solo lo que puedas aprender tú mismo en una tarde.
+Solamente asumiremos que sabes un poco de HTML. ¡Muy poco! Solo lo que puedas aprender tú mismo en un par de días.
 
-Al fin y al cabo, como programador profesional PHP, te interesa más el *backend* (la tecnología del lado del servidor) que el *frontend* (tecnología del lado del navegador: HTML, CSS y JavaScript).
+Al fin y al cabo, como programadores profesionales de PHP, ahora nos interesa más el *backend* (la tecnología del lado del servidor) que el *frontend* (tecnología del lado del navegador: HTML, CSS y JavaScript).
 
->### Me has convencido. ¿Puedo ver algo antes de empezar?
+>### Me has convencido. ¿Podría ver algo antes de empezar?
 
 ¡Por supuesto! Toda la documentación del curso es *Open Source*. Lo tienes todo (incluido este documento) en GitHub: [https://github.com/gnoma/cursophp](https://github.com/gnoma/cursophp). El curso se compone de casi 70 unidades. He dejado dos de ellas disponibles para que las consultes en YouTube:
 
@@ -39,7 +41,6 @@ Me llamo Jesús Ruiz-Ayúcar. Soy Ingeniero Técnico Informático de Sistemas y,
 
 * Twitter: [@chuso](http://twitter.com/chuso)
 * Página web: [http://gnoma.es](http://gnoma.es)
-
 
 Si quieres tener acceso a los videotutoriales, visita la web del curso: [udemy.com](http://udemy.com)
 
@@ -262,3 +263,4 @@ Breve introducción a las bases de datos. Breve introducción al lenguaje SQL. G
 Software servidor web. Características que comparten los servidores web de producción. Servidor web Apache. Integración entre PHP y Apache. Fichero de configuración local `.htaccess`. Control de acceso mediante autenticación HTTP: `.htpasswd`. Reescritura de URL: `mod_rewrite`. Ejemplo e integración con PHP.
 
 #### Clase 68: Alojamiento de páginas web
+Por qué son necesarias las compañías de *hosting*. En qué parámetros debemos fijarnos al contratar un alojamiento: soporte de PHP, `php.ini`, bases de datos, acceso FTP, acceso SSH, espacio, tráfico, dominios, etc. Tipos de alojamientos: compartido de un dominio, compartido multidominio, virtual, dedicado. Acceso FTP (FTPS y SFTP). Clientes de FTP. Acceso SSH. Dominios y servidores web. Mapeo local de dominios: ventajas. Fichero `/etc/hosts`.
