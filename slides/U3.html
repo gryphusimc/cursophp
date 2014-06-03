@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Curso de PHP - Programación en cliente vs servidor</title>
+
+	<meta name="description" content="PHP - Programación en cliente vs servidor">
+	<meta name="author" content="Jesús Ruiz-Ayúcar">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Curso de PHP</h1>
+				<h3>Programación en cliente vs servidor</h3>
+				<p>
+					<small>Por <a href="http://gnoma.es">Jesús Ruiz-Ayúcar</a> / <a href="http://twitter.com/chuso">@chuso</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>¿Dónde funciona una web?</h2>
+				<h3>Recordemos: Cliente-servidor</h3>
+				<img src="assets/U2/Client-server-model.svg" style="padding: 1em;" />
+			</section>
+
+			<section>
+				<h2>¿Dónde funciona una web?</h2>
+				<h3>Lenguajes</h3>
+				<img src="assets/U3/Client-server-languages.png" style="padding: 1em;" />
+			</section>
+
+			<section>
+				<h2>Programación en el cliente</h2>
+				<p>Útil para:</p>
+				<ul>
+					<li class="fragment">Interactivo: modificar la página (DOM) sin recargas.</li>
+					<li class="fragment">AJAX: Cargar datos <strong>remotos</strong> sin refrescar la página.</li>
+					<li class="fragment">Aplicaciones y juegos: Chrome apps, phonegap, etc. (HTML5)</li>
+					<li class="fragment">APIS: Google Maps, Facebook, Twitter, Disqus, etc.</li>
+				</ul>
+				<p class="fragment"><br />Sin embargo si queremos que los usuarios compartan <em>algo</em> en nuestra web (fotos, vídeos, estados, noticias, puntuaciones), necesitaremos programación en el servidor (nuestra o de terceros).</p>
+			</section>
+
+			<section>
+				<h2>Programación en el cliente</h2>
+				<h3>Tecnologías</h3>
+				<ul>
+					<li class="fragment">JavaScript
+						<ul>
+							<li class="fragment">CoffeeScript</li>
+							<li class="fragment">Dart</li>
+							<li class="fragment">TypeScript</li>
+						</ul>
+					</li>
+					<li class="fragment">Native Client (Google Chrome)</li>
+					<li class="fragment">Flash</li>
+					<li class="fragment">Obsoletas: Applets de Java y ActiveX</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Programación en el servidor</h2>
+				<p>Útil para:</p>
+				<ul>
+					<li>Compartir datos y ficheros: Centraliza los datos dinámicos (usuarios, noticias, fotografías...), en bases de datos o en el sistema de ficheros.</li>
+					<li>Sesiones y seguridad.</li>
+					<li>Procesamiento masivo de datos.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Programación en el servidor</h2>
+				<p>Características</p>
+				<ul>
+					<li>Lo ejecuta el servidor web: Apache, Nginx, Lighttpd...</li>
+					<li>El resultado, normalmente HTML, se le envía al usuario (cliente).</li>
+					<li>El código de estos lenguajes, a diferencia de JavaScript, no le llega al cliente.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Programación en el servidor</h2>
+				<h3>Lenguajes</h3>
+				<ul>
+					<li class="fragment">Perl</li>
+					<li class="fragment">PHP</li>
+					<li class="fragment">Python</li>
+					<li class="fragment">Ruby</li>
+					<li class="fragment">Java</li>
+					<li class="fragment">JavaScript</li>
+					<li class="fragment">.NET</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Resumen</h2>
+				<p>Hemos aprendido:</p>
+				<ul>
+					<li>Características y lenguajes de programación en el lado del cliente</li>
+					<li>Características y lenguajes de programación en el lado del servidor</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>
