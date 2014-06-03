@@ -42,7 +42,7 @@ Me llamo Jesús Ruiz-Ayúcar. Soy Ingeniero Técnico Informático de Sistemas y,
 * Twitter: [@chuso](http://twitter.com/chuso)
 * Página web: [http://gnoma.es](http://gnoma.es)
 
-Si quieres tener acceso a los videotutoriales, visita la web del curso: [udemy.com](http://udemy.com)
+Si quieres tener acceso a los videotutoriales, visita la web del curso: [udemy.com](https://www.udemy.com/curso-php-profesional/)
 
 ## Contenidos del proyecto en GitHub
 * Diapositivas de todas las unidades, en formato HTML, usando la biblioteca [reveal.js](https://github.com/hakimel/reveal.js/).
