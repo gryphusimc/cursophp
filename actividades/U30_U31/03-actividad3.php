@@ -1,9 +1,9 @@
 <?php
 // Precio del producto
-$precio = 1.27;
+$precio = 3.50;
 
 // Importe pagado
-$pagado = 2;
+$pagado = 7.50;
 
 // Cambio que hay que devolver
 $cambio = $pagado - $precio;
@@ -16,7 +16,7 @@ $disponible = [
     20 => 3,
     10 => 1,
     5 => 3,
-    2 => 2,
+    2 => 1,
     1 => 4,
     '0.5' => 0,
     '0.2' => 3,
@@ -29,35 +29,31 @@ $disponible = [
 // Almacenamos aquí las monedas que vamos a devolver
 $monedas = [];
 
-// En cada iteración obtenemos una moneda
-do {
-    // Aquí comprobamos qué moneda vamos a devolver
-    // Comenzamos recorriéndolas todas
-    foreach($disponible as $valor => $existencias) {
-        // Nos detenemos en la primera moneda cuyo valor
-        // sea menor que el importe que tenemos que devolver
-        // siempre y cuando tengamos existencias de esa moneda
-        if ($valor <= $cambio && $existencias >= 1) {
-            break;
+// Comprobamos si se ha pagado suficiente:
+if ($cambio>=0) {
+    // Recorremos todas las monedas/billetes existentes
+    foreach ($disponible as $valor => $existencias) {
+        // Si la moneda/billete consultada es menor o igual
+        // que el importe pendiente de devolver, y tenemos
+        // existencias de esa moneda billete:
+        while ($cambio >= $valor && $disponible[$valor] !== 0) {
+            // Actualizamos el stock de $disponible:
+            $disponible[$valor]--;
+            // Actualizamos la lista de monedas que vamos a devolver:
+            $monedas[$valor]++;
+            // Actualizamos el cambio pendiente, con redondeo, para evitar
+        // problemas de precisión en coma flotante, ver advertencia:
+        // http://php.net/manual/es/language.types.float.php
+            $cambio = round($cambio - $valor, 2);
         }
     }
-    // Aquí tendremos el último valor e importe. Hay dos opciones:
-    // 1. Que hayamos encontrado la moneda que buscábamos
-    // 2. Que no haya cambio suficiente
-    // Lo discriminamos en función de la variable $existencias. Si
-    // no las hay, detenemos la ejecución:
-    if(!$existencias) {
-        die("No hay disponible cambio para el importe solicitado");
+    // Si tras los pasos anteriores el cambio no es 0,
+    // entonces es que no disponemos de cambio suficiente:
+    if ($cambio !=0) {
+        echo "Cambio no disponible";
+    } else {
+        print_r($monedas);
     }
-
-    // Si hay existencias, actualizamos el stock de $disponible:
-    $disponible[$valor]--;
-    // Actualizamos la lista de monedas que vamos a devolver:
-    $monedas[$valor]++;
-    // Actualizamos el cambio pendiente, con redondeo, para evitar
-    // problemas de precisión en coma flotante, ver advertencia:
-    // http://php.net/manual/es/language.types.float.php
-    $cambio = round($cambio - $valor, 2);
-} while ($cambio > 0);
-
-print_r($monedas);
+} else {
+    echo "Importe insuficiente";
+}
